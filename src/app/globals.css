@@ -1234,3 +1234,118 @@ body {
     padding: 20px 15px;
   }
 }
+
+
+/* Arrière-plan flouté et sombre qui couvre tout l'écran */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Boîtier central du formulaire */
+.modal-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeInModal 0.3s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f2f2f7;
+  padding-bottom: 10px;
+}
+
+.modal-header h2 {
+  font-size: 20px;
+  color: #1c1c1e;
+  font-weight: 600;
+  margin: 0;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #8e8e93;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn-close-modal:hover {
+  color: #1c1c1e;
+}
+
+/* Organisation interne du formulaire */
+.modal-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.modal-form label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #3a3a3c;
+}
+
+.modal-form input {
+  padding: 10px 14px;
+  border: 1px solid #c7c7cc;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #1c1c1e;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.modal-form input:focus {
+  border-color: #9f4f54; /* Reprend la teinte de ton site */
+}
+
+/* Bouton de validation final */
+.btn-submit-order {
+  width: 100%;
+  padding: 14px;
+  background-color: #25D366; /* Couleur officielle WhatsApp */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.btn-submit-order:hover {
+  background-color: #1ebd59;
+}
+
+/* Animation d'ouverture fluide */
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

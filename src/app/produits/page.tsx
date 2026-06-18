@@ -73,6 +73,11 @@ export default function ProductsPage() {
   return (
     <div className="home-page-container">
       <h1 className="section-title">Tous nos produits</h1>
+      
+      {/* Affichage du total des produits trouvés */}
+      <p style={{ color: "#636366", fontSize: "14px", marginTop: "-15px", marginBottom: "25px", fontWeight: "500" }}>
+        {filteredAndSortedProducts.length} {filteredAndSortedProducts.length > 1 ? "produits disponibles" : "produit disponible"}
+      </p>
 
       {/* Barre de contrôle épurée : Filtres et Tris */}
       <div className="catalog-controls">
