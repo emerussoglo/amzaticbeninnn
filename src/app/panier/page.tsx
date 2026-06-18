@@ -46,7 +46,7 @@ export default function CartPage() {
 
     // 3. Encodage du message pour l'URL
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappNumber = "2290157234689";
+    const whatsappNumber = "2290166935805";
     
     // 4. Redirection vers WhatsApp
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
