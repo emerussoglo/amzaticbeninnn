@@ -33,7 +33,7 @@ export default function ContactPage() {
 
       <div className="contact-content-grid">
         {/* Formulaire de contact */}
-        <div className="contact-form-card">
+        {/* <div className="contact-form-card">
           <h2>Envoyez-nous un message</h2>
           <form onSubmit={handleSubmit} className="contact-form">
             <div className="form-group">
@@ -92,7 +92,7 @@ export default function ContactPage() {
               Envoyer le message
             </button>
           </form>
-        </div>
+        </div> */}
 
         {/* Infos de contact réelles */}
         <div className="contact-info-column">

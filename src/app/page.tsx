@@ -5,33 +5,29 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Hero from "@/components/Hero";
 import { Suspense } from "react";
 
-// 1. CATALOGUE INFORMATIQUE AVEC PRIX ET PRIX BARRÉS (oldPrice)
 const PRODUCTS_DATA = [
-  // PC & Moniteurs
-  { id: 1, name: "PC Portable HP 15s (Intel i5, 16GB RAM, 512GB SSD)", price: 450000, oldPrice: 490000, category: "PC & Moniteurs", image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500&auto=format&fit=crop&q=60" },
-  { id: 2, name: "MacBook Air M2 (8GB RAM, 256GB SSD)", price: 750000, oldPrice: 820000, category: "PC & Moniteurs", image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&auto=format&fit=crop&q=60" },
-  { id: 3, name: "PC Gaming ASUS TUF (RTX 4060, i7)", price: 850000, oldPrice: 950000, category: "PC & Moniteurs", image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&auto=format&fit=crop&q=60" },
-  { id: 4, name: "Moniteur Gaming MSI 27\" Incurvé 165Hz", price: 145000, oldPrice: 175000, category: "PC & Moniteurs", image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&auto=format&fit=crop&q=60" },
-  { id: 5, name: "Écran Bureautique Dell 24\" UltraSharp", price: 110000, oldPrice: 130000, category: "PC & Moniteurs", image: "https://images.unsplash.com/photo-1547119957-637f8679db1e?w=500&auto=format&fit=crop&q=60" },
+  // --- Rubrique Ordinateurs ---
+  { id: 1, name: "PC Portable HP 15s (Intel i5, 16GB RAM, 512GB SSD)", price: 450000, oldPrice: 490000, category: "Ordinateurs", image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500&auto=format&fit=crop&q=60" },
+  { id: 2, name: "MacBook Air M2 (8GB RAM, 256GB SSD)", price: 750000, oldPrice: 820000, category: "Ordinateurs", image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&auto=format&fit=crop&q=60" },
+  { id: 3, name: "PC Gaming ASUS TUF (RTX 4060, i7)", price: 850000, oldPrice: 950000, category: "Ordinateurs", image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&auto=format&fit=crop&q=60" },
 
-  // Tablettes & Téléphones
-  { id: 6, name: "iPad Air 5 (M1, Wi-Fi, 64GB)", price: 420000, oldPrice: 460000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&auto=format&fit=crop&q=60" },
-  { id: 7, name: "Tablette Samsung Galaxy Tab S9 FE", price: 330000, oldPrice: 370000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500&auto=format&fit=crop&q=60" },
-  { id: 8, name: "iPhone 15 Pro Max (256GB)", price: 850000, oldPrice: 950000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1695048133230-070845371b21?w=500&auto=format&fit=crop&q=60" },
-  { id: 9, name: "Samsung Galaxy S24 Ultra", price: 790000, oldPrice: 880000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&auto=format&fit=crop&q=60" },
+  // --- Rubrique Imprimantes ---
+  { id: 13, name: "Imprimante ÉcoTank Epson L3250", price: 155000, oldPrice: 180000, category: "Imprimantes", image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500&auto=format&fit=crop&q=60" },
+  { id: 14, name: "Imprimante Laser HP Neverstop", price: 175000, oldPrice: 200000, category: "Imprimantes", image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500&auto=format&fit=crop&q=60" },
 
-  // Casques & Audio
-  { id: 10, name: "Casque Bluetooth Sony WH-1000XM5", price: 210000, oldPrice: 245000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format&fit=crop&q=60" },
-  { id: 11, name: "Casque Gaming Razer BlackShark V2", price: 65000, oldPrice: 80000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=500&auto=format&fit=crop&q=60" },
-  { id: 12, name: "Écouteurs AirPods Pro 2", price: 160000, oldPrice: 190000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1588449668338-d151688d3482?w=500&auto=format&fit=crop&q=60" },
+  // --- Rubrique Accessoires (Chargeur, batterie, clavier, écran...) ---
+  { id: 5, name: "Écran Bureautique Dell 24\" UltraSharp", price: 110000, oldPrice: 130000, category: "Accessoires", image: "https://images.unsplash.com/photo-1547119957-637f8679db1e?w=500&auto=format&fit=crop&q=60" },
+  { id: 15, name: "Souris Logitech MX Master 3S", price: 65000, oldPrice: 75000, category: "Accessoires", image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&auto=format&fit=crop&q=60" },
+  { id: 16, name: "Clavier Mécanique Corsair K70 RGB", price: 95000, oldPrice: 115000, category: "Accessoires", image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60" },
+  { id: 19, name: "Chargeur Universel PC Portable 90W", price: 25000, oldPrice: 30000, category: "Accessoires", image: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=500&auto=format&fit=crop&q=60" },
+  { id: 20, name: "Batterie Interne HP/Dell Haute Capacité", price: 35000, oldPrice: 45000, category: "Accessoires", image: "https://images.unsplash.com/photo-1624996379697-f01d168b1a52?w=500&auto=format&fit=crop&q=60" },
 
-  // Imprimantes & Accessoires
-  { id: 13, name: "Imprimante ÉcoTank Epson L3250", price: 155000, oldPrice: 180000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500&auto=format&fit=crop&q=60" },
-  { id: 14, name: "Imprimante Laser HP Neverstop", price: 175000, oldPrice: 200000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500&auto=format&fit=crop&q=60" },
-  { id: 15, name: "Souris Logitech MX Master 3S", price: 65000, oldPrice: 75000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&auto=format&fit=crop&q=60" },
-  { id: 16, name: "Clavier Mécanique Corsair K70 RGB", price: 95000, oldPrice: 115000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60" },
-  { id: 17, name: "Disque Dur Externe WD My Passport 2To", price: 55000, oldPrice: 65000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1601524909162-be87252be298?w=500&auto=format&fit=crop&q=60" },
-  { id: 18, name: "Hub USB-C 8-en-1 Anker", price: 30000, oldPrice: 40000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=500&auto=format&fit=crop&q=60" }
+  // --- Rubrique Électroménager (TV toutes tailles, Clims, Cuisinières, Équipements cuisine) ---
+  { id: 30, name: "Smart TV LED LG 55\" Ultra HD 4K", price: 385000, oldPrice: 420000, category: "Électroménager", image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=500&auto=format&fit=crop&q=60" },
+  { id: 31, name: "Smart TV 43\" Full HD (Autres tailles disponibles sur commande)", price: 195000, oldPrice: 220000, category: "Électroménager", image: "https://images.unsplash.com/photo-1552975084-6e027cd345c2?w=500&auto=format&fit=crop&q=60" },
+  { id: 32, name: "Climatiseur Split Westpoint 1.5 CV R410 (Mural)", price: 210000, oldPrice: 240000, category: "Électroménager", image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500&auto=format&fit=crop&q=60" },
+  { id: 33, name: "Cuisinière à Gaz 4 Foyers Smart avec Four", price: 145000, oldPrice: 165000, category: "Électroménager", image: "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=500&auto=format&fit=crop&q=60" },
+  { id: 34, name: "Four à Micro-ondes Numérique 20L", price: 65000, oldPrice: 75000, category: "Électroménager", image: "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500&auto=format&fit=crop&q=60" }
 ];
 
 export function HomePageContent() {
@@ -43,11 +39,11 @@ export function HomePageContent() {
   const categoryQuery = searchParams.get("cat") || "";
 
   const categoryMapping: { [key: string]: string } = {
-    ordinateurs: "PC & Moniteurs",
-    tablettes: "Tablettes & Téléphones",
-    audio: "Casques & Audio",
-    peripheriques: "Imprimantes & Accessoires"
-  };
+  ordinateurs: "Ordinateurs",
+  imprimantes: "Imprimantes",
+  accessoires: "Accessoires",
+  electromenager: "Électroménager"
+};
   const targetCategory = categoryMapping[categoryQuery] || "";
 
   const filteredProducts = PRODUCTS_DATA.filter((product) => {

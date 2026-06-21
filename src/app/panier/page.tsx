@@ -46,7 +46,7 @@ export default function CartPage() {
 
     // 3. Encodage du message pour l'URL
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappNumber = "2290166935805";
+    const whatsappNumber = "2290167921796";
     
     // 4. Redirection vers WhatsApp
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
@@ -192,7 +192,7 @@ export default function CartPage() {
                   required
                   value={customerInfo.address}
                   onChange={handleInputChange}
-                  placeholder="Ex: Fidjrossè, Carré 1200 près de l'église"
+                  placeholder="Ex: Calavi, zogbadjè"
                 />
               </div>
 

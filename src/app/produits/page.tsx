@@ -47,7 +47,14 @@ export default function ProductsPage() {
   };
 
   // Les catégories informatiques de ton site
-  const categories = ["Tous", "PC & Moniteurs", "Tablettes & Téléphones", "Casques & Audio", "Imprimantes & Accessoires"];
+  // Les nouvelles catégories principales de ton site
+const categories = [
+  "Tous", 
+  "Ordinateurs", 
+  "Imprimantes", 
+  "Accessoires", 
+  "Électroménager"
+];
 
   // Filtrer et trier la liste des produits
   const filteredAndSortedProducts = useMemo(() => {

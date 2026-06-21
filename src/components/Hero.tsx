@@ -3,40 +3,41 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+// 1. ADAPTATION DU SLIDER AVEC LES QUATRE GRANDES RUBRIQUES
 const SLIDES_DATA = [
   {
     id: 1,
-    title: "Ordinateurs de Performance : PC Portables, Fixes & Moniteurs",
+    title: "Ordinateurs de Performance : Portables & Moniteurs",
     subtitle: "Productivité & Puissance",
-    description: "Équipez votre bureau ou votre setup de gaming avec le meilleur de l'informatique. Des PC configurés pour durer, avec SERVICE APRÈS-VENTE ASSURÉ.",
-    image: "/img/img1.jpeg", // Image setup PC Bureau
+    description: "Équipez votre espace de travail ou votre setup avec le meilleur de l'informatique. Des PC configurés pour durer, avec SERVICE APRÈS-VENTE ASSURÉ.",
+    image: "/img/img1.jpeg",
     btnText: "Voir les Ordinateurs",
     link: "/?cat=ordinateurs"
   },
-  { 
-    id: 2,
-    title: "Tablettes & Téléphones Pro : Restez connecté partout",
-    subtitle: "Mobilité & Innovation",
-    description: "Boostez votre quotidien professionnel et personnel avec nos iPads, tablettes Android et smartphones de dernière génération.",
-    image: "/img/img2.jpeg", // Image Tablette / iPad
-    btnText: "Découvrir la Sélection",
-    link: "/?cat=tablettes"
-  },
   {
-    id: 3,
-    title: "Imprimantes & Périphériques : Solutions complètes pour Bureau",
+    id: 2,
+    title: "Imprimantes Professionnelles : Des impressions nettes",
     subtitle: "Équipements Pro",
-    description: "Optimisez vos flux de travail avec nos imprimantes multifonctions laser ou jet d'encre et nos accessoires informatiques durables.",
-    image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=1000&auto=format&fit=crop&q=80", // Image Imprimante / Espace Travail
-    btnText: "Découvrir les Accessoires",
-    link: "/?cat=peripheriques"
+    description: "Découvrez nos imprimantes laser et jet d'encre multifonctions idéales pour vos flux de travail et votre entreprise au Bénin.",
+    image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=1000&auto=format&fit=crop&q=80",
+    btnText: "Voir les Imprimantes",
+    link: "/?cat=imprimantes"
+  },
+  { 
+    id: 3,
+    title: "Électroménager Confort : TV, Climatiseurs & Cuisine",
+    subtitle: "Maison & High-Tech",
+    description: "Smart TV de 32 à 75\"+, climatiseurs puissants de 1 à 2 CV et équipements complets pour moderniser votre cuisine quotidienne.",
+    image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1000&auto=format&fit=crop&q=80",
+    btnText: "Découvrir l'Électroménager",
+    link: "/?cat=electromenager"
   }
 ];
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Gestion du défilement automatique toutes les 5 secondes
+  // Défilement automatique
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % SLIDES_DATA.length);
@@ -54,13 +55,9 @@ export default function Hero() {
             key={slide.id} 
             className={`hero-slide ${index === currentSlide ? "slide-active" : ""}`}
           >
-            {/* Image de fond */}
             <img src={slide.image} alt={slide.title} className="slide-bg-img" />
-            
-            {/* Voile sombre texturé pour garantir la lisibilité du texte blanc */}
             <div className="slide-overlay"></div>
 
-            {/* Contenu textuel */}
             <div className="slide-content">
               <span className="slide-tag">{slide.subtitle}</span>
               <h2 className="slide-title">{slide.title}</h2>
@@ -72,7 +69,6 @@ export default function Hero() {
           </div>
         ))}
 
-        {/* Boutons indicateurs (Dots) en bas au centre du slider */}
         <div className="slider-dots">
           {SLIDES_DATA.map((_, index) => (
             <button
@@ -89,37 +85,37 @@ export default function Hero() {
       {/* COMPOSANT DE DROITE : LES DEUX ENCARTS STATIQUES */}
       <div className="hero-banners-right">
   
-        {/* Encart Haut - Gaming Setup */}
+        {/* Encart Haut - Ordinateurs de bureau */}
         <div className="right-banner-card text-light">
           <img 
-            src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format&fit=crop&q=80" 
-            alt="PC Gaming Setup" 
+            src="/img/img6.jpg" 
+            alt="Ordinateurs de bureau" 
             className="banner-bg-img" 
           />
           <div className="banner-overlay"></div>
           <div className="banner-content">
-            <span className="banner-tag text-red">E-Sport & Gaming</span>
-            <h3>PC Gaming & Écrans Incurvés</h3>
-            <p>Maximisez vos performances avec du matériel certifié d'origine.</p>
+            <span className="banner-tag text-red">Pro & Bureautique</span>
+            <h3>PC de Bureau & Écrans</h3>
+            <p>Optimisez votre espace de travail avec des PC performants et durables.</p>
             <Link href="/?cat=ordinateurs" className="btn-banner-small">
               Découvrir
             </Link>
           </div>
         </div>
 
-        {/* Encart Bas - Casques & Audio */}
+        {/* Encart Bas - Rubrique Accessoires globaux */}
         <div className="right-banner-card text-light">
           <img 
-            src="https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=600&auto=format&fit=crop&q=80" 
-            alt="Casques Informatiques et Audio" 
+            src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&auto=format&fit=crop&q=80" 
+            alt="Accessoires informatiques complets" 
             className="banner-bg-img" 
           />
           <div className="banner-overlay"></div>
           <div className="banner-content">
-            <span className="banner-tag text-green">Audio & Bureau</span>
-            <h3>Casques & Périphériques Audio</h3>
-            <p>Une clarté sonore totale pour vos réunions professionnelles ou vos sessions de jeu.</p>
-            <Link href="/?cat=audio" className="btn-banner-small">
+            <span className="banner-tag text-green">Composants & Matériel</span>
+            <h3>Tout genre d'Accessoires</h3>
+            <p>Chargeurs, batteries de rechange, claviers, souris et câbles essentiels.</p>
+            <Link href="/?cat=accessoires" className="btn-banner-small">
               Acheter
             </Link>
           </div>

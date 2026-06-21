@@ -3,14 +3,14 @@
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 
-// Sélection des meilleurs produits informatiques (les vedettes de ta liste)
+// Sélection des meilleurs produits (les vedettes adaptées à tes nouvelles rubriques)
 const FEATURED_PRODUCTS = [
-  { id: 1, name: "PC Portable HP 15s (Intel i5, 16GB RAM, 512GB SSD)", price: 450000, oldPrice: 490000, category: "PC & Moniteurs", image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500&auto=format&fit=crop&q=60", tag: "Coup de cœur" },
-  { id: 3, name: "PC Gaming ASUS TUF (RTX 4060, i7)", price: 850000, oldPrice: 950000, category: "PC & Moniteurs", image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&auto=format&fit=crop&q=60", tag: "Top Vente" },
-  { id: 6, name: "iPad Air 5 (M1, Wi-Fi, 64GB)", price: 420000, oldPrice: 460000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&auto=format&fit=crop&q=60", tag: "Populaire" },
-  { id: 8, name: "iPhone 15 Pro Max (256GB)", price: 850000, oldPrice: 950000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1695048133230-070845371b21?w=500&auto=format&fit=crop&q=60", tag: "Premium" },
-  { id: 10, name: "Casque Bluetooth Sony WH-1000XM5", price: 210000, oldPrice: 245000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format&fit=crop&q=60", tag: "Meilleure Note" },
-  { id: 13, name: "Imprimante ÉcoTank Epson L3250", price: 155000, oldPrice: 180000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500&auto=format&fit=crop&q=60", tag: "Offre Spéciale" }
+  { id: 1, name: "PC Portable HP 15s (Intel i5, 16GB RAM, 512GB SSD)", price: 450000, oldPrice: 490000, category: "Ordinateurs", image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500&auto=format&fit=crop&q=60", tag: "Coup de cœur" },
+  { id: 3, name: "PC Gaming ASUS TUF (RTX 4060, i7)", price: 850000, oldPrice: 950000, category: "Ordinateurs", image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&auto=format&fit=crop&q=60", tag: "Top Vente" },
+  { id: 13, name: "Imprimante ÉcoTank Epson L3250", price: 155000, oldPrice: 180000, category: "Imprimantes", image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500&auto=format&fit=crop&q=60", tag: "Offre Spéciale" },
+  { id: 16, name: "Clavier Mécanique Corsair K70 RGB", price: 95000, oldPrice: 115000, category: "Accessoires", image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60", tag: "Populaire" },
+  { id: 19, name: "Chargeur Universel PC Portable 90W", price: 25000, oldPrice: 30000, category: "Accessoires", image: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=500&auto=format&fit=crop&q=60", tag: "Indispensable" },
+  { id: 30, name: "Smart TV LED LG 55\" Ultra HD 4K", price: 385000, oldPrice: 420000, category: "Électroménager", image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=500&auto=format&fit=crop&q=60", tag: "Premium" }
 ];
 
 export default function FeaturedPage() {
@@ -28,7 +28,7 @@ export default function FeaturedPage() {
       <div className="featured-hero">
         <span className="featured-subtitle">Exclusivités ESPANA DEAL</span>
         <h1>Les Meilleurs Produits du Moment</h1>
-        <p>Découvrez notre sélection exclusive de matériel informatique plébiscité par nos clients au Bénin pour sa puissance, sa qualité et sa fiabilité.</p>
+        <p>Découvrez notre sélection exclusive de matériel plébiscité par nos clients au Bénin pour sa puissance, sa qualité et sa fiabilité.</p>
       </div>
 
       {/* Grille de produits avec badges et prix mis à jour */}

@@ -60,11 +60,11 @@ export default function Navbar() {
                 onChange={(e) => setSearchCat(e.target.value)}
               >
                 <option value="">Toutes les catégories</option>
-                <option value="ordinateurs">PC & Moniteurs</option>
-                <option value="tablettes">Tablettes & Téléphones</option>
-                <option value="audio">Casques & Audio</option>
-                <option value="peripheriques">Imprimantes & Accessoires</option>
-              </select>
+<option value="ordinateurs">Ordinateurs</option>
+<option value="imprimantes">Imprimantes</option>
+<option value="accessoires">Accessoires</option>
+<option value="electromenager">Électroménager</option>
+</select>
             </div>
             <button type="submit" className="search-button" aria-label="Rechercher">
               <i className="fas fa-search"></i>
@@ -180,28 +180,28 @@ export default function Navbar() {
             </div>
 
             {/* Liste des nouvelles catégories avec icônes adaptées */}
-            <ul className="sidebar-categories-list">
-              <li>
-                <Link href="/?cat=ordinateurs" onClick={() => setIsMenuOpen(false)}>
-                  <i className="fas fa-laptop"></i> PC & Moniteurs
-                </Link>
-              </li>
-              <li>
-                <Link href="/?cat=tablettes" onClick={() => setIsMenuOpen(false)}>
-                  <i className="fas fa-tablet-alt"></i> Tablettes & Téléphones
-                </Link>
-              </li>
-              <li>
-                <Link href="/?cat=audio" onClick={() => setIsMenuOpen(false)}>
-                  <i className="fas fa-headphones"></i> Casques & Audio
-                </Link>
-              </li>
-              <li>
-                <Link href="/?cat=peripheriques" onClick={() => setIsMenuOpen(false)}>
-                  <i className="fas fa-print"></i> Imprimantes & Accessoires
-                </Link>
-              </li>
-            </ul>
+<ul className="sidebar-categories-list">
+  <li>
+    <Link href="/?cat=ordinateurs" onClick={() => setIsMenuOpen(false)}>
+      <i className="fas fa-laptop"></i> Ordinateurs
+    </Link>
+  </li>
+  <li>
+    <Link href="/?cat=imprimantes" onClick={() => setIsMenuOpen(false)}>
+      <i className="fas fa-print"></i> Imprimantes
+    </Link>
+  </li>
+  <li>
+    <Link href="/?cat=accessoires" onClick={() => setIsMenuOpen(false)}>
+      <i className="fas fa-keyboard"></i> Accessoires
+    </Link>
+  </li>
+  <li>
+    <Link href="/?cat=electromenager" onClick={() => setIsMenuOpen(false)}>
+      <i className="fas fa-tv"></i> Électroménager
+    </Link>
+  </li>
+</ul>
 
             <div className="sidebar-divider"></div>
           </div>
