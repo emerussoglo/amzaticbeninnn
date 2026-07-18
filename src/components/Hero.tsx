@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import Link from "next/link"; 
 
 // 1. ADAPTATION DU SLIDER AVEC LES QUATRE GRANDES RUBRIQUES
 const SLIDES_DATA = [

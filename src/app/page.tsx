@@ -7,27 +7,29 @@ import { Suspense } from "react";
 
 const PRODUCTS_DATA = [
   // --- Rubrique Ordinateurs ---
-  { id: 1, name: "PC Portable HP 15s (Intel i5, 16GB RAM, 512GB SSD)", price: 450000, oldPrice: 490000, category: "Ordinateurs", image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500&auto=format&fit=crop&q=60" },
-  { id: 2, name: "MacBook Air M2 (8GB RAM, 256GB SSD)", price: 750000, oldPrice: 820000, category: "Ordinateurs", image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&auto=format&fit=crop&q=60" },
-  { id: 3, name: "PC Gaming ASUS TUF (RTX 4060, i7)", price: 850000, oldPrice: 950000, category: "Ordinateurs", image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&auto=format&fit=crop&q=60" },
+  { id: 4, name: "PC Portable HP ProBook 640 G5 – Intel Core i5 8è Génération - Écran 14\" FHD - RAM 8Go - SSD 256Go", price: 180000, oldPrice: 220000, category: "Ordinateurs", image: "/img/hp-probook-640-g5.jpeg", tag: "Promo" },
+  { id: 5, name: "PC Portable HP ProBook 640 G5 – Intel Core i5 8è Génération - Écran 14\" FHD - RAM 16Go - SSD 512Go", price: 210000, oldPrice: 250000, category: "Ordinateurs", image: "/img/hp-probook-640-g5.jpeg", tag: "Meilleure Performance" },
+  { id: 6, name: "PC Portable HP ProBook 650 G1 – Intel Core i5 2.60GHz - Écran 15.6\" FHD - RAM 8Go - SSD 256Go", price: 135000, oldPrice: 165000, category: "Ordinateurs", image: "/img/hp-probook-650-g1.jpeg", tag: "Bon plan" },
+  { id: 9, name: "PC Portable HP EliteBook 850 G6 – Intel Core i5 8è Génération - Écran 15.6\" FHD - RAM 8Go - SSD 512Go", price: 280000, oldPrice: 320000, category: "Ordinateurs", image: "/img/hp-elitebook-850-g6.jpeg", tag: "Populaire" },
+  { id: 10, name: "PC Portable HP EliteBook 850 G6 – Intel Core i5 8è Génération - Écran 15.6\" FHD - RAM 16Go - SSD 512Go", price: 330000, oldPrice: 380000, category: "Ordinateurs", image: "/img/hp-elitebook-850-g6.jpeg", tag: "Meilleure Performance" },
+  { id: 11, name: "PC Portable HP Elitebook 1040G5 x360 (Convertible) – Intel Core i7 8è Génération - Écran Tactile 14\" - RAM 16Go - SSD 512Go", price: 550000, oldPrice: 600000, category: "Ordinateurs", image: "/img/hp-elitebook-1040g5-x360.jpeg", tag: "Coup de cœur" },
+  { id: 15, name: "PC Portable HP 250 G8 – Intel Core i3 10è Génération - Écran 15\" - RAM 8Go - SSD 512Go", price: 300000, oldPrice: 350000, category: "Ordinateurs", image: "/img/lenovo-v15-g3-8gb.jpeg", tag: "Meilleure Performance" },
+  { id: 16, name: "PC Portable HP ProBook 640 G5 – Intel Core i5 8è Génération - Écran 14\" FHD - RAM 8Go - SSD 256Go", price: 180000, oldPrice: 220000, category: "Ordinateurs", image: "/img/hp-probook-640-g5-256gb.jpeg", tag: "Promo" },
+  { id: 17, name: "PC Portable HP ProBook 640 G5 – Intel Core i5 8è Génération - Écran 14\" FHD - RAM 16Go - SSD 512Go", price: 210000, oldPrice: 250000, category: "Ordinateurs", image: "/img/hp-probook-640-g5-256gb.jpeg", tag: "Meilleure Performance" },
+  { id: 18, name: "Ordinateur Tout-en-un HP 440 G9 All in one – Intel Core i5-12500T 12e Gén 2.0ghz - Écran 24\" FHD - RAM 16Go - SSD 512Go", price: 580000, oldPrice: 630000, category: "Ordinateurs", image: "/img/hp-440-g9-all-in-one.jpeg", tag: "Coup de cœur" },
+  { id: 19, name: "PC Portable HP EliteBook Dragonfly – Intel Core i7 8è Génération - Écran Tactile 13\" FHD - RAM 16Go - SSD 512Go", price: 410000, oldPrice: 460000, category: "Ordinateurs", image: "/img/hp-elitebook-dragonfly.jpeg", tag: "Promo" },
+  { id: 21, name: "PC Portable HP Elitebook 840G3 – Intel Core i5 6è Génération - Écran 14\" - RAM 8Go - SSD 256Go + HDD 1To", price: 200000, oldPrice: 240000, category: "Ordinateurs", image: "/img/hp-elitebook-840g3-double-stockage.jpeg", tag: "Meilleure Performance" },
+  { id: 22, name: "Ordinateur de Bureau Dell Optiplex 5060 (Moyen) – Intel Core i5 7è Génération - Écran 23\" - RAM 8GB - HDD 500Go", price: 190000, oldPrice: 230000, category: "Ordinateurs", image: "/img/dell-optiplex-5060-moyen.jpeg", tag: "Promo" },
+  { id: 23, name: "Ordinateur de Bureau Dell Optiplex 5060 (Moyen) – Intel Core i5 8è Génération - Écran 23\" - RAM 8GB - HDD 500Go", price: 210000, oldPrice: 250000, category: "Ordinateurs", image: "/img/dell-optiplex-5060-moyen.jpeg", tag: "Meilleure Performance" },
+  { id: 24, name: "PC Portable Dell Vostro 15-3000 – Intel Core i3 11è Génération 3.00GHz - Écran 15\" FHD - RAM 8GB - SSD 256GB", price: 250000, oldPrice: 290000, category: "Ordinateurs", image: "/img/dell-vostro-15-3000.jpeg", tag: "Promo" },
+  { id: 25, name: "PC Portable HP ProBook 450G1 – Intel Core i5 2.60GHz - Écran 15.6\" - RAM 8Go - HDD 500Go", price: 100000, oldPrice: 130000, category: "Ordinateurs", image: "/img/hp-probook-450g1.jpeg", tag: "Promo" },
+  { id: 26, name: "PC Portable HP ProBook 650G1 – Intel Core i5 2.60GHz - Écran 15.6\" - RAM 8Go - HDD 500Go", price: 100000, oldPrice: 130000, category: "Ordinateurs", image: "/img/hp-probook-450g1.jpeg", tag: "Promo" },
+  { id: 27, name: "Ordinateur de Bureau Dell Optiplex 5060 (Moyen) – Intel Core i5 7è Génération - Écran 23\" - RAM 8GB - HDD 500Go", price: 190000, oldPrice: 230000, category: "Ordinateurs", image: "/img/dell-optiplex-5060-moyen.jpeg", tag: "Promo" },
+  { id: 28, name: "Ordinateur de Bureau Dell Optiplex 5060 (Moyen) – Intel Core i5 8è Génération - Écran 23\" - RAM 8GB - HDD 500Go", price: 210000, oldPrice: 250000, category: "Ordinateurs", image: "/img/dell-optiplex-5060-moyen.jpeg", tag: "Meilleure Performance" },
+  { id: 29, name: "PC Portable HP EliteBook mt45 – AMD Ryzen 3 Pro 2.10GHz (éq Core i5) - Écran 14\" Full HD - RAM 8Go - SSD 256Go - AMD Radeon 2Gb dédiée", price: 170000, oldPrice: 210000, category: "Ordinateurs", image: "/img/hp-elitebook-mt45.jpeg", tag: "Promo" },
 
-  // --- Rubrique Imprimantes ---
-  { id: 13, name: "Imprimante ÉcoTank Epson L3250", price: 155000, oldPrice: 180000, category: "Imprimantes", image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500&auto=format&fit=crop&q=60" },
-  { id: 14, name: "Imprimante Laser HP Neverstop", price: 175000, oldPrice: 200000, category: "Imprimantes", image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500&auto=format&fit=crop&q=60" },
 
-  // --- Rubrique Accessoires (Chargeur, batterie, clavier, écran...) ---
-  { id: 5, name: "Écran Bureautique Dell 24\" UltraSharp", price: 110000, oldPrice: 130000, category: "Accessoires", image: "https://images.unsplash.com/photo-1547119957-637f8679db1e?w=500&auto=format&fit=crop&q=60" },
-  { id: 15, name: "Souris Logitech MX Master 3S", price: 65000, oldPrice: 75000, category: "Accessoires", image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&auto=format&fit=crop&q=60" },
-  { id: 16, name: "Clavier Mécanique Corsair K70 RGB", price: 95000, oldPrice: 115000, category: "Accessoires", image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60" },
-  { id: 19, name: "Chargeur Universel PC Portable 90W", price: 25000, oldPrice: 30000, category: "Accessoires", image: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=500&auto=format&fit=crop&q=60" },
-  { id: 20, name: "Batterie Interne HP/Dell Haute Capacité", price: 35000, oldPrice: 45000, category: "Accessoires", image: "https://images.unsplash.com/photo-1624996379697-f01d168b1a52?w=500&auto=format&fit=crop&q=60" },
-
-  // --- Rubrique Électroménager (TV toutes tailles, Clims, Cuisinières, Équipements cuisine) ---
-  { id: 30, name: "Smart TV LED LG 55\" Ultra HD 4K", price: 385000, oldPrice: 420000, category: "Électroménager", image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=500&auto=format&fit=crop&q=60" },
-  { id: 31, name: "Smart TV 43\" Full HD (Autres tailles disponibles sur commande)", price: 195000, oldPrice: 220000, category: "Électroménager", image: "https://images.unsplash.com/photo-1552975084-6e027cd345c2?w=500&auto=format&fit=crop&q=60" },
-  { id: 32, name: "Climatiseur Split Westpoint 1.5 CV R410 (Mural)", price: 210000, oldPrice: 240000, category: "Électroménager", image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=500&auto=format&fit=crop&q=60" },
-  { id: 33, name: "Cuisinière à Gaz 4 Foyers Smart avec Four", price: 145000, oldPrice: 165000, category: "Électroménager", image: "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=500&auto=format&fit=crop&q=60" },
-  { id: 34, name: "Four à Micro-ondes Numérique 20L", price: 65000, oldPrice: 75000, category: "Électroménager", image: "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500&auto=format&fit=crop&q=60" }
+  
 ];
 
 export function HomePageContent() {
