@@ -27,7 +27,7 @@ export default function ContactPage() {
       {/* En-tête de la page */}
       <div className="featured-hero">
         <span className="featured-subtitle">Contactez-nous</span>
-        <h1>Une question ? ESPANA DEAL est là pour vous</h1>
+        <h1>Une question ? Nous sommes là pour vous</h1>
         <p>Notre équipe technique et commerciale vous répond dans les plus brefs délais pour toute demande d'information, conseil ou SAV informatique.</p>
       </div>
 
@@ -133,8 +133,8 @@ export default function ContactPage() {
               </div>
               <div className="info-text">
                 <h3>Support E-mail</h3>
-                <a href="mailto:amoussaoloyede@gmail.com" className="info-link">
-                  amoussaoloyede@gmail.com
+                <a href="mailto:amzaticofficiel@gmail.com" className="info-link">
+                  amzaticofficiel@gmail.com
                 </a>
                 <p>Idéal pour vos demandes de devis et factures pro.</p>
               </div>

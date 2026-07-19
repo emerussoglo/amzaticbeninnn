@@ -39,7 +39,7 @@ export default function FeaturedPage() {
     <div className="home-page-container">
       {/* En-tête stylisé pour la section Vedette */}
       <div className="featured-hero">
-        <span className="featured-subtitle">Exclusivités ESPANA DEAL</span>
+        <span className="featured-subtitle">Exclusivités Amzatic</span>
         <h1>Les Meilleurs Produits du Moment</h1>
         <p>Découvrez notre sélection exclusive de matériel plébiscité par nos clients au Bénin pour sa puissance, sa qualité et sa fiabilité.</p>
       </div>

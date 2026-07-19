@@ -46,7 +46,7 @@ export default function Footer() {
             </li>
             <li>
               <i className="far fa-envelope"></i>
-              <a href="mailto:amoussaoloyede@gmail.com">amoussaoloyede@gmail.com</a>
+              <a href="mailto:amzaticofficiel@gmail.com">amzaticofficiel@gmail.com</a>
             </li>
           </ul>
         </div>
