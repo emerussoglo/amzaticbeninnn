@@ -29,26 +29,16 @@ const PRODUCTS_DATA = [
   { id: 24, name: "PC Portable Dell Vostro 15-3000 – Intel Core i3 11è Génération - Écran 15\" FHD - RAM 8GB - SSD 256GB", price: 250000, oldPrice: 290000, category: "Ordinateurs", image: "/img/dell-vostro-15-3000.jpeg", tag: "Promo" },
   { id: 25, name: "PC Portable HP ProBook 450G1 – Intel Core i5 2.60GHz - Écran 15.6\" - RAM 8Go - HDD 500Go", price: 100000, oldPrice: 130000, category: "Ordinateurs", image: "/img/hp-probook-450g1.jpeg", tag: "Promo" },
 
-  // --- Tablettes & Téléphones (4 articles) ---
-  { id: 101, name: "iPad Air 5 (M1, Wi-Fi, 64GB)", price: 420000, oldPrice: 460000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&auto=format&fit=crop&q=60" },
-  { id: 102, name: "Tablette Samsung Galaxy Tab S9 FE", price: 330000, oldPrice: 370000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500&auto=format&fit=crop&q=60" },
-  { id: 103, name: "iPhone 15 Pro Max (256GB)", price: 850000, oldPrice: 950000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1695048133230-070845371b21?w=500&auto=format&fit=crop&q=60" },
-  { id: 104, name: "Samsung Galaxy S24 Ultra", price: 790000, oldPrice: 880000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&auto=format&fit=crop&q=60" },
-
+  
   // --- Casques & Audio (3 articles) ---
   { id: 201, name: "ACER NITRO GAMING HEADSET", price: 210000, oldPrice: 245000, category: "Casques & Audio", image: "/img/ACERNITROGAMINGHEADSET.webp" },
   { id: 202, name: "Casque Gaming Razer BlackShark V2", price: 65000, oldPrice: 80000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=500&auto=format&fit=crop&q=60" },
   { id: 203, name: "Écouteurs AirPods Pro 2", price: 160000, oldPrice: 190000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1588449668338-d151688d3482?w=500&auto=format&fit=crop&q=60" },
 
-  // --- Imprimantes & Accessoires (8 articles) ---
-  { id: 301, name: "Imprimante ÉcoTank Epson L3250", price: 155000, oldPrice: 180000, category: "Imprimantes", image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500&auto=format&fit=crop&q=60" },
-  { id: 302, name: "Imprimante Laser HP Neverstop", price: 175000, oldPrice: 200000, category: "Imprimantes", image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500&auto=format&fit=crop&q=60" },
-  { id: 303, name: "Souris Logitech MX Master 3S", price: 65000, oldPrice: 75000, category: "Accessoires", image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&auto=format&fit=crop&q=60" },
-  { id: 304, name: "Clavier Mécanique Corsair K70 RGB", price: 95000, oldPrice: 115000, category: "Accessoires", image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60" },
-  { id: 305, name: "Disque Dur Externe WD My Passport 2To", price: 55000, oldPrice: 65000, category: "Accessoires", image: "https://images.unsplash.com/photo-1601524909162-be87252be298?w=500&auto=format&fit=crop&q=60" },
-  { id: 306, name: "Hub USB-C 8-en-1 Anker", price: 30000, oldPrice: 40000, category: "Accessoires", image: "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=500&auto=format&fit=crop&q=60" },
+  
   { id: 307, name: "PC Portable HP ProBook 650G1 – Intel Core i5 2.60GHz - RAM 8Go", price: 100000, oldPrice: 130000, category: "Ordinateurs", image: "/img/hp-probook-450g1.jpeg" },
   { id: 308, name: "PC Portable HP EliteBook mt45 – AMD Ryzen 3 Pro - RAM 8Go", price: 170000, oldPrice: 210000, category: "Ordinateurs", image: "/img/hp-elitebook-mt45.jpeg" }
+
 ];
 
 export function HomePageContent() {
