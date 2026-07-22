@@ -23,7 +23,7 @@ export default function Footer() {
               <i className="fas fa-map-marker-alt icon-geo"></i>
               <span>Début échangeur Godomey à droite, Cotonou</span>
             </li>
-            <li>
+            <li> 
               <i className="fas fa-phone-alt"></i>
               <a href="tel:+2290154627062">+229 01 54 62 70 62</a>
             </li>

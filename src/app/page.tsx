@@ -30,10 +30,10 @@ const PRODUCTS_DATA = [
   { id: 25, name: "PC Portable HP ProBook 450G1 – Intel Core i5 2.60GHz - Écran 15.6\" - RAM 8Go - HDD 500Go", price: 100000, oldPrice: 130000, category: "Ordinateurs", image: "/img/hp-probook-450g1.jpeg", tag: "Promo" },
 
   
-  // --- Casques & Audio (3 articles) ---
-  { id: 201, name: "ACER NITRO GAMING HEADSET", price: 210000, oldPrice: 245000, category: "Casques & Audio", image: "/img/ACERNITROGAMINGHEADSET.webp" },
-  { id: 202, name: "Casque Gaming Razer BlackShark V2", price: 65000, oldPrice: 80000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=500&auto=format&fit=crop&q=60" },
-  { id: 203, name: "Écouteurs AirPods Pro 2", price: 160000, oldPrice: 190000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1588449668338-d151688d3482?w=500&auto=format&fit=crop&q=60" },
+  // --- Casques & Audio ---
+  { id: 201, name: "ACER NITRO GAMING HEADSET", price: 210000, oldPrice: 245000, category: "Casques & Audio", image: "/img/ACERNITROGAMINGHEADSET.webp", tag: "Gaming" },
+  { id: 202, name: "Casque Gaming Razer BlackShark V2", price: 65000, oldPrice: 80000, category: "Casques & Audio", image: "/img/CasqueGamingRazerBlackSharkV2.jpg", tag: "Promo" },
+  { id: 203, name: "Écouteurs AirPods Pro 3", price: 160000, oldPrice: 190000, category: "Casques & Audio", image: "/img/ÉcouteursAirPodsPro3.jpg", tag: "Coup de cœur" },
 
   
   { id: 307, name: "PC Portable HP ProBook 650G1 – Intel Core i5 2.60GHz - RAM 8Go", price: 100000, oldPrice: 130000, category: "Ordinateurs", image: "/img/hp-probook-450g1.jpeg" },

@@ -1121,7 +1121,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   padding: 12px 30px;
-  border-radius: 30px;
+  border-radius: 10px;
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -1210,6 +1210,16 @@ body {
 
 /* --- RESPONSIVE MOBILE & TABLETTE --- */
 @media (max-width: 768px) {
+
+  .hero-section-single {
+    width: 100%;
+    border-radius: 0;
+  }
+  .hero-carousel-container {
+    width: 100%;
+    border-radius: 0;
+
+  }
   .hero-carousel-container {
     height: 380px;
     border-radius: 12px;
@@ -1248,6 +1258,15 @@ body {
 }
 
 @media (max-width: 480px) {
+
+  .hero-section-single {
+    width: 100%;
+    border-radius: 0;
+  }
+  .hero-carousel-container {
+    width: 100%;
+    border-radius: 0;
+  }
   .hero-carousel-container {
     height: 340px;
   }
@@ -1274,7 +1293,7 @@ body {
 }
 /* --- SECTION AVANTAGES (DESKTOP) --- */
 .features-section {
-  width: 100%;
+  width: 100%; 
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;

@@ -15,11 +15,11 @@ const SLIDES_DATA = [
     theme: "dark" // "dark" pour texte blanc sur fond sombre, "light" pour fond clair
   },
   {
-    id: 2,
+    id: 2,  
     title: "Imprimantes Professionnelles : Des impressions nettes",
     subtitle: "Équipements Pro",
     description: "Découvrez nos imprimantes laser et jet d'encre multifonctions idéales pour vos flux de travail et votre entreprise au Bénin.",
-    image: "/img/img1.jpeg",
+    image: "/img/bann4.jpg",
     btnText: "Voir la sélection",
     link: "/?cat=imprimantes",
     theme: "dark"

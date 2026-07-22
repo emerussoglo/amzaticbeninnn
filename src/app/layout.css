@@ -186,7 +186,7 @@ body {
 }
 
 .category-menu-dropdown .arrow-down {
-  font-size: 11px;
+  font-size: 11px; 
   color: var(--color-text-muted);
 }
 
@@ -669,7 +669,7 @@ body {
   .footer-top-container {
     flex-direction: column;
     align-items: flex-start;
-    gap: 35px;
+    gap: 20px;
   }
 
   .footer-column {
@@ -677,6 +677,7 @@ body {
   }
 
   .footer-bottom-container {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
