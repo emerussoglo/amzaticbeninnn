@@ -83,6 +83,7 @@ body {
   overflow: hidden;
   border: 1px solid transparent;
   transition: all 0.3s;
+  border: 1px solid #dcdbdf;
 }
 
 .search-form:focus-within {
@@ -95,7 +96,7 @@ body {
   flex: 1;
   border: none;
   background: transparent;
-  padding: 12px 15px;
+  padding: 10px 12px;
   font-size: 14px;
   outline: none;
   color: var(--color-black);
@@ -119,9 +120,9 @@ body {
 .search-button {
   background: transparent;
   border: none;
-  padding: 0 20px;
+  padding: 0 15px;
   color: var(--color-text-muted);
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -129,21 +130,22 @@ body {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 25px;
-  
+  gap: 10px;
+   
 }
 
 .nav-actions .action-icon {
-  color: var(--color-black);
+  color: var(--color-black); 
   text-decoration: none;
   transition: color 0.2s;
-  font-family: var(--font-main);
-  font-size: 20px;
-  font-weight: 900;
+  font-weight: 600;
 }
 
-.action-icon:hover {
-  color: var(--color-primary);
+
+.nav-actions .panier{
+  background: #02BBF2;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 /* --- NIVEAU 2 : BOTTOM NAVBAR (LIENS DU BAS) --- */
@@ -453,55 +455,139 @@ body {
   }
 }
 
-
-/* --- STYLE DU FOOTER SOMBRE PREMIUM --- */
+/* --- STYLE DU FOOTER SOMBRE ET STRUCTURÉ (PURE FLEXBOX) --- */
 .main-footer {
   display: flex;
   flex-direction: column;
-  background-color: #1a222f; /* Fond sombre moderne inspiré de la maquette */
-  color: #a0aec0; /* Texte secondaire grisé */
+  background-color: #0b111e; /* Fond sombre bleuté profond */
+  color: #8c9ba5;
   font-family: inherit;
   margin-top: 80px;
   width: 100%;
+  padding-top: 50px;
 }
 
-/* Zone supérieure structurée en Flexbox */
+/* Container principal en Flexbox (Alignement à gauche) */
 .footer-top-container {
   display: flex;
-  justify-content: space-between; /* Aligne les blocs de manière équilibrée */
-  align-items: flex-start;
-  flex-wrap: wrap; /* Permet le passage à la ligne automatique */
-  max-width: 1200px;
+  justify-content: space-between;
+  align-items: flex-start; /* Aligne les colonnes en haut */
+  flex-wrap: wrap; /* Gère le passage à la ligne */
+  max-width: 1240px;
   width: 100%;
   margin: 0 auto;
-  padding: 5px 15px;
-  gap: 20px;
+  padding: 0 20px 40px 20px;
+  gap: 30px;
 }
 
+/* Colonnes individuelles */
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Force l'alignement à gauche */
+  text-align: left;
+  flex: 1 1 180px; /* Taille flexible de base */
+}
 
+/* La colonne de marque (Logo + Bio) prend plus de largeur */
+.footer-column.brand-col {
+  flex: 2 1 320px; 
+}
 
-
+/* Titres des colonnes en majuscules */
 .footer-column h3 {
   color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  text-align: left;
 }
 
-/* Colonne de marque */
+/* COLONNE DE MARQUE (GAUCHE) */
 .brand-col .footer-logo img {
-  height: 40px; /* Ajuste selon la taille de ton logo */
+  height: 38px;
   width: auto;
-  margin-bottom: 0px;
+  margin-bottom: 16px;
 }
 
 .brand-description {
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.6;
-  max-width: 300px;
+  color: #8c9ba5;
+  margin-bottom: 20px;
+  max-width: 380px;
+  text-align: left;
 }
 
-/* Listes de liens simples */
+/* Infos de contact direct */
+.footer-direct-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-direct-contact li {
+  display: flex;
+  align-items: flex-start; /* Aligne l'icône avec la première ligne de texte */
+  gap: 10px;
+  font-size: 13px;
+  color: #8c9ba5;
+  text-align: left;
+}
+
+.footer-direct-contact i {
+  font-size: 14px;
+  width: 16px;
+  margin-top: 3px;
+  color: #4a5568;
+}
+
+.footer-direct-contact a {
+  color: #8c9ba5;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-direct-contact a:hover {
+  color: #ffffff;
+}
+
+.footer-direct-contact .icon-geo { color: #3182ce; }
+.footer-direct-contact .icon-wa { color: #25d366; }
+
+/* BOUTONS DES RÉSEAUX SOCIAUX */
+.footer-social-links {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.footer-social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  color: #a0aec0;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.footer-social-links a:hover {
+  background-color: var(--color-primary, #02bbf2);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* LISTES DE LIENS DES COLONNES */
 .footer-links-list {
   list-style: none;
   padding: 0;
@@ -512,9 +598,9 @@ body {
 }
 
 .footer-links-list a {
-  color: #a0aec0;
+  color: #8c9ba5;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13.5px;
   transition: color 0.2s ease;
 }
 
@@ -522,60 +608,18 @@ body {
   color: #ffffff;
 }
 
-/* Liste de contacts avec icônes */
-.footer-contact-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-contact-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.footer-contact-list i {
-  font-size: 15px;
-  width: 16px;
-  margin-top: 3px;
-  color: #4a5568; /* Couleur par défaut des icônes */
-}
-
-.footer-contact-list a {
-  color: #a0aec0;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.footer-contact-list a:hover {
-  color: #ffffff;
-}
-
-/* Couleurs spécifiques aux icônes clefs */
-.footer-contact-list .icon-geo {
-  color: #3182ce; /* Bleu discret pour la carte */
-}
-.footer-contact-list .icon-wa {
-  color: #25d366; /* Vert WhatsApp subtil */
-}
-
-/* --- BARRE DE COPYRIGHT INFÉRIEURE --- */
+/* BARRE INFÉRIEURE (COPYRIGHT + PAIEMENT) */
 .footer-bottom {
-  border-top: 1px solid #2d3748;
-  padding: 15px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 20px 0;
+  background-color: #080d17;
 }
 
 .footer-bottom-container {
-  max-width: 1200px;
+  max-width: 1240px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -585,54 +629,61 @@ body {
 
 .copyright-text {
   font-size: 13px;
+  color: #718096;
 }
 
 .copyright-text strong {
-  color: #ffffff;
+  color: #e2e8f0;
 }
 
-.footer-legal-links {
+/* BADGES DE PAIEMENT */
+.footer-payment-methods {
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 8px;
 }
 
-.footer-legal-links a {
+.payment-title {
+  font-size: 12px;
   color: #718096;
-  text-decoration: none;
-  font-size: 13px;
-  transition: color 0.2s ease;
+  margin-right: 6px;
 }
 
-.footer-legal-links a:hover {
-  color: #ffffff;
+.payment-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* --- RESPONSIVE FLEXBOX MOBILE --- */
+.payment-badge.mtn { background-color: #F7C600; color: #000; }
+.payment-badge.moov { background-color: #0058BE; color: #fff; }
+.payment-badge.visa { background-color: #ffffff; color: #1a1f71; }
+.payment-badge.mastercard { background-color: #eb001b; color: #fff; }
+.payment-badge.cash { background-color: #1A396E; color: #fff; }
+
+/* RESPONSIVE DESIGN MOBILE ET TABLETTE (TOUJOURS ALIGNÉ À GAUCHE) */
 @media (max-width: 768px) {
   .footer-top-container {
-    flex-direction: column; /* Aligne toutes les colonnes à la verticale */
-    align-items: center;    /* Centre le contenu sur mobile */
-    text-align: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 35px;
-    padding: 10px 15px;
   }
 
-  .footer-contact-list li {
-    justify-content: center; /* Centre les lignes d'icônes + texte */
-  }
-
-  .brand-description {
-    max-width: 100%;
+  .footer-column {
+    width: 100%;
   }
 
   .footer-bottom-container {
-    flex-direction: column-reverse; /* Met les mentions légales au-dessus du copyright */
-    justify-content: center;
-    text-align: center;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
-  .footer-legal-links {
-    justify-content: center;
+  .footer-payment-methods {
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
 }

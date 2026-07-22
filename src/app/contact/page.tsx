@@ -12,8 +12,7 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Logique d'envoi du formulaire (API, Email, etc.)
-    alert(`Merci ${formData.name}, votre message a bien été transmis à ESPANA DEAL !`);
+    alert(`Merci ${formData.name}, votre message a bien été transmis à AMZATIC !`);
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
@@ -26,40 +25,107 @@ export default function ContactPage() {
     <div className="contact-page-container">
       {/* En-tête de la page */}
       <div className="featured-hero">
-        <span className="featured-subtitle">Contactez-nous</span>
+        <span className="featured-subtitle">CONTACTEZ-NOUS</span>
         <h1>Une question ? Nous sommes là pour vous</h1>
         <p>Notre équipe technique et commerciale vous répond dans les plus brefs délais pour toute demande d'information, conseil ou SAV informatique.</p>
       </div>
 
-      <div className="contact-content-grid">
-        {/* Formulaire de contact */}
-        {/* <div className="contact-form-card">
+      {/* Grille des 4 Cartes d'information (Style Maquette) */}
+      <div className="contact-cards-grid">
+        {/* Carte 1 : Appelez-nous */}
+        <div className="contact-card">
+          <div className="card-icon icon-phone">
+            <i className="fas fa-phone-alt"></i>
+          </div>
+          <h3>Appelez-nous</h3>
+          <p className="card-subtitle">Lun–Sam, 8h00 – 19h00</p>
+          <p className="card-value">+229 01 54 62 70 62</p>
+          <a href="tel:+2290154627062" className="card-action-link">
+            Appeler maintenant <i className="fas fa-chevron-right"></i>
+          </a>
+        </div>
+
+        {/* Carte 2 : Support / E-mail */}
+        <div className="contact-card">
+          <div className="card-icon icon-email">
+            <i className="far fa-envelope"></i>
+          </div>
+          <h3>Support E-mail</h3>
+          <p className="card-subtitle">Devis & Factures Pro</p>
+          <p className="card-value">amzaticofficiel@gmail.com</p>
+          <a href="mailto:amzaticofficiel@gmail.com" className="card-action-link">
+            Écrire un message <i className="fas fa-chevron-right"></i>
+          </a>
+        </div>
+
+        {/* Carte 3 : WhatsApp */}
+        <div className="contact-card">
+          <div className="card-icon icon-whatsapp">
+            <i className="fab fa-whatsapp"></i>
+          </div>
+          <h3>WhatsApp</h3>
+          <p className="card-subtitle">Chat en direct avec notre équipe</p>
+          <p className="card-value">+229 01 67 92 17 96</p>
+          <a 
+            href="https://wa.me/2290167921796" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="card-action-link"
+          >
+            Ouvrir WhatsApp <i className="fas fa-chevron-right"></i>
+          </a>
+        </div>
+
+        {/* Carte 4 : Visitez-nous */}
+        <div className="contact-card">
+          <div className="card-icon icon-location">
+            <i className="fas fa-map-marker-alt"></i>
+          </div>
+          <h3>Visitez-nous</h3>
+          <p className="card-subtitle">Début échangeur Godomey à droite</p>
+          <p className="card-value">Abomey-Calavi, Bénin</p>
+          <a 
+            href="https://maps.google.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="card-action-link"
+          >
+            Voir sur la carte <i className="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      </div>
+
+      {/* Formulaire de Contact */}
+      <div className="contact-form-wrapper">
+        <div className="contact-form-card">
           <h2>Envoyez-nous un message</h2>
           <form onSubmit={handleSubmit} className="contact-form">
-            <div className="form-group">
-              <label htmlFor="name">Nom complet</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Votre nom"
-              />
-            </div>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="name">Nom complet</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Votre nom"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="email">Adresse e-mail</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="nom@exemple.com"
-              />
+              <div className="form-group">
+                <label htmlFor="email">Adresse e-mail</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="nom@exemple.com"
+                />
+              </div>
             </div>
 
             <div className="form-group">
@@ -92,80 +158,6 @@ export default function ContactPage() {
               Envoyer le message
             </button>
           </form>
-        </div> */}
-
-        {/* Infos de contact réelles */}
-        <div className="contact-info-column">
-          <div className="info-status-card">
-            
-            {/* Téléphone */}
-            <div className="info-item">
-              <div className="info-icon">
-                <i className="fas fa-phone-alt"></i>
-              </div>
-              <div className="info-text">
-                <h3>Téléphone</h3>
-                <a href="tel:+2290154627062" className="info-link">
-                  +229 01 54 62 70 62
-                </a>
-                <p>Service client disponible pour tous vos achats informatiques.</p>
-              </div>
-            </div>
-
-            {/* WhatsApp */}
-            <div className="info-item">
-              <div className="info-icon" style={{ backgroundColor: "#e8f7ee" }}>
-                <i className="fab fa-whatsapp" style={{ color: "#25D366" }}></i>
-              </div>
-              <div className="info-text">
-                <h3>WhatsApp Direct</h3>
-                <a href="https://wa.me/2290167921796" target="_blank" rel="noopener noreferrer" className="info-link">
-                  +229 01 67 92 17 96
-                </a>
-                <p>Des conseillers en ligne pour des réponses instantanées.</p>
-              </div>
-            </div>
-
-            {/* E-mail */}
-            <div className="info-item">
-              <div className="info-icon">
-                <i className="far fa-envelope"></i>
-              </div>
-              <div className="info-text">
-                <h3>Support E-mail</h3>
-                <a href="mailto:amzaticofficiel@gmail.com" className="info-link">
-                  amzaticofficiel@gmail.com
-                </a>
-                <p>Idéal pour vos demandes de devis et factures pro.</p>
-              </div>
-            </div>
-
-            {/* Localisation Complète */}
-            <div className="info-item">
-              <div className="info-icon" style={{ backgroundColor: "#fdf2f2" }}>
-                <i className="fas fa-map-marker-alt" style={{ color: "#e74c3c" }}></i>
-              </div>
-              <div className="info-text">
-                <h3>Notre Boutique / Siège</h3>
-                <p className="info-address" style={{ color: "#1c1c1e", fontWeight: "500" }}>
-                  Début échangeur Godomey à droite, Abomey-Calavi, Bénin
-                </p>
-              </div>
-            </div>
-
-            {/* Horaires */}
-            <div className="info-item">
-              <div className="info-icon">
-                <i className="far fa-clock"></i>
-              </div>
-              <div className="info-text">
-                <h3>Horaires d'ouverture</h3>
-                <p>Lundi - Vendredi : 8h00 - 19h00</p>
-                <p>Samedi : 9h00 - 17h00</p>
-              </div>
-            </div>
-
-          </div>
         </div>
       </div>
     </div>

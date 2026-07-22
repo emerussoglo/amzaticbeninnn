@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 
 // CATALOGUE INFORMATIQUE DYNAMIQUE AVEC PRIX ET PRIX BARRÉS
 const PRODUCTS_DATA = [
-  // PC & Moniteurs
- { id: 2, name: "PC Portable HP 15-fd0005dx – Intel Core i5 12è Génération - Écran Tactile 15.6\" FHD - RAM 8GB - SSD 512GB", price: 400000, oldPrice: 450000, category: "Ordinateurs", image: "/img/hp-laptop-15-i5-12gen.jpeg", tag: "Coup de cœur" },
+  // --- PC & Moniteurs ---
+  { id: 2, name: "PC Portable HP 15-fd0005dx – Intel Core i5 12è Génération - Écran Tactile 15.6\" FHD - RAM 8GB - SSD 512GB", price: 400000, oldPrice: 450000, category: "Ordinateurs", image: "/img/hp-laptop-15-i5-12gen.jpeg", tag: "Coup de cœur" },
   { id: 3, name: "PC Portable HP Elitebook mt45 – AMD Ryzen 3 Pro 2.10GHz (Éq Core i5) - Éran 14\" FHD - RAM 8Go - SSD 256Go - Radeon 2Go Dédiée", price: 170000, oldPrice: 210000, category: "Ordinateurs", image: "/img/hp-elitebook-mt45.jpeg", tag: "Promo" },
   { id: 4, name: "PC Portable HP ProBook 640 G5 – Intel Core i5 8è Génération - Écran 14\" FHD - RAM 8Go - SSD 256Go", price: 180000, oldPrice: 220000, category: "Ordinateurs", image: "/img/hp-probook-640-g5.jpeg", tag: "Promo" },
   { id: 5, name: "PC Portable HP ProBook 640 G5 – Intel Core i5 8è Génération - Écran 14\" FHD - RAM 16Go - SSD 512Go", price: 210000, oldPrice: 250000, category: "Ordinateurs", image: "/img/hp-probook-640-g5.jpeg", tag: "Meilleure Performance" },
@@ -34,75 +34,42 @@ const PRODUCTS_DATA = [
   { id: 28, name: "Ordinateur de Bureau Dell Optiplex 5060 (Moyen) – Intel Core i5 8è Génération - Écran 23\" - RAM 8GB - HDD 500Go", price: 210000, oldPrice: 250000, category: "Ordinateurs", image: "/img/dell-optiplex-5060-moyen.jpeg", tag: "Meilleure Performance" },
   { id: 29, name: "PC Portable HP EliteBook mt45 – AMD Ryzen 3 Pro 2.10GHz (éq Core i5) - Écran 14\" Full HD - RAM 8Go - SSD 256Go - AMD Radeon 2Gb dédiée", price: 170000, oldPrice: 210000, category: "Ordinateurs", image: "/img/hp-elitebook-mt45.jpeg", tag: "Promo" },
 
+  // --- Tablettes & Téléphones ---
+  { id: 101, name: "iPad Air 5 (M1, Wi-Fi, 64GB)", price: 420000, oldPrice: 460000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&auto=format&fit=crop&q=60", tag: "Nouveau" },
+  { id: 102, name: "Tablette Samsung Galaxy Tab S9 FE", price: 330000, oldPrice: 370000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500&auto=format&fit=crop&q=60", tag: "Promo" },
+  { id: 103, name: "iPhone 15 Pro Max (256GB)", price: 850000, oldPrice: 950000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1695048133230-070845371b21?w=500&auto=format&fit=crop&q=60", tag: "Populaire" },
+  { id: 104, name: "Samsung Galaxy S24 Ultra", price: 790000, oldPrice: 880000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&auto=format&fit=crop&q=60", tag: "Top Vente" },
 
+  // --- Casques & Audio ---
+  { id: 201, name: "ACER NITRO GAMING HEADSET", price: 210000, oldPrice: 245000, category: "Casques & Audio", image: "/img/ACERNITROGAMINGHEADSET.webp", tag: "Gaming" },
+  { id: 202, name: "Casque Gaming Razer BlackShark V2", price: 65000, oldPrice: 80000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=500&auto=format&fit=crop&q=60", tag: "Promo" },
+  { id: 203, name: "Écouteurs AirPods Pro 2", price: 160000, oldPrice: 190000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1588449668338-d151688d3482?w=500&auto=format&fit=crop&q=60", tag: "Coup de cœur" },
 
-
-
-
-
-
-
-
-
-
-
-  
-  // // Tablettes & Téléphones
-  // { id: 6, name: "iPad Air 5 (M1, Wi-Fi, 64GB)", price: 420000, oldPrice: 460000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&auto=format&fit=crop&q=60" },
-  // { id: 7, name: "Tablette Samsung Galaxy Tab S9 FE", price: 330000, oldPrice: 370000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=500&auto=format&fit=crop&q=60" },
-  // { id: 8, name: "iPhone 15 Pro Max (256GB)", price: 850000, oldPrice: 950000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1695048133230-070845371b21?w=500&auto=format&fit=crop&q=60" },
-  // { id: 9, name: "Samsung Galaxy S24 Ultra", price: 790000, oldPrice: 880000, category: "Tablettes & Téléphones", image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&auto=format&fit=crop&q=60" },
- 
-  // // Casques & Audio
-  // { id: 10, name: "ACER NITRO GAMING HEADSET", price: 210000, oldPrice: 245000, category: "Casques & Audio", image: "/img/ACERNITROGAMINGHEADSET.webp" },
-  // { id: 11, name: "Casque Gaming Razer BlackShark V2", price: 65000, oldPrice: 80000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=500&auto=format&fit=crop&q=60" },
-  // { id: 12, name: "Écouteurs AirPods Pro 2", price: 160000, oldPrice: 190000, category: "Casques & Audio", image: "https://images.unsplash.com/photo-1588449668338-d151688d3482?w=500&auto=format&fit=crop&q=60" },
-
-  // // Imprimantes & Accessoires
-  // { id: 13, name: "Imprimante ÉcoTank Epson L3250", price: 155000, oldPrice: 180000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500&auto=format&fit=crop&q=60" },
-  // { id: 14, name: "Imprimante Laser HP Neverstop", price: 175000, oldPrice: 200000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500&auto=format&fit=crop&q=60" },
-  // { id: 15, name: "Souris Logitech MX Master 3S", price: 65000, oldPrice: 75000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&auto=format&fit=crop&q=60" },
-  // { id: 16, name: "Clavier Mécanique Corsair K70 RGB", price: 95000, oldPrice: 115000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60" },
-  // { id: 17, name: "Disque Dur Externe WD My Passport 2To", price: 55000, oldPrice: 65000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1601524909162-be87252be298?w=500&auto=format&fit=crop&q=60" },
-  // { id: 18, name: "Hub USB-C 8-en-1 Anker", price: 30000, oldPrice: 40000, category: "Imprimantes & Accessoires", image: "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=500&auto=format&fit=crop&q=60" }
-
-
-
+  // --- Imprimantes & Accessoires ---
+  { id: 301, name: "Imprimante ÉcoTank Epson L3250", price: 155000, oldPrice: 180000, category: "Imprimantes", image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=500&auto=format&fit=crop&q=60", tag: "Promo" },
+  { id: 302, name: "Imprimante Laser HP Neverstop", price: 175000, oldPrice: 200000, category: "Imprimantes", image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500&auto=format&fit=crop&q=60", tag: "Pro" },
+  { id: 303, name: "Souris Logitech MX Master 3S", price: 65000, oldPrice: 75000, category: "Accessoires", image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&auto=format&fit=crop&q=60", tag: "Top Vente" },
+  { id: 304, name: "Clavier Mécanique Corsair K70 RGB", price: 95000, oldPrice: 115000, category: "Accessoires", image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60", tag: "Gaming" },
+  { id: 305, name: "Disque Dur Externe WD My Passport 2To", price: 55000, oldPrice: 65000, category: "Accessoires", image: "https://images.unsplash.com/photo-1601524909162-be87252be298?w=500&auto=format&fit=crop&q=60", tag: "Stockage" },
+  { id: 306, name: "Hub USB-C 8-en-1 Anker", price: 30000, oldPrice: 40000, category: "Accessoires", image: "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=500&auto=format&fit=crop&q=60", tag: "Utile" }
 ];
 
 export default function ProductsPage() {
   const { addToCart } = useCart();
   const router = useRouter();
 
-  // États pour le tri et le filtrage
   const [categoryFilter, setCategoryFilter] = useState("Tous");
   const [sortBy, setSortBy] = useState("default");
 
-  const handleBuyNow = (product: typeof PRODUCTS_DATA[0]) => {
-    addToCart(product);
-    router.push("/panier");
-  };
+  const categories = ["Tous", "Ordinateurs", "Imprimantes", "Accessoires", "Électroménager"];
 
-  // Les catégories informatiques de ton site
-  // Les nouvelles catégories principales de ton site
-const categories = [
-  "Tous", 
-  "Ordinateurs", 
-  "Imprimantes", 
-  "Accessoires", 
-  "Électroménager"
-];
-
-  // Filtrer et trier la liste des produits
   const filteredAndSortedProducts = useMemo(() => {
     let result = [...PRODUCTS_DATA];
 
-    // 1. Filtrage par catégorie
     if (categoryFilter !== "Tous") {
       result = result.filter((p) => p.category === categoryFilter);
     }
 
-    // 2. Tri des éléments
     if (sortBy === "price-asc") {
       result.sort((a, b) => a.price - b.price);
     } else if (sortBy === "price-desc") {
@@ -118,12 +85,11 @@ const categories = [
     <div className="home-page-container">
       <h1 className="section-title">Tous nos produits</h1>
       
-      {/* Affichage du total des produits trouvés */}
-      <p style={{ color: "#636366", fontSize: "14px", marginTop: "-15px", marginBottom: "25px", fontWeight: "500" }}>
+      <p className="products-count">
         {filteredAndSortedProducts.length} {filteredAndSortedProducts.length > 1 ? "produits disponibles" : "produit disponible"}
       </p>
 
-      {/* Barre de contrôle épurée : Filtres et Tris */}
+      {/* Barre de contrôle */}
       <div className="catalog-controls">
         <div className="control-group">
           <label htmlFor="category-select">Catégorie :</label>
@@ -157,54 +123,60 @@ const categories = [
 
       {/* Grille des produits */}
       <div className="products-grid">
-        {filteredAndSortedProducts.map((product) => (
-          <div key={product.id} className="product-card">
-            
-            <div className="product-image-wrapper">
-              <img 
-                src={product.image} 
-                alt={product.name}
-                className="product-img"
-                loading="lazy"
-              />
-            </div>
+        {filteredAndSortedProducts.map((product) => {
+          // Calcul dynamique du pourcentage si oldPrice existe
+          const discountPercent = product.discount || (product.oldPrice ? `-${Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)}%` : null);
 
-            <div className="product-info">
-              <span className="product-cat">{product.category}</span>
-              <h3 className="product-name">{product.name}</h3>
+          return (
+            <div key={product.id} className="product-card">
               
-              {/* Conteneur de prix alignés à gauche */}
-              <div className="product-price-container">
-                <span className="product-price">{product.price.toLocaleString()} FCFA</span>
-                {product.oldPrice && (
-                  <span className="product-old-price">{product.oldPrice.toLocaleString()} FCFA</span>
+              {/* Image + Badges */}
+              <div className="product-image-wrapper">
+                {discountPercent && (
+                  <span className="badge-discount">{discountPercent}</span>
                 )}
+                
+                <button type="button" className="btn-wishlist" aria-label="Ajouter aux favoris">
+                  <i className="far fa-heart"></i>
+                </button>
+
+                <img 
+                  src={product.image} 
+                  alt={product.name}
+                  className="product-img"
+                  loading="lazy"
+                />
               </div>
-              
-              <div className="product-card-actions">
+
+              {/* Contenu et Détails */}
+              <div className="product-info">
+                <span className="product-cat">{product.category}</span>
+                <h3 className="product-name" title={product.name}>{product.name}</h3>
+                
+                {/* Ligne des prix */}
+                <div className="product-price-container">
+                  <span className="product-price">{product.price.toLocaleString("fr-FR")} F CFA</span>
+                  {product.oldPrice && (
+                    <span className="product-old-price">{product.oldPrice.toLocaleString("fr-FR")}</span>
+                  )}
+                </div>
+                
+                {/* Bouton d'action plein écran */}
                 <button 
                   onClick={() => addToCart(product)} 
                   className="btn-add-cart"
-                  title="Ajouter au panier"
                   type="button"
                 >
                   <i className="fas fa-shopping-cart"></i>
-                </button>
-                <button 
-                  onClick={() => handleBuyNow(product)} 
-                  className="btn-buy-now"
-                  type="button"
-                >
-                  Commander
+                  <span>Ajouter au panier</span>
                 </button>
               </div>
-            </div>
 
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
 
-      {/* Message si aucun produit ne correspond au filtre appliqué */}
       {filteredAndSortedProducts.length === 0 && (
         <div className="no-products-found">
           <i className="fas fa-search"></i>

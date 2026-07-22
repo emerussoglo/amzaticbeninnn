@@ -75,12 +75,13 @@ export default function Navbar() {
         {/* Actions Icones */}
         <div className="nav-actions">
           <Link href="/contact" className="action-icon fav-desktop" aria-label="Contact">
-            Contact
+             Contact
           </Link>
           
           {/* Bouton Panier avec l'icône de caddie mise à jour (image_373583.png) */}
-          <Link href="/panier" className="action-icon cart-icon-wrapper" aria-label="Panier">
-            <i className="fas fa-shopping-cart"></i>
+          
+          <Link href="/panier" className="action-icon cart-icon-wrapper panier" aria-label="Panier">
+            <i className="fas fa-shopping-cart"></i> Panier
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </Link>
         </div>
@@ -102,7 +103,7 @@ export default function Navbar() {
             </li>
             <li>
               <Link href="/vedette" className={`link-featured ${pathname === "/vedette" ? "active-link" : ""}`}>
-                Produit Vedette <i className="fas fa-fire icon-fire"></i>
+                Produits Vedettes <i className="fas fa-fire icon-fire"></i>
               </Link>
             </li>
             
@@ -167,7 +168,7 @@ export default function Navbar() {
             <ul className="sidebar-nav-links">
               <li><Link href="/" onClick={() => setIsMenuOpen(false)}>Accueil</Link></li>
               <li><Link href="/produits" onClick={() => setIsMenuOpen(false)}>Tous nos produits</Link></li>
-              <li><Link href="/vedette" className="link-featured" onClick={() => setIsMenuOpen(false)}>Produit Vedette <i className="fas fa-fire icon-fire"></i></Link></li>
+              <li><Link href="/vedette" className="link-featured" onClick={() => setIsMenuOpen(false)}>Produits Vedettes <i className="fas fa-fire icon-fire"></i></Link></li>
               <li><Link href="/panier" className="link-featured" onClick={() => setIsMenuOpen(false)}>Panier </Link></li>
               <li><Link href="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
             </ul>
@@ -191,7 +192,7 @@ export default function Navbar() {
       <i className="fas fa-print"></i> Imprimantes
     </Link>
   </li>
-  <li>
+  <li> 
     <Link href="/?cat=accessoires" onClick={() => setIsMenuOpen(false)}>
       <i className="fas fa-keyboard"></i> Accessoires
     </Link>

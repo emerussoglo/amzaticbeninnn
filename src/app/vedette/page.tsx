@@ -3,10 +3,9 @@
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 
-// Sélection des meilleurs produits (les vedettes adaptées à tes nouvelles rubriques)
+// Sélection des meilleurs produits vedettes
 const FEATURED_PRODUCTS = [
-  
- { id: 2, name: "PC Portable HP 15-fd0005dx – Intel Core i5 12è Génération - Écran Tactile 15.6\" FHD - RAM 8GB - SSD 512GB", price: 400000, oldPrice: 450000, category: "Ordinateurs", image: "/img/hp-laptop-15-i5-12gen.jpeg", tag: "Coup de cœur" },
+  { id: 2, name: "PC Portable HP 15-fd0005dx – Intel Core i5 12è Génération - Écran Tactile 15.6\" FHD - RAM 8GB - SSD 512GB", price: 400000, oldPrice: 450000, category: "Ordinateurs", image: "/img/hp-laptop-15-i5-12gen.jpeg", tag: "Coup de cœur" },
   { id: 5, name: "PC Portable HP ProBook 640 G5 – Intel Core i5 8è Génération - Écran 14\" FHD - RAM 16Go - SSD 512Go", price: 210000, oldPrice: 250000, category: "Ordinateurs", image: "/img/hp-probook-640-g5.jpeg", tag: "Meilleure Performance" },
   { id: 8, name: "PC Portable HP EliteBook 850 G6 – Intel Core i5 8è Génération - Écran 15.6\" FHD - RAM 8Go - SSD 256Go", price: 260000, oldPrice: 300000, category: "Ordinateurs", image: "/img/hp-elitebook-850-g6.jpeg", tag: "Promo" },
   { id: 9, name: "PC Portable HP EliteBook 850 G6 – Intel Core i5 8è Génération - Écran 15.6\" FHD - RAM 8Go - SSD 512Go", price: 280000, oldPrice: 320000, category: "Ordinateurs", image: "/img/hp-elitebook-850-g6.jpeg", tag: "Populaire" },
@@ -22,78 +21,90 @@ const FEATURED_PRODUCTS = [
   { id: 23, name: "Ordinateur de Bureau Dell Optiplex 5060 (Moyen) – Intel Core i5 8è Génération - Écran 23\" - RAM 8GB - HDD 500Go", price: 210000, oldPrice: 250000, category: "Ordinateurs", image: "/img/dell-optiplex-5060-moyen.jpeg", tag: "Meilleure Performance" },
   { id: 24, name: "PC Portable Dell Vostro 15-3000 – Intel Core i3 11è Génération 3.00GHz - Écran 15\" FHD - RAM 8GB - SSD 256GB", price: 250000, oldPrice: 290000, category: "Ordinateurs", image: "/img/dell-vostro-15-3000.jpeg", tag: "Promo" },
   { id: 27, name: "Ordinateur de Bureau Dell Optiplex 5060 (Moyen) – Intel Core i5 7è Génération - Écran 23\" - RAM 8GB - HDD 500Go", price: 190000, oldPrice: 230000, category: "Ordinateurs", image: "/img/dell-optiplex-5060-moyen.jpeg", tag: "Promo" },
-
-
 ];
 
 export default function FeaturedPage() {
   const { addToCart } = useCart();
   const router = useRouter();
 
-  const handleBuyNow = (product: typeof FEATURED_PRODUCTS[0]) => {
-    addToCart(product);
-    router.push("/panier");
-  };
-
   return (
     <div className="home-page-container">
       {/* En-tête stylisé pour la section Vedette */}
       <div className="featured-hero">
         <span className="featured-subtitle">Exclusivités Amzatic</span>
+
+        {/* Bouton Noir 'Voir tous les produits' juste avant le Titre */}
+        <div className="catalog-header-action">
+          <button 
+            onClick={() => router.push("/produits")}
+            className="btn-see-all"
+            type="button"
+          >
+            <span>Voir tous les produits</span>
+            <i className="fas fa-arrow-right"></i>
+          </button>
+        </div>
+
         <h1>Les Meilleurs Produits du Moment</h1>
         <p>Découvrez notre sélection exclusive de matériel plébiscité par nos clients au Bénin pour sa puissance, sa qualité et sa fiabilité.</p>
       </div>
 
-      {/* Grille de produits avec badges et prix mis à jour */}
+      {/* Grille de produits mise au même design */}
       <div className="products-grid">
-        {FEATURED_PRODUCTS.map((product) => (
-          <div key={product.id} className="product-card">
-            
-            <div className="product-image-wrapper">
-              {/* Badge Vedette dynamique sur l'image */}
-              <span className="featured-badge">{product.tag}</span>
-              
-              <img 
-                src={product.image} 
-                alt={product.name}
-                className="product-img"
-                loading="lazy"
-              />
-            </div>
+        {FEATURED_PRODUCTS.map((product) => {
+          // Calcul dynamique de la remise
+          const discountPercent = product.oldPrice 
+            ? `-${Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)}%` 
+            : null;
 
-            <div className="product-info">
-              <span className="product-cat">{product.category}</span>
-              <h3 className="product-name">{product.name}</h3>
+          return (
+            <div key={product.id} className="product-card">
               
-              {/* Conteneur de prix alignés à gauche */}
-              <div className="product-price-container">
-                <span className="product-price">{product.price.toLocaleString()} FCFA</span>
-                {product.oldPrice && (
-                  <span className="product-old-price">{product.oldPrice.toLocaleString()} FCFA</span>
+              {/* Image + Badge Réduction + Favoris */}
+              <div className="product-image-wrapper">
+                {discountPercent && (
+                  <span className="badge-discount">{discountPercent}</span>
                 )}
+                
+                <button type="button" className="btn-wishlist" aria-label="Ajouter aux favoris">
+                  <i className="far fa-heart"></i>
+                </button>
+
+                <img 
+                  src={product.image} 
+                  alt={product.name}
+                  className="product-img"
+                  loading="lazy"
+                />
               </div>
-              
-              <div className="product-card-actions">
+
+              {/* Détails du produit */}
+              <div className="product-info">
+                <span className="product-cat">{product.category}</span>
+                <h3 className="product-name" title={product.name}>{product.name}</h3>
+                
+                {/* Zone des prix */}
+                <div className="product-price-container">
+                  <span className="product-price">{product.price.toLocaleString("fr-FR")} F CFA</span>
+                  {product.oldPrice && (
+                    <span className="product-old-price">{product.oldPrice.toLocaleString("fr-FR")} F CFA</span>
+                  )}
+                </div>
+                
+                {/* Bouton Unique 'Ajouter au Panier' Pleine Largeur */}
                 <button 
                   onClick={() => addToCart(product)} 
                   className="btn-add-cart"
-                  title="Ajouter au panier"
                   type="button"
                 >
                   <i className="fas fa-shopping-cart"></i>
-                </button>
-                <button 
-                  onClick={() => handleBuyNow(product)} 
-                  className="btn-buy-now"
-                  type="button"
-                >
-                  Commander
+                  <span>Ajouter au panier</span>
                 </button>
               </div>
-            </div>
 
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
