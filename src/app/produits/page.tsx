@@ -4,8 +4,20 @@ import { useState, useMemo } from "react";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 
-// CATALOGUE INFORMATIQUE DYNAMIQUE AVEC PRIX ET PRIX BARRÉS
-const PRODUCTS_DATA = [
+// Définition du Type
+export type Product = {
+  id: number;
+  name: string;
+  price: number;
+  oldPrice?: number;
+  category: string;
+  image: string;
+  tag?: string;
+  discount?: string; // Prop optionnelle
+};
+
+// TYPAGE AJOUTÉ ICI (: Product[])
+const PRODUCTS_DATA: Product[] = [
   // --- PC & Moniteurs ---
   { id: 2, name: "PC Portable HP 15-fd0005dx – Intel Core i5 12è Génération - Écran Tactile 15.6\" FHD - RAM 8GB - SSD 512GB", price: 400000, oldPrice: 450000, category: "Ordinateurs", image: "/img/hp-laptop-15-i5-12gen.jpeg", tag: "Coup de cœur" },
   { id: 3, name: "PC Portable HP Elitebook mt45 – AMD Ryzen 3 Pro 2.10GHz (Éq Core i5) - Éran 14\" FHD - RAM 8Go - SSD 256Go - Radeon 2Go Dédiée", price: 170000, oldPrice: 210000, category: "Ordinateurs", image: "/img/hp-elitebook-mt45.jpeg", tag: "Promo" },
@@ -124,7 +136,6 @@ export default function ProductsPage() {
       {/* Grille des produits */}
       <div className="products-grid">
         {filteredAndSortedProducts.map((product) => {
-          // Calcul dynamique du pourcentage si oldPrice existe
           const discountPercent = product.discount || (product.oldPrice ? `-${Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100)}%` : null);
 
           return (
