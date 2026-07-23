@@ -202,7 +202,7 @@ body {
   margin-bottom: 16px;
 }
 
-.product-price {
+.product-price { 
   font-size: 17px;
   font-weight: 800;
   color: #0f172a;
@@ -291,6 +291,8 @@ body {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+    display: flex;
+    flex-direction: column;
   }
 
   .product-info {

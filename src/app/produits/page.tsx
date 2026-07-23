@@ -166,7 +166,7 @@ export default function ProductsPage() {
                   {product.oldPrice && (
                     <span className="product-old-price">{product.oldPrice.toLocaleString("fr-FR")} F CFA</span>
                   )}
-                </div>
+                </div> 
                 
                 {/* Duo de Boutons d'Action */}
                 <div className="product-actions-group">
