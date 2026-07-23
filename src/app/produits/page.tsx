@@ -13,11 +13,10 @@ export type Product = {
   category: string;
   image: string;
   tag?: string;
-  discount?: string; // Prop optionnelle
+  discount?: string;
 };
 
-// TYPAGE AJOUTÉ ICI (: Product[])
-const PRODUCTS_DATA: Product[] = [
+export const PRODUCTS_DATA: Product[] = [
   // --- PC & Moniteurs ---
   { id: 2, name: "PC Portable HP 15-fd0005dx – Intel Core i5 12è Génération - Écran Tactile 15.6\" FHD - RAM 8GB - SSD 512GB", price: 400000, oldPrice: 450000, category: "Ordinateurs", image: "/img/hp-laptop-15-i5-12gen.jpeg", tag: "Coup de cœur" },
   { id: 3, name: "PC Portable HP Elitebook mt45 – AMD Ryzen 3 Pro 2.10GHz (Éq Core i5) - Éran 14\" FHD - RAM 8Go - SSD 256Go - Radeon 2Go Dédiée", price: 170000, oldPrice: 210000, category: "Ordinateurs", image: "/img/hp-elitebook-mt45.jpeg", tag: "Promo" },
@@ -46,7 +45,6 @@ const PRODUCTS_DATA: Product[] = [
   { id: 28, name: "Ordinateur de Bureau Dell Optiplex 5060 (Moyen) – Intel Core i5 8è Génération - Écran 23\" - RAM 8GB - HDD 500Go", price: 210000, oldPrice: 250000, category: "Ordinateurs", image: "/img/dell-optiplex-5060-moyen.jpeg", tag: "Meilleure Performance" },
   { id: 29, name: "PC Portable HP EliteBook mt45 – AMD Ryzen 3 Pro 2.10GHz (éq Core i5) - Écran 14\" Full HD - RAM 8Go - SSD 256Go - AMD Radeon 2Gb dédiée", price: 170000, oldPrice: 210000, category: "Ordinateurs", image: "/img/hp-elitebook-mt45.jpeg", tag: "Promo" },
 
-  
   // --- Casques & Audio ---
   { id: 201, name: "ACER NITRO GAMING HEADSET", price: 210000, oldPrice: 245000, category: "Casques & Audio", image: "/img/ACERNITROGAMINGHEADSET.webp", tag: "Gaming" },
   { id: 202, name: "Casque Gaming Razer BlackShark V2", price: 65000, oldPrice: 80000, category: "Casques & Audio", image: "/img/CasqueGamingRazerBlackSharkV2.jpg", tag: "Promo" },
@@ -59,8 +57,6 @@ const PRODUCTS_DATA: Product[] = [
   { id: 304, name: "Clavier Mécanique Corsair K70 RGB", price: 95000, oldPrice: 115000, category: "Accessoires", image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop&q=60", tag: "Gaming" },
   { id: 305, name: "Disque Dur Externe WD My Passport 2To", price: 55000, oldPrice: 65000, category: "Accessoires", image: "https://images.unsplash.com/photo-1601524909162-be87252be298?w=500&auto=format&fit=crop&q=60", tag: "Stockage" },
   { id: 306, name: "Hub USB-C 8-en-1 Anker", price: 30000, oldPrice: 40000, category: "Accessoires", image: "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=500&auto=format&fit=crop&q=60", tag: "Utile" }
-
-
 ];
 
 export default function ProductsPage() {
@@ -69,8 +65,11 @@ export default function ProductsPage() {
 
   const [categoryFilter, setCategoryFilter] = useState("Tous");
   const [sortBy, setSortBy] = useState("default");
+  
+  // État pour stocker le produit sélectionné pour la vue détaillée (ou rediriger vers une page dédiée)
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const categories = ["Tous", "Ordinateurs", "Imprimantes", "Accessoires", "Électroménager"];
+  const categories = ["Tous", "Ordinateurs", "Imprimantes", "Accessoires", "Casques & Audio"];
 
   const filteredAndSortedProducts = useMemo(() => {
     let result = [...PRODUCTS_DATA];
@@ -165,19 +164,30 @@ export default function ProductsPage() {
                 <div className="product-price-container">
                   <span className="product-price">{product.price.toLocaleString("fr-FR")} F CFA</span>
                   {product.oldPrice && (
-                    <span className="product-old-price">{product.oldPrice.toLocaleString("fr-FR")}</span>
+                    <span className="product-old-price">{product.oldPrice.toLocaleString("fr-FR")} F CFA</span>
                   )}
                 </div>
                 
-                {/* Bouton d'action plein écran */}
-                <button 
-                  onClick={() => addToCart(product)} 
-                  className="btn-add-cart"
-                  type="button"
-                >
-                  <i className="fas fa-shopping-cart"></i>
-                  <span>Ajouter au panier</span>
-                </button>
+                {/* Duo de Boutons d'Action */}
+                <div className="product-actions-group">
+                  <button 
+                    onClick={() => router.push(`/produits/${product.id}`)} 
+                    className="btn-view-product"
+                    type="button"
+                  >
+                    <i className="far fa-eye"></i>
+                    <span>Voir</span>
+                  </button>
+
+                  <button 
+                    onClick={() => addToCart(product)} 
+                    className="btn-add-cart"
+                    type="button"
+                  >
+                    <i className="fas fa-shopping-cart"></i>
+                    <span>Ajouter</span>
+                  </button>
+                </div>
               </div>
 
             </div>

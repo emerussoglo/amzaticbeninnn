@@ -29,16 +29,13 @@ const PRODUCTS_DATA = [
   { id: 24, name: "PC Portable Dell Vostro 15-3000 – Intel Core i3 11è Génération - Écran 15\" FHD - RAM 8GB - SSD 256GB", price: 250000, oldPrice: 290000, category: "Ordinateurs", image: "/img/dell-vostro-15-3000.jpeg", tag: "Promo" },
   { id: 25, name: "PC Portable HP ProBook 450G1 – Intel Core i5 2.60GHz - Écran 15.6\" - RAM 8Go - HDD 500Go", price: 100000, oldPrice: 130000, category: "Ordinateurs", image: "/img/hp-probook-450g1.jpeg", tag: "Promo" },
 
-  
   // --- Casques & Audio ---
   { id: 201, name: "ACER NITRO GAMING HEADSET", price: 210000, oldPrice: 245000, category: "Casques & Audio", image: "/img/ACERNITROGAMINGHEADSET.webp", tag: "Gaming" },
   { id: 202, name: "Casque Gaming Razer BlackShark V2", price: 65000, oldPrice: 80000, category: "Casques & Audio", image: "/img/CasqueGamingRazerBlackSharkV2.jpg", tag: "Promo" },
   { id: 203, name: "Écouteurs AirPods Pro 3", price: 160000, oldPrice: 190000, category: "Casques & Audio", image: "/img/ÉcouteursAirPodsPro3.jpg", tag: "Coup de cœur" },
 
-  
   { id: 307, name: "PC Portable HP ProBook 650G1 – Intel Core i5 2.60GHz - RAM 8Go", price: 100000, oldPrice: 130000, category: "Ordinateurs", image: "/img/hp-probook-450g1.jpeg" },
   { id: 308, name: "PC Portable HP EliteBook mt45 – AMD Ryzen 3 Pro - RAM 8Go", price: 170000, oldPrice: 210000, category: "Ordinateurs", image: "/img/hp-elitebook-mt45.jpeg" }
-
 ];
 
 export function HomePageContent() {
@@ -122,15 +119,15 @@ export function HomePageContent() {
           </h1>
 
           <div className="catalog-header-action">
-  <button 
-    onClick={() => router.push("/produits")} // Ou le chemin vers votre page catalogue
-    className="btn-see-all"
-    type="button"
-  >
-    <span>Voir tous les produits</span>
-    <i className="fas fa-arrow-right"></i>
-  </button>
-</div>
+            <button 
+              onClick={() => router.push("/produits")}
+              className="btn-see-all"
+              type="button"
+            >
+              <span>Voir tous les produits</span>
+              <i className="fas fa-arrow-right"></i>
+            </button>
+          </div>
           
           {(searchQuery || categoryQuery) && (
             <button 
@@ -141,7 +138,6 @@ export function HomePageContent() {
             </button>
           )}
         </div>
-      
 
         {filteredProducts.length > 0 ? (
           <div className="products-grid">
@@ -154,7 +150,7 @@ export function HomePageContent() {
               return (
                 <div key={product.id} className="product-card">
                   
-                  {/* Image + Badge Promo + Bouton Favoris (Design Maquette) */}
+                  {/* Image + Badge Promo + Bouton Favoris */}
                   <div className="product-image-wrapper">
                     {discountPercent && (
                       <span className="badge-discount">{discountPercent}</span>
@@ -181,29 +177,49 @@ export function HomePageContent() {
                     <div className="product-price-container">
                       <span className="product-price">{product.price.toLocaleString("fr-FR")} F CFA</span>
                       {product.oldPrice && (
-                        <span className="product-old-price">{product.oldPrice.toLocaleString("fr-FR")}</span>
+                        <span className="product-old-price">{product.oldPrice.toLocaleString("fr-FR")} F CFA</span>
                       )}
                     </div>
                     
-                    {/* Bouton Unique 'Ajouter au Panier' Pleine Largeur */}
-                    <button 
-                      onClick={() => addToCart(product)} 
-                      className="btn-add-cart"
-                      type="button"
-                    >
-                      <i className="fas fa-shopping-cart"></i>
-                      <span>Ajouter au panier</span>
-                    </button>
+                    {/* Duo de Boutons d'Action (Voir & Ajouter) */}
+                    <div className="product-actions-group">
+                      <button 
+                        onClick={() => router.push(`/produits/${product.id}`)} 
+                        className="btn-view-product"
+                        type="button"
+                      >
+                        <i className="far fa-eye"></i>
+                        <span>Voir</span>
+                      </button>
+
+                      <button 
+                        onClick={() => addToCart(product)} 
+                        className="btn-add-cart"
+                        type="button"
+                      >
+                        <i className="fas fa-shopping-cart"></i>
+                        <span>Ajouter</span>
+                      </button>
+                    </div>
                   </div>
 
+                  
+
                 </div>
+
+                
               );
             })}
+            
           </div>
+          
         ) : (
+          <div>
           <div style={{ textAlign: "center", padding: "40px 20px", color: "#636366" }}>
             <i className="fas fa-search" style={{ fontSize: "30px", marginBottom: "15px", display: "block" }}></i>
             Aucun produit informatique trouvé pour ces critères.
+          </div>
+          
           </div>
         )}
       </div>

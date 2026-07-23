@@ -33,7 +33,10 @@ export default function FeaturedPage() {
       <div className="featured-hero">
         <span className="featured-subtitle">Exclusivités Amzatic</span>
 
-        {/* Bouton Noir 'Voir tous les produits' juste avant le Titre */}
+        <h1>Les Meilleurs Produits du Moment</h1>
+        <p>Découvrez notre sélection exclusive de matériel plébiscité par nos clients au Bénin pour sa puissance, sa qualité et sa fiabilité.</p>
+
+        {/* Action Header centrée */}
         <div className="catalog-header-action">
           <button 
             onClick={() => router.push("/produits")}
@@ -44,12 +47,9 @@ export default function FeaturedPage() {
             <i className="fas fa-arrow-right"></i>
           </button>
         </div>
-
-        <h1>Les Meilleurs Produits du Moment</h1>
-        <p>Découvrez notre sélection exclusive de matériel plébiscité par nos clients au Bénin pour sa puissance, sa qualité et sa fiabilité.</p>
       </div>
 
-      {/* Grille de produits mise au même design */}
+      {/* Grille de produits mise au même design responsive */}
       <div className="products-grid">
         {FEATURED_PRODUCTS.map((product) => {
           // Calcul dynamique de la remise
@@ -91,15 +91,26 @@ export default function FeaturedPage() {
                   )}
                 </div>
                 
-                {/* Bouton Unique 'Ajouter au Panier' Pleine Largeur */}
-                <button 
-                  onClick={() => addToCart(product)} 
-                  className="btn-add-cart"
-                  type="button"
-                >
-                  <i className="fas fa-shopping-cart"></i>
-                  <span>Ajouter au panier</span>
-                </button>
+                {/* Duo de Boutons d'Action (Voir & Ajouter) */}
+                <div className="product-actions-group">
+                  <button 
+                    onClick={() => router.push(`/produits/${product.id}`)} 
+                    className="btn-view-product"
+                    type="button"
+                  >
+                    <i className="far fa-eye"></i>
+                    <span>Voir</span>
+                  </button>
+
+                  <button 
+                    onClick={() => addToCart(product)} 
+                    className="btn-add-cart"
+                    type="button"
+                  >
+                    <i className="fas fa-shopping-cart"></i>
+                    <span>Ajouter</span>
+                  </button>
+                </div>
               </div>
 
             </div>

@@ -173,7 +173,7 @@ body {
 .product-cat {
   font-size: 11px;
   font-weight: 700;
-  color: #0369a1; /* Bleu exact de la maquette */
+  color: #0369a1;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 6px;
@@ -186,8 +186,6 @@ body {
   color: #0f172a;
   line-height: 1.35;
   margin-bottom: 12px;
-
-  /* Tronquer sur 2 lignes avec "..." */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -204,14 +202,12 @@ body {
   margin-bottom: 16px;
 }
 
-/* Prix actuel */
 .product-price {
   font-size: 17px;
   font-weight: 800;
   color: #0f172a;
 }
 
-/* Prix barré */
 .product-old-price {
   font-size: 13px;
   color: #9ca3af;
@@ -219,13 +215,21 @@ body {
   font-weight: 400;
 }
 
-/* --- BOUTON "AJOUTER AU PANIER" BLEU FONCÉ PLEIN ÉCRAN --- */
-.btn-add-cart {
+/* --- DUO DE BOUTONS (VOIR + AJOUTER AU PANIER) --- */
+.product-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   width: 100%;
-  background-color: #003e6b; /* Bleu foncé identique à l'image */
-  color: #ffffff;
-  border: none;
-  padding: 10px 14px;
+}
+
+/* Bouton "Voir" (Secondaire) */
+.btn-view-product {
+  flex: 1;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  padding: 10px 12px;
   font-size: 13px;
   font-weight: 700;
   border-radius: 6px;
@@ -233,7 +237,34 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-view-product:hover {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+.btn-view-product:active {
+  transform: scale(0.98);
+}
+
+/* Bouton "Ajouter" (Principal) */
+.btn-add-cart {
+  flex: 1.2;
+  background-color: #003e6b;
+  color: #ffffff;
+  border: none;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
@@ -245,58 +276,10 @@ body {
   transform: scale(0.98);
 }
 
-.btn-add-cart i {
+.btn-add-cart i,
+.btn-view-product i {
   font-size: 13px;
 }
-
-
-/* Conteneur pour centrer ou aligner le bouton */
-.catalog-header-action {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-/* Bouton Noir 'Voir tout' */
-.btn-see-all {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background-color: #111111;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px 28px;
-  border: 1px solid #111111;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Effet au survol */
-.btn-see-all:hover {
-  background-color: #2a2a2a;
-  border-color: #2a2a2a;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
-}
-
-.btn-see-all:active {
-  transform: translateY(0);
-}
-
-/* Animation discrète de la flèche au survol */
-.btn-see-all i {
-  font-size: 13px;
-  transition: transform 0.3s ease;
-}
-
-.btn-see-all:hover i {
-  transform: translateX(4px);
-}
-
 /* --- RESPONSIVE MEDIA QUERIES --- */
 @media (max-width: 1100px) {
   .products-grid {
@@ -334,6 +317,311 @@ body {
   }
 }
 
+
+
+/* --- CONTENEUR PRINCIPAL --- */
+.product-detail-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* --- BOUTON RETOUR --- */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+  transform: translateX(-2px);
+}
+
+/* --- GRILLE PRINCIPALE (LAYOUT) --- */
+.product-detail-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  background-color: #ffffff;
+}
+
+/* --- COLONNE IMAGE --- */
+.product-image-box {
+  position: relative;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 380px;
+}
+
+.product-image-box .badge-discount {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: #e11d48;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.product-detail-img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-detail-img:hover {
+  transform: scale(1.03);
+}
+
+/* --- COLONNE INFORMATIONS --- */
+.product-info-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-detail-cat {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0369a1;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+}
+
+.product-detail-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.3;
+  margin: 0 0 16px 0;
+}
+
+/* Conteneur des prix */
+.product-detail-price-box {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.product-detail-price {
+  font-size: 28px;
+  font-weight: 800;
+  color: #003e6b;
+}
+
+.product-detail-old-price {
+  font-size: 18px;
+  color: #9ca3af;
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+/* Zone de description / caractéristiques */
+.product-description-box {
+  margin-bottom: 30px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.product-tag-pill {
+  display: inline-block;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+/* Bouton d'action principal */
+.btn-detail-add-cart {
+  width: 100%;
+  background-color: #003e6b;
+  color: #ffffff;
+  border: none;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 12px rgba(0, 62, 107, 0.2);
+}
+
+.btn-detail-add-cart:hover {
+  background-color: #002b4a;
+}
+
+.btn-detail-add-cart:active {
+  transform: scale(0.99);
+}
+
+
+
+/* --- CONTENEUR CENTRÉ --- */
+.catalog-header-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 15px; /* Espacement haut / bas */
+}
+
+/* --- BOUTON STYLISÉ ET ANIMÉ --- */
+.btn-see-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: #02bbf2;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 15px; /* Bordures arrondies style pilule */
+  border: 2px solid transparent;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 14px rgba(0, 62, 107, 0.25);
+  
+  /* Transitions fluides pour l'animation */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Texte à l'intérieur */
+.btn-see-all span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Icône Flèche */
+.btn-see-all i {
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+/* --- EFFETS AU SURVOL (HOVER) --- */
+.btn-see-all:hover {
+  background-color: #02bbf2;
+  box-shadow: 0 8px 22px rgba(0, 62, 107, 0.4);
+  transform: translateY(-3px); /* Légère élévation */
+}
+
+/* Animation de la flèche qui glisse vers la droite au survol */
+.btn-see-all:hover i {
+  transform: translateX(6px);
+}
+
+/* --- EFFET AU CLIC (ACTIVE) --- */
+.btn-see-all:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 4px 10px rgba(0, 62, 107, 0.3);
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 576px) {
+  .btn-see-all {
+    width: 100%; /* Prend toute la largeur sur petit écran si souhaité */
+    max-width: 300px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+/* ==========================================================================
+   ADAPTATION RESPONSIVE (DESIGN MOBILE ET TABLETTE)
+   ========================================================================== */
+
+/* --- TABLETTES (Largeur inférieure à 900px) --- */
+@media (max-width: 900px) {
+  .product-detail-wrapper {
+    gap: 24px;
+  }
+
+  .product-detail-title {
+    font-size: 22px;
+  }
+
+  .product-detail-price {
+    font-size: 24px;
+  }
+
+  .product-image-box {
+    min-height: 300px;
+    padding: 16px;
+  }
+}
+
+/* --- MOBILES (Largeur inférieure à 768px) --- */
+@media (max-width: 768px) {
+  .product-detail-container {
+    margin: 16px auto;
+    padding: 0 16px;
+  }
+
+  /* La grille passe à 1 seule colonne */
+  .product-detail-wrapper {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .product-image-box {
+    min-height: 260px;
+  }
+
+  .product-detail-img {
+    max-height: 280px;
+  }
+
+  .product-detail-title {
+    font-size: 20px;
+  }
+
+  .product-detail-price-box {
+    margin-bottom: 16px;
+  }
+
+  .btn-detail-add-cart {
+    padding: 14px;
+    font-size: 15px;
+  }
+}
 
 
 

@@ -19,7 +19,7 @@ const SLIDES_DATA = [
     title: "Imprimantes Professionnelles : Des impressions nettes",
     subtitle: "Équipements Pro",
     description: "Découvrez nos imprimantes laser et jet d'encre multifonctions idéales pour vos flux de travail et votre entreprise au Bénin.",
-    image: "/img/bann4.jpg",
+    image: "/img/img1.jpeg",
     btnText: "Voir la sélection",
     link: "/?cat=imprimantes",
     theme: "dark"
@@ -29,7 +29,7 @@ const SLIDES_DATA = [
     title: "Électroménager Confort : TV, Climatiseurs & Cuisine",
     subtitle: "Maison & High-Tech",
     description: "Smart TV de 32 à 75\"+, climatiseurs puissants et équipements complets pour moderniser votre quotidien.",
-    image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1400&auto=format&fit=crop&q=80",
+    image: "/img/img1.jpeg",
     btnText: "Découvrir",
     link: "/?cat=electromenager",
     theme: "dark"
@@ -70,7 +70,7 @@ export default function Hero() {
       <div className="hero-carousel-container">
         {SLIDES_DATA.map((slide, index) => (
           <div 
-            key={slide.id} 
+            key={slide.id}  
             className={`hero-slide ${index === currentSlide ? "slide-active" : ""}`}
           >
             {/* Image de fond */}
