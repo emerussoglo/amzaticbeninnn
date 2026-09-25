@@ -12,11 +12,15 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Merci ${formData.name}, votre message a bien été transmis à AMZATIC !`);
+    alert(
+      `Merci ${formData.name}, votre message a bien été transmis à AMZATIC !`,
+    );
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -27,7 +31,11 @@ export default function ContactPage() {
       <div className="featured-hero">
         <span className="featured-subtitle">CONTACTEZ-NOUS</span>
         <h1>Une question ? Nous sommes là pour vous</h1>
-        <p>Notre équipe technique et commerciale vous répond dans les plus brefs délais pour toute demande d'information, conseil ou SAV informatique.</p>
+        <p>
+          Notre équipe technique et commerciale vous répond dans les plus brefs
+          délais pour toute demande d&apos;information, conseil ou SAV
+          informatique.
+        </p>
       </div>
 
       {/* Grille des 4 Cartes d'information (Style Maquette) */}
@@ -39,8 +47,8 @@ export default function ContactPage() {
           </div>
           <h3>Appelez-nous</h3>
           <p className="card-subtitle">Lun–Sam, 8h00 – 19h00</p>
-          <p className="card-value">+229 01 54 62 70 62</p>
-          <a href="tel:+2290154627062" className="card-action-link">
+          <p className="card-value">+229 01 67 92 17 96</p>
+          <a href="tel:+2290167921796" className="card-action-link">
             Appeler maintenant <i className="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -53,7 +61,10 @@ export default function ContactPage() {
           <h3>Support E-mail</h3>
           <p className="card-subtitle">Devis & Factures Pro</p>
           <p className="card-value">amzaticofficiel@gmail.com</p>
-          <a href="mailto:amzaticofficiel@gmail.com" className="card-action-link">
+          <a
+            href="mailto:amzaticofficiel@gmail.com"
+            className="card-action-link"
+          >
             Écrire un message <i className="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -66,10 +77,10 @@ export default function ContactPage() {
           <h3>WhatsApp</h3>
           <p className="card-subtitle">Chat en direct avec notre équipe</p>
           <p className="card-value">+229 01 67 92 17 96</p>
-          <a 
-            href="https://wa.me/2290167921796" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <a
+            href="https://wa.me/2290167921796"
+            target="_blank"
+            rel="noopener noreferrer"
             className="card-action-link"
           >
             Ouvrir WhatsApp <i className="fas fa-chevron-right"></i>
@@ -84,10 +95,10 @@ export default function ContactPage() {
           <h3>Visitez-nous</h3>
           <p className="card-subtitle">Début échangeur Godomey à droite</p>
           <p className="card-value">Abomey-Calavi, Bénin</p>
-          <a 
-            href="https://maps.google.com" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <a
+            href="https://maps.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="card-action-link"
           >
             Voir sur la carte <i className="fas fa-chevron-right"></i>

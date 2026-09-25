@@ -53,7 +53,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       handleNext();
-    }, 5000);
+    }, 3000);
     return () => clearInterval(timer);
   }, [currentSlide]);
 
