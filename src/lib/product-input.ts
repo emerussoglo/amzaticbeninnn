@@ -31,6 +31,16 @@ export type ProductInput = Omit<
   active: boolean;
 };
 
+export function createProductSlug(name: string): string {
+  const slug = name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  return slug || "produit";
+}
+
 function isSafeImageSource(value: unknown): value is string {
   if (typeof value !== "string" || value.length > 2048) return false;
   if (

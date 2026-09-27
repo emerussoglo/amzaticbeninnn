@@ -1,6 +1,7 @@
 "use client";
 
 import { useCart } from "@/context/CartContext";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import Hero from "@/components/Hero";
 import BrandMarquee from "@/components/BrandMarquee";
@@ -238,34 +239,45 @@ const PRODUCTS_DATA = [
   },
 ];
 
+function normalizeSearchText(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLocaleLowerCase("fr-FR")
+    .trim();
+}
+
 function HomePageContent() {
   const { addToCart } = useCart();
   const storeProducts = useStoreProducts();
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const searchQuery = searchParams.get("search")?.toLowerCase() || "";
+  const searchQuery = normalizeSearchText(searchParams.get("search") || "");
   const categoryQuery = searchParams.get("cat") || "";
 
   const categoryMapping: { [key: string]: string } = {
     ordinateurs: "Ordinateurs",
     imprimantes: "Imprimantes",
     accessoires: "Accessoires",
+    "casques-audio": "Casques & Audio",
     electromenager: "Électroménager",
   };
-  const targetCategory = categoryMapping[categoryQuery] || "";
+  const targetCategory = normalizeSearchText(
+    categoryMapping[categoryQuery] || "",
+  );
 
   const filteredProducts = [...PRODUCTS_DATA, ...storeProducts].filter(
     (product) => {
-      const matchesSearch = product.name.toLowerCase().includes(searchQuery);
-
-      const cleanProductCat = product.category
-        .replace(/\s+/g, "")
-        .toLowerCase();
-      const cleanTargetCat = targetCategory.replace(/\s+/g, "").toLowerCase();
-
+      const searchableText = normalizeSearchText(
+        `${product.name} ${product.category} ${"brand" in product ? product.brand : ""}`,
+      );
+      const matchesSearch = searchQuery
+        .split(/\s+/)
+        .filter(Boolean)
+        .every((term) => searchableText.includes(term));
       const matchesCategory = targetCategory
-        ? cleanProductCat === cleanTargetCat
+        ? normalizeSearchText(product.category) === targetCategory
         : true;
 
       return matchesSearch && matchesCategory;
@@ -370,7 +382,7 @@ function HomePageContent() {
                 : null;
 
               return (
-                <div key={product.id} className="product-card">
+                <article key={product.id} className="product-card">
                   {/* Image + Badge Promo + Bouton Favoris */}
                   <div className="product-image-wrapper">
                     {discountPercent && (
@@ -385,12 +397,18 @@ function HomePageContent() {
                       <i className="far fa-heart"></i>
                     </button>
 
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="product-img"
-                      loading="lazy"
-                    />
+                    <Link
+                      href={`/produits/${encodeURIComponent(product.id)}`}
+                      className="product-image-link"
+                      aria-label={`Voir ${product.name}`}
+                    >
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="product-img"
+                        loading="lazy"
+                      />
+                    </Link>
                   </div>
 
                   {/* Contenu de la Carte Produit */}
@@ -415,25 +433,16 @@ function HomePageContent() {
                     {/* Duo de Boutons d'Action (Voir & Ajouter) */}
                     <div className="product-actions-group">
                       <button
-                        onClick={() => router.push(`/produits/${product.id}`)}
-                        className="btn-view-product"
-                        type="button"
-                      >
-                        <i className="far fa-eye"></i>
-                        <span>Voir</span>
-                      </button>
-
-                      <button
                         onClick={() => addToCart(product)}
                         className="btn-add-cart"
                         type="button"
+                        aria-label={`Ajouter ${product.name} au panier`}
                       >
                         <i className="fas fa-shopping-cart"></i>
-                        <span>Ajouter</span>
                       </button>
                     </div>
                   </div>
-                </div>
+                </article>
               );
             })}
           </div>
@@ -459,6 +468,31 @@ function HomePageContent() {
           </div>
         )}
       </div>
+      {!searchQuery && !categoryQuery && (
+        <section className="black-friday-section">
+          <div className="black-friday-copy">
+            <span className="black-friday-eyebrow">
+              AMZATIC BÉNIN · OFFRES SPÉCIALES
+            </span>
+            <h2>Black Friday</h2>
+            <p>
+              Découvrez les bonnes affaires du moment sur notre sélection
+              high-tech.
+            </p>
+            <Link href="/vedette" className="black-friday-button">
+              Découvrir les offres <i className="fas fa-arrow-right"></i>
+            </Link>
+          </div>
+          <img
+            src="/img/hp-laptop-15-i5-12gen.jpeg"
+            alt="Ordinateur portable en promotion"
+            className="black-friday-image"
+          />
+          <span className="black-friday-mark" aria-hidden="true">
+            BF
+          </span>
+        </section>
+      )}
     </main>
   );
 }

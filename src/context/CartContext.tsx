@@ -30,6 +30,15 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartCount, setCartCount] = useState(0);
+  const [notification, setNotification] = useState<{
+    productName: string;
+  } | null>(null);
+
+  useEffect(() => {
+    if (!notification) return;
+    const timeout = window.setTimeout(() => setNotification(null), 3200);
+    return () => window.clearTimeout(timeout);
+  }, [notification]);
 
   // Charger le panier depuis le LocalStorage au démarrage
   useEffect(() => {
@@ -57,6 +66,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const addToCart = (product: Omit<CartItem, "quantity">) => {
+    setNotification({ productName: product.name });
     setCart((prevCart) => {
       const existingProduct = prevCart.find((item) => item.id === product.id);
       if (existingProduct) {
@@ -89,6 +99,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
       value={{ cart, addToCart, removeFromCart, updateQuantity, cartCount }}
     >
       {children}
+      {notification && (
+        <div className="cart-notification" role="status" aria-live="polite">
+          <span className="cart-notification-icon">
+            <i className="fas fa-check" aria-hidden="true"></i>
+          </span>
+          <span className="cart-notification-copy">
+            <strong>Ajouté au panier</strong>
+            <span>{notification.productName}</span>
+          </span>
+          <a href="/panier" className="cart-notification-link">
+            Voir le panier
+          </a>
+        </div>
+      )}
     </CartContext.Provider>
   );
 }

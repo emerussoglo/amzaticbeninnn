@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { useCart } from "@/context/CartContext";
-import { useRouter } from "next/navigation";
 import { useStoreProducts } from "@/hooks/useStoreProducts";
 
 // Définition du Type
@@ -349,7 +349,6 @@ export const PRODUCTS_DATA: Product[] = [
 export default function ProductsPage() {
   const { addToCart } = useCart();
   const storeProducts = useStoreProducts();
-  const router = useRouter();
 
   const [categoryFilter, setCategoryFilter] = useState("Tous");
   const [sortBy, setSortBy] = useState("default");
@@ -434,7 +433,7 @@ export default function ProductsPage() {
               : null);
 
           return (
-            <div key={product.id} className="product-card">
+            <article key={product.id} className="product-card">
               {/* Image + Badges */}
               <div className="product-image-wrapper">
                 {discountPercent && (
@@ -449,12 +448,18 @@ export default function ProductsPage() {
                   <i className="far fa-heart"></i>
                 </button>
 
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="product-img"
-                  loading="lazy"
-                />
+                <Link
+                  href={`/produits/${encodeURIComponent(product.id)}`}
+                  className="product-image-link"
+                  aria-label={`Voir ${product.name}`}
+                >
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="product-img"
+                    loading="lazy"
+                  />
+                </Link>
               </div>
 
               {/* Contenu et Détails */}
@@ -479,25 +484,16 @@ export default function ProductsPage() {
                 {/* Duo de Boutons d'Action */}
                 <div className="product-actions-group">
                   <button
-                    onClick={() => router.push(`/produits/${product.id}`)}
-                    className="btn-view-product"
-                    type="button"
-                  >
-                    <i className="far fa-eye"></i>
-                    <span>Voir</span>
-                  </button>
-
-                  <button
                     onClick={() => addToCart(product)}
                     className="btn-add-cart"
                     type="button"
+                    aria-label={`Ajouter ${product.name} au panier`}
                   >
                     <i className="fas fa-shopping-cart"></i>
-                    <span>Ajouter</span>
                   </button>
                 </div>
               </div>
-            </div>
+            </article>
           );
         })}
       </div>

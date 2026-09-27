@@ -1,10 +1,13 @@
-import { randomUUID } from "node:crypto";
 import { desc } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { products } from "@/db/schema";
 import { isAdminAuthenticated } from "@/lib/admin-session";
-import { parseProductInput, toStoreProduct } from "@/lib/product-input";
+import {
+  createProductSlug,
+  parseProductInput,
+  toStoreProduct,
+} from "@/lib/product-input";
 
 export const dynamic = "force-dynamic";
 
@@ -51,10 +54,22 @@ export async function POST(request: Request) {
 
   const now = new Date();
   try {
+    const existingProducts = await db
+      .select({ id: products.id })
+      .from(products);
+    const existingIds = new Set(existingProducts.map(({ id }) => id));
+    const baseSlug = createProductSlug(product.name);
+    let id = baseSlug;
+    let duplicateNumber = 2;
+    while (existingIds.has(id)) {
+      id = `${baseSlug}-${duplicateNumber}`;
+      duplicateNumber += 1;
+    }
+
     const [created] = await db
       .insert(products)
       .values({
-        id: randomUUID(),
+        id,
         ...product,
         createdAt: now,
         updatedAt: now,
