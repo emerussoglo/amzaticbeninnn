@@ -132,7 +132,7 @@ export default function Hero() {
             className="hero-promo-card hero-promo-gaming"
           >
             <img
-              src="/img/hp-laptop-15-i5-12gen.jpeg"
+              src="/img/614tuZXkKXL._AC_SL1500.jpg"
               alt="Ordinateur portable"
             />
             <span className="hero-promo-overlay"></span>

@@ -5,8 +5,8 @@
 }
 .hero {
   padding: 34px max(24px, calc((100vw - 1160px) / 2)) 38px;
-  color: #f7faf7;
-  background: #173c32;
+  color: #f7faf7; 
+  background: #111827;
 }
 .topline {
   display: flex;
@@ -22,7 +22,7 @@
   font-weight: 800;
 }
 .brand span {
-  color: #c9f36a;
+  color: #02bbf2;
 }
 .back {
   color: #d1ded7;
@@ -37,7 +37,7 @@
   margin: 0 auto;
 }
 .eyebrow {
-  color: #c9f36a;
+  color: #02bbf2;
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 1.4px;
@@ -91,8 +91,8 @@
   font-size: 11px;
 }
 .nav a:hover {
-  border-color: #25805d;
-  color: #176b52;
+  border-color: #111827;
+  color: #111827;
   background: #eaf2ec;
 }
 .content {
@@ -106,7 +106,7 @@
   margin: 27px 0 9px;
   padding-top: 17px;
   border-top: 1px solid #edf0ee;
-  color: #21342b;
+  color: #111827;
   font-size: 17px;
   line-height: 1.35;
   letter-spacing: 0;
@@ -138,7 +138,7 @@
   padding-left: 20px;
 }
 .content a {
-  color: #176b52;
+  color: #111827;
   text-underline-offset: 2px;
 }
 .notice {
@@ -159,7 +159,7 @@
   border-top: 1px solid #e8ede9;
 }
 .contactLine a {
-  color: #176b52;
+  color: #111827;
   text-decoration: none;
   font-size: 11px;
 }

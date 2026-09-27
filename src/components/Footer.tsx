@@ -9,7 +9,7 @@ export default function Footer() {
         {/* Colonne 1 : Brand / Présentation / Contact direct / Réseaux sociaux */}
         <div className="footer-column brand-col">
           <div className="footer-logo">
-            <img src="/img/img.jpg" alt="AMZATIC BENIN" />
+            <img src="/img/log1-removebg-preview.png" alt="AMZATIC BENIN" />
           </div>
 
           <p className="brand-description">
@@ -82,7 +82,7 @@ export default function Footer() {
               <Link href="/produits">Tous les produits</Link>
             </li>
             <li>
-              <Link href="/vedettes">Meilleures ventes</Link>
+              <Link href="/vedette">Meilleures ventes</Link>
             </li>
             <li>
               <Link href="/?cat=ordinateurs">Ordinateurs</Link>

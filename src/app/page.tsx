@@ -484,7 +484,7 @@ function HomePageContent() {
             </Link>
           </div>
           <img
-            src="/img/hp-laptop-15-i5-12gen.jpeg"
+            src="/img/msi-crosshair-16-generation-zero.avif"
             alt="Ordinateur portable en promotion"
             className="black-friday-image"
           />

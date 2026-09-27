@@ -60,7 +60,7 @@ export default function Navbar() {
         {/* Zone Logo */}
         <div className="nav-logo">
           <Link href="/">
-            <img src="/img/img.jpg" alt="AMZATIC Bénin" />
+            <img src="/img/log1-removebg-preview.png" alt="AMZATIC Bénin" />
           </Link>
         </div>
 
@@ -113,13 +113,13 @@ export default function Navbar() {
           >
             <i className="fas fa-search"></i>
           </button>
-          <Link
+          {/* <Link
             href="/contact"
             className="action-icon fav-desktop"
             aria-label="Contact"
           >
             <i className="far fa-user"></i>
-          </Link>
+          </Link> */}
 
           {/* Bouton Panier avec l'icône de caddie mise à jour (image_373583.png) */}
 
@@ -175,7 +175,11 @@ export default function Navbar() {
             aria-modal="true"
             aria-label="Rechercher un produit"
           >
-            <form onSubmit={handleSearchSubmit} className="search-modal-form">
+            <form
+              id="product-search-form"
+              onSubmit={handleSearchSubmit}
+              className="search-modal-form"
+            >
               <i className="fas fa-search" aria-hidden="true"></i>
               <input
                 type="search"
@@ -227,6 +231,16 @@ export default function Navbar() {
                 ))}
               </div>
             </div>
+            <div className="search-modal-actions">
+              <button
+                type="submit"
+                form="product-search-form"
+                className="search-submit-button"
+              >
+                <i className="fas fa-search" aria-hidden="true"></i>
+                Valider
+              </button>
+            </div>
           </section>
         </div>
       )}
@@ -238,8 +252,17 @@ export default function Navbar() {
       >
         <div className="mobile-sidebar" onClick={(e) => e.stopPropagation()}>
           <div className="sidebar-header">
+            <Link
+              href="/"
+              className="sidebar-brand"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <img src="/img/log1-removebg-preview.png" alt="AMZATIC Bénin" />
+            </Link>
             <button
               className="close-sidebar"
+              type="button"
+              aria-label="Fermer le menu"
               onClick={() => setIsMenuOpen(false)}
             >
               <i className="fas fa-times"></i>
