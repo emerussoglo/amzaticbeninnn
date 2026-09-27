@@ -22,7 +22,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        <link rel="shortcut icon" href="/img/img.jpg" type="image/x-icon" />
+        <link rel="shortcut icon" href="/img/img1.png" type="image/x-icon" />
 
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
