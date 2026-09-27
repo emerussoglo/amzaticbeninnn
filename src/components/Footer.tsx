@@ -150,6 +150,9 @@ export default function Footer() {
             <span className="payment-badge visa">VISA</span>
           </div>
         </div>
+         <p className="copyright-text" style={{ textAlign: "center", marginTop: "10px" }}>
+            Réalisé par <a style={{ color: "#02bbf2", textDecoration: "none" }} href="https://emerussoglo.vercel.app/" target="_blank" rel="noopener noreferrer">Emérus SOGLO</a>
+          </p>
       </div>
     </footer>
   );
