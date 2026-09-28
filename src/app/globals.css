@@ -410,7 +410,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 380px;
+  min-height: 400px;
 }
 
 .product-image-box .badge-discount {

@@ -17,34 +17,6 @@ export default function Footer() {
             garanti et SAV assuré.
           </p>
 
-          {/* Infos de contact direct intégrées dans la colonne de marque */}
-          <ul className="footer-direct-contact">
-            <li>
-              <i className="fas fa-map-marker-alt icon-geo"></i>
-              <span>Début échangeur Godomey à droite, Cotonou</span>
-            </li>
-            <li>
-              <i className="fas fa-phone-alt"></i>
-              <a href="tel:+2290167921796">+229 01 67 92 17 96</a>
-            </li>
-            <li>
-              <i className="fab fa-whatsapp icon-wa"></i>
-              <a
-                href="https://wa.me/2290167921796"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                +229 01 67 92 17 96
-              </a>
-            </li>
-            <li>
-              <i className="far fa-envelope"></i>
-              <a href="mailto:amzaticofficiel@gmail.com">
-                amzaticofficiel@gmail.com
-              </a>
-            </li>
-          </ul>
-
           {/* Icônes des Réseaux Sociaux */}
           <div className="footer-social-links">
             <a
@@ -72,11 +44,39 @@ export default function Footer() {
               <i className="fab fa-instagram"></i>
             </a>
           </div>
+
+          {/* Infos de contact direct intégrées dans la colonne de marque */}
+          <ul className="footer-direct-contact">
+            <li>
+              <i className="fas fa-map-marker-alt icon-geo"></i>
+              <span>Début échangeur Godomey à droite, Cotonou</span>
+            </li>
+            <li>
+              <i className="fas fa-phone-alt"></i>
+              <a href="tel:+2290167921796">+229 01 67 92 17 96</a>
+            </li>
+            <li>
+              <i className="fab fa-whatsapp icon-wa"></i>
+              <a
+                href="https://wa.me/2290167921796"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                +229 01 67 92 17 96
+              </a>
+            </li>
+            <li>
+              <i className="far fa-envelope"></i>
+              <a href="mailto:amzaticofficiel@gmail.com">
+                amzaticofficiel@gmail.com
+              </a>
+            </li>
+          </ul>
         </div>
 
         {/* Colonne 2 : Produits */}
-        <div className="footer-column">
-          <h3>Produits</h3>
+        <details className="footer-column footer-accordion">
+          <summary>Produits</summary>
           <ul className="footer-links-list">
             <li>
               <Link href="/?cat=ordinateurs">Ordinateurs</Link>
@@ -97,11 +97,11 @@ export default function Footer() {
               <Link href="/?cat=accessoires">Accessoires</Link>
             </li>
           </ul>
-        </div>
+        </details>
 
         {/* Colonne 3 : Services */}
-        <div className="footer-column">
-          <h3>Services</h3>
+        <details className="footer-column footer-accordion">
+          <summary>Services</summary>
           <ul className="footer-links-list">
             <li>
               <Link href="/contact">Support technique</Link>
@@ -122,11 +122,11 @@ export default function Footer() {
               <Link href="/contact">Maintenance</Link>
             </li>
           </ul>
-        </div>
+        </details>
 
         {/* Colonne 4 : Entreprise et aide */}
-        <div className="footer-column">
-          <h3>Entreprise</h3>
+        <details className="footer-column footer-accordion">
+          <summary>Entreprise</summary>
           <ul className="footer-links-list">
             <li>
               <Link href="/contact">À propos</Link>
@@ -141,10 +141,10 @@ export default function Footer() {
               <Link href="/contact">Partenaires</Link>
             </li>
           </ul>
-        </div>
+        </details>
 
-        <div className="footer-column">
-          <h3>Aide</h3>
+        <details className="footer-column footer-accordion">
+          <summary>Aide</summary>
           <ul className="footer-links-list">
             <li>
               <Link href="/contact">Contact</Link>
@@ -159,7 +159,7 @@ export default function Footer() {
               <Link href="/confidentialite">Confidentialité</Link>
             </li>
           </ul>
-        </div>
+        </details>
       </div>
 
       {/* Barre de Copyright & Moyens de paiement tout en bas */}
