@@ -357,12 +357,13 @@ function HomePageContent() {
           </div>
 
           <div className="catalog-header-action">
-            <button
+            <button 
               onClick={() => router.push("/produits")}
-              className="btn-see-all"
-              type="button"
+              className=" "
+              type="button"   
+              style={{ color:"#007bff", backgroundColor: "transparent", fontSize: "18px", fontWeight: "bold", border: "0", cursor: "pointer",   }} 
             >
-              <span>Voir tout</span>
+              <span style={{ color:"#007bff" }}>Voir tout</span>
               <i className="fas fa-arrow-right"></i>
             </button>
             {(searchQuery || categoryQuery) && (
