@@ -258,6 +258,10 @@ function HomePageContent() {
 
   const categoryMapping: { [key: string]: string } = {
     ordinateurs: "Ordinateurs",
+    pc: "Ordinateurs",
+    tablettes: "Tablettes",
+    gaming: "Gaming",
+    moniteurs: "Moniteurs",
     imprimantes: "Imprimantes",
     accessoires: "Accessoires",
     "casques-audio": "Casques & Audio",
@@ -270,15 +274,23 @@ function HomePageContent() {
   const filteredProducts = [...PRODUCTS_DATA, ...storeProducts].filter(
     (product) => {
       const searchableText = normalizeSearchText(
-        `${product.name} ${product.category} ${"brand" in product ? product.brand : ""}`,
+        `${product.name} ${product.category} ${"brand" in product ? product.brand : ""} ${"tag" in product ? product.tag || "" : ""}`,
       );
       const matchesSearch = searchQuery
         .split(/\s+/)
         .filter(Boolean)
         .every((term) => searchableText.includes(term));
-      const matchesCategory = targetCategory
-        ? normalizeSearchText(product.category) === targetCategory
-        : true;
+      const matchesCategory = !targetCategory
+        ? true
+        : categoryQuery === "gaming"
+          ? searchableText.includes("gaming")
+          : categoryQuery === "tablettes"
+            ? searchableText.includes("tablette") ||
+              searchableText.includes("tablet")
+            : categoryQuery === "moniteurs"
+              ? searchableText.includes("moniteur") ||
+                searchableText.includes("monitor")
+              : normalizeSearchText(product.category) === targetCategory;
 
       return matchesSearch && matchesCategory;
     },
@@ -295,12 +307,10 @@ function HomePageContent() {
             <div className="features-container">
               <div className="feature-card">
                 <div className="feature-icon-wrapper icon-shipping">
-                  <i className="fas fa-tools"></i>
+                  <i className="fas fa-truck"></i>
                 </div>
-                <h3>SERVICE APRÈS VENTE ASSURÉ</h3>
-                <p>
-                  Une assistance technique dédiée pour suivre vos équipements
-                </p>
+                <h3>Livraison Gratuite</h3>
+                <p>Pour toutes commandes supérieures à 700.000 CFA</p>
               </div>
 
               <div className="feature-card">
@@ -316,18 +326,15 @@ function HomePageContent() {
                   <i className="fas fa-headset"></i>
                 </div>
                 <h3>Support 24/7</h3>
-                <p>Assistance commerciale disponible à tout moment</p>
+                <p>Assistance disponible à tout moment</p>
               </div>
 
               <div className="feature-card">
                 <div className="feature-icon-wrapper icon-guarantee">
-                  <i className="fas fa-user-check"></i>
+                  <i className="fas fa-sync-alt"></i>
                 </div>
-                <h3>Investissement Garanti</h3>
-                <p>
-                  Choisir nos articles informatiques, c&apos;est sécuriser son
-                  achat
-                </p>
+                <h3>Garantie Satisfait</h3>
+                <p>Retour gratuit sous 30 jours</p>
               </div>
             </div>
           </div>
@@ -336,12 +343,18 @@ function HomePageContent() {
 
       <div className="home-page-container">
         <div className="featured-hero">
-          <span className="featured-subtitle">AMZATIC BÉNIN</span>
-          <h1>
-            {searchQuery || categoryQuery
-              ? `Résultats de votre recherche (${filteredProducts.length})`
-              : "Nos produits phares"}
-          </h1>
+          <div className="featured-heading-copy">
+            <h1>
+              {searchQuery || categoryQuery
+                ? `Résultats de votre recherche (${filteredProducts.length})`
+                : "Produits phares"}
+            </h1>
+            <p>
+              {searchQuery || categoryQuery
+                ? "Les articles correspondant à votre sélection"
+                : "Les meilleurs produits sélectionnés pour vous"}
+            </p>
+          </div>
 
           <div className="catalog-header-action">
             <button
@@ -349,28 +362,19 @@ function HomePageContent() {
               className="btn-see-all"
               type="button"
             >
-              <span>Voir tous les produits</span>
+              <span>Voir tout</span>
               <i className="fas fa-arrow-right"></i>
             </button>
+            {(searchQuery || categoryQuery) && (
+              <button
+                onClick={() => router.push("/")}
+                className="catalog-clear-button"
+                type="button"
+              >
+                Effacer les filtres
+              </button>
+            )}
           </div>
-
-          {(searchQuery || categoryQuery) && (
-            <button
-              onClick={() => router.push("/")}
-              style={{
-                marginTop: "15px",
-                padding: "8px 16px",
-                backgroundColor: "#1a1a1a",
-                color: "#fff",
-                border: "none",
-                borderRadius: "4px",
-                cursor: "pointer",
-                fontSize: "13px",
-              }}
-            >
-              Voir tout le catalogue Tech
-            </button>
-          )}
         </div>
 
         {filteredProducts.length > 0 ? (
@@ -414,6 +418,18 @@ function HomePageContent() {
                   {/* Contenu de la Carte Produit */}
                   <div className="product-info">
                     <span className="product-cat">{product.category}</span>
+                    <span
+                      className="product-rating"
+                      aria-label="Aucun avis pour le moment"
+                    >
+                      {Array.from({ length: 5 }, (_, index) => (
+                        <i
+                          key={index}
+                          className="fas fa-star"
+                          aria-hidden="true"
+                        />
+                      ))}
+                    </span>
                     <h3 className="product-name" title={product.name}>
                       {product.name}
                     </h3>
@@ -469,28 +485,68 @@ function HomePageContent() {
         )}
       </div>
       {!searchQuery && !categoryQuery && (
-        <section className="black-friday-section">
-          <div className="black-friday-copy">
-            <span className="black-friday-eyebrow">
-              AMZATIC BÉNIN · OFFRES SPÉCIALES
+        <section className="home-promotions">
+          <div className="black-friday-section">
+            <div className="black-friday-copy">
+              <span className="black-friday-eyebrow">OFFRE LIMITÉE</span>
+              <h2>
+                Black Friday <strong>jusqu&apos;à -70%</strong>
+              </h2>
+              <p>
+                Profitez de nos meilleures réductions sur une sélection de
+                produits high-tech.
+              </p>
+              <div className="black-friday-actions">
+                <Link href="/vedette" className="black-friday-button">
+                  Découvrir les offres <i className="fas fa-arrow-right"></i>
+                </Link>
+                <Link
+                  href="/vedette"
+                  className="black-friday-button black-friday-button-secondary"
+                >
+                  En savoir plus
+                </Link>
+              </div>
+            </div>
+            <img
+              src="/img/msi-crosshair-16-generation-zero.avif"
+              alt="Ordinateur portable en promotion"
+              className="black-friday-image"
+            />
+            <span className="black-friday-mark" aria-hidden="true">
+              BF
             </span>
-            <h2>Black Friday</h2>
-            <p>
-              Découvrez les bonnes affaires du moment sur notre sélection
-              high-tech.
-            </p>
-            <Link href="/vedette" className="black-friday-button">
-              Découvrir les offres <i className="fas fa-arrow-right"></i>
+          </div>
+          <div className="promotion-tiles">
+            <Link
+              href="/?cat=gaming"
+              className="promotion-tile promotion-tile-gaming"
+            >
+              <span className="promotion-tile-copy">
+                <span className="hero-promo-tag">GAMING</span>
+                <strong>Setup Gaming</strong>
+                <span>Équipez-vous pour dominer</span>
+                <span className="promotion-tile-button">Voir la sélection</span>
+              </span>
+              <span className="promotion-tile-icon">
+                <i className="fas fa-gamepad" aria-hidden="true"></i>
+              </span>
+            </Link>
+            <Link
+              href="/?cat=ordinateurs"
+              className="promotion-tile promotion-tile-innovation"
+            >
+              <span className="promotion-tile-copy">
+                <span className="hero-promo-tag">INNOVATION</span>
+                <strong>Développement</strong>
+                <span>Les dernières innovations</span>
+                <span className="promotion-tile-button">Découvrir</span>
+              </span>
+              <span className="promotion-tile-icon">
+                <i className="fas fa-laptop" aria-hidden="true"></i>
+              </span>
             </Link>
           </div>
-          <img
-            src="/img/msi-crosshair-16-generation-zero.avif"
-            alt="Ordinateur portable en promotion"
-            className="black-friday-image"
-          />
-          <span className="black-friday-mark" aria-hidden="true">
-            BF
-          </span>
         </section>
       )}
     </main>
@@ -499,7 +555,7 @@ function HomePageContent() {
 
 export default function HomePage() {
   return (
-    <Suspense fallback={<div>Chargement du catalogue...</div>}>
+    <Suspense fallback={<div>Chargement en cours</div>}>
       <HomePageContent />
     </Suspense>
   );

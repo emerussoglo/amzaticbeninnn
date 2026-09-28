@@ -10,9 +10,9 @@ const SLIDES_DATA = [
     subtitle: "Ordinateurs",
     description:
       "Équipez votre espace de travail ou votre setup avec le meilleur de l'informatique. Des PC configurés pour durer, avec SERVICE APRÈS-VENTE ASSURÉ.",
-    image: "/img/bann2.jpg",
+    image: "/img/hero-bann1.png",
     btnText: "En savoir plus",
-    link: "/?cat=ordinateurs",
+    link: "/?cat=ordinateurs", 
     theme: "dark",
   },
   {
@@ -21,7 +21,7 @@ const SLIDES_DATA = [
     subtitle: "Équipements Pro",
     description:
       "Découvrez nos imprimantes laser et jet d'encre multifonctions idéales pour vos flux de travail et votre entreprise au Bénin.",
-    image: "/img/img1.jpeg",
+    image: "/img/hero-bann2.png",
     btnText: "Voir la sélection",
     link: "/?cat=imprimantes",
     theme: "dark",
@@ -32,7 +32,7 @@ const SLIDES_DATA = [
     subtitle: "Maison & High-Tech",
     description:
       'Smart TV de 32 à 75"+, climatiseurs puissants et équipements complets pour moderniser votre quotidien.',
-    image: "/img/img1.jpeg",
+    image: "/img/hero-bann6.png",
     btnText: "Découvrir",
     link: "/?cat=electromenager",
     theme: "dark",
@@ -43,7 +43,7 @@ const SLIDES_DATA = [
     subtitle: "Incontournables",
     description:
       "Claviers, souris, chargeurs universels et batteries de rechange de haute qualité.",
-    image: "/img/bann3.jpg",
+    image: "/img/hero-bann3.png",
     btnText: "Acheter maintenant",
     link: "/?cat=accessoires",
     theme: "dark",
@@ -53,13 +53,13 @@ const SLIDES_DATA = [
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto-play (Timer 5 secondes)
+  // Keep the carousel on a steady four-second cadence.
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % SLIDES_DATA.length);
-    }, 3000);
+    }, 4000);
     return () => clearInterval(timer);
-  }, [currentSlide]);
+  }, []);
 
   const handlePrev = () => {
     setCurrentSlide((prev) => (prev === 0 ? SLIDES_DATA.length - 1 : prev - 1));
@@ -132,13 +132,15 @@ export default function Hero() {
             className="hero-promo-card hero-promo-gaming"
           >
             <img
-              src="/img/614tuZXkKXL._AC_SL1500.jpg"
+              src="/img/hero-bann4.png"
               alt="Ordinateur portable"
             />
             <span className="hero-promo-overlay"></span>
             <span className="hero-promo-copy">
-              <span className="hero-promo-tag">ORDINATEURS</span>
-              <strong>La performance, au meilleur prix</strong>
+              <span className="hero-promo-tag">GAMING</span>
+              <strong>
+                Achat PC Bénin : votre ordinateur portable au meilleur prix
+              </strong>
               <span className="hero-promo-cta">
                 Découvrir <i className="fas fa-arrow-right"></i>
               </span>
@@ -148,11 +150,11 @@ export default function Hero() {
             href="/?cat=casques-audio"
             className="hero-promo-card hero-promo-audio"
           >
-            <img src="/img/ACERNITROGAMINGHEADSET.webp" alt="Casque gaming" />
+            <img src="/img/hero-head1.png" alt="Casque gaming" />
             <span className="hero-promo-overlay"></span>
             <span className="hero-promo-copy">
-              <span className="hero-promo-tag">CASQUES & AUDIO</span>
-              <strong>Le son qui accompagne vos journées</strong>
+              <span className="hero-promo-tag">WEARABLES</span>
+              <strong>Smart Accessories</strong>
               <span className="hero-promo-cta">
                 Voir la sélection <i className="fas fa-arrow-right"></i>
               </span>

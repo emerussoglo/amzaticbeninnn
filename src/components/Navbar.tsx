@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTxt, setSearchTxt] = useState("");
   const [searchCat, setSearchCat] = useState("");
@@ -15,11 +16,21 @@ export default function Navbar() {
   const router = useRouter();
 
   const categories = [
-    { label: "Ordinateurs", value: "ordinateurs", icon: "fa-laptop" },
-    { label: "Imprimantes", value: "imprimantes", icon: "fa-print" },
-    { label: "Accessoires", value: "accessoires", icon: "fa-keyboard" },
-    { label: "Casques & Audio", value: "casques-audio", icon: "fa-headphones" },
-    { label: "Électroménager", value: "electromenager", icon: "fa-tv" },
+    {
+      label: "Tablettes",
+      value: "tablettes",
+      icon: "fa-solid fa-tablet-screen-button",
+    },
+    { label: "Ordinateurs", value: "ordinateurs", icon: "fa-solid fa-laptop" },
+    { label: "Gaming", value: "gaming", icon: "fa-solid fa-gamepad" },
+    { label: "Moniteurs", value: "moniteurs", icon: "fa-solid fa-display" }, // Icône d'écran avec un support similaire
+    { label: "Imprimantes", value: "imprimantes", icon: "fa-solid fa-print" }, // Représente les câbles et branchements visibles
+    { label: "Accessoires", value: "accessoires", icon: "fa-solid fa-server" }, // Correspond au boîtier/périphérique horizontal
+    {
+      label: "Casques & Audio",
+      value: "casques-audio",
+      icon: "fa-solid fa-headphones",
+    },
   ];
 
   useEffect(() => {
@@ -113,15 +124,6 @@ export default function Navbar() {
           >
             <i className="fas fa-search"></i>
           </button>
-          {/* <Link
-            href="/contact"
-            className="action-icon fav-desktop"
-            aria-label="Contact"
-          >
-            <i className="far fa-user"></i>
-          </Link> */}
-
-          {/* Bouton Panier avec l'icône de caddie mise à jour (image_373583.png) */}
 
           <Link
             href="/panier"
@@ -302,7 +304,7 @@ export default function Navbar() {
               </li>
               <li>
                 <Link href="/produits" onClick={() => setIsMenuOpen(false)}>
-                  Tous nos produits
+                  Produits
                 </Link>
               </li>
               <li>
@@ -311,16 +313,17 @@ export default function Navbar() {
                   className="link-featured"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Produits Vedettes <i className="fas fa-fire icon-fire"></i>
+                  Promotions <i className="fas fa-fire icon-fire"></i>
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/panier"
-                  className="link-featured"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Panier{" "}
+                <Link href="/?cat=gaming" onClick={() => setIsMenuOpen(false)}>
+                  Gaming Arena
+                </Link>
+              </li>
+              <li>
+                <Link href="/ordinateurs" onClick={() => setIsMenuOpen(false)}>
+                  PC d&apos;occasion
                 </Link>
               </li>
               <li>
@@ -332,32 +335,53 @@ export default function Navbar() {
 
             <div className="sidebar-divider"></div>
 
-            <div className="sidebar-section-title">
-              <span>Filtrer par catégorie</span>
-              <Link
-                href="/produits"
-                onClick={() => setIsMenuOpen(false)}
-                className="see-all-link"
-              >
-                Tout voir
-              </Link>
-            </div>
+            <button
+              type="button"
+              className="sidebar-category-toggle"
+              aria-expanded={isCategoriesOpen}
+              onClick={() => setIsCategoriesOpen((open) => !open)}
+            >
+              <span>
+                <i className="fas fa-layer-group" aria-hidden="true"></i>{" "}
+                Catégories
+              </span>
+              <i
+                className={`fas fa-chevron-${isCategoriesOpen ? "up" : "down"}`}
+                aria-hidden="true"
+              ></i>
+            </button>
 
-            <ul className="sidebar-categories-list">
-              {categories.map((category) => (
-                <li key={category.value}>
-                  <Link
-                    href={`/?cat=${category.value}`}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <i className={`fas ${category.icon}`}></i>
-                    {category.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {isCategoriesOpen && (
+              <ul className="sidebar-categories-list">
+                {categories.map((category) => (
+                  <li key={category.value}>
+                    <Link
+                      href={`/?cat=${category.value}`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <i className={`fas ${category.icon}`}></i>
+                      {category.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
 
             <div className="sidebar-divider"></div>
+            <Link
+              href="/contact"
+              className="sidebar-account-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contacter la boutique
+            </Link>
+            <Link
+              href="/produits"
+              className="sidebar-account-secondary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Voir le catalogue
+            </Link>
           </div>
         </div>
       </div>

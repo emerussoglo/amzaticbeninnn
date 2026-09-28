@@ -7,6 +7,8 @@ import type { StoreProduct } from "@/lib/product-input";
 import styles from "./ProductDetail.module.css";
 import { PRODUCTS_DATA } from "../page";
 
+type DetailTab = "images" | "specifications" | "reviews";
+
 export default function ProductDetailPage({
   params,
 }: {
@@ -20,6 +22,7 @@ export default function ProductDetailPage({
     null,
   );
   const [selectedImage, setSelectedImage] = useState("");
+  const [activeTab, setActiveTab] = useState<DetailTab>("images");
 
   const staticProduct = PRODUCTS_DATA.find((p) => p.id === productId);
 
@@ -128,20 +131,6 @@ export default function ProductDetailPage({
             </p>
           </div>
 
-          {"specifications" in product &&
-            Object.keys(product.specifications).length > 0 && (
-              <dl className={styles.specifications}>
-                {Object.entries(product.specifications).map(
-                  ([label, value]) => (
-                    <div key={label}>
-                      <dt>{label}</dt>
-                      <dd>{value}</dd>
-                    </div>
-                  ),
-                )}
-              </dl>
-            )}
-
           {/* Bouton Ajouter au panier */}
           <button
             onClick={() => addToCart(product)}
@@ -152,6 +141,102 @@ export default function ProductDetailPage({
           </button>
         </div>
       </div>
+
+      <section className={styles.detailSections}>
+        <div
+          className={styles.detailTabs}
+          role="tablist"
+          aria-label="Détails du produit"
+        >
+          {(
+            [
+              ["images", "Images"],
+              ["specifications", "Caractéristiques"],
+              ["reviews", "Avis (0)"],
+            ] as const
+          ).map(([tab, label]) => (
+            <button
+              key={tab}
+              id={`product-tab-${tab}`}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === tab}
+              aria-controls="product-tab-panel"
+              className={activeTab === tab ? styles.activeTab : ""}
+              onClick={() => setActiveTab(tab)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        <div
+          id="product-tab-panel"
+          className={styles.detailTabPanel}
+          role="tabpanel"
+          aria-labelledby={`product-tab-${activeTab}`}
+        >
+          {activeTab === "images" && (
+            <div className={styles.imageGalleryPanel}>
+              <h2>Images du produit</h2>
+              <div className={styles.imageGalleryGrid}>
+                {productImages.map((image, index) => (
+                  <button
+                    key={`${image}-${index}`}
+                    type="button"
+                    onClick={() => setSelectedImage(image)}
+                    aria-label={`Afficher l’image ${index + 1}`}
+                  >
+                    <img
+                      src={image}
+                      alt={`${product.name}, vue ${index + 1}`}
+                      loading="lazy"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === "specifications" && (
+            <div className={styles.specificationsPanel}>
+              <h2>Caractéristiques</h2>
+              {"specifications" in product &&
+              Object.keys(product.specifications).length > 0 ? (
+                <dl className={styles.specifications}>
+                  {Object.entries(product.specifications).map(
+                    ([label, value]) => (
+                      <div key={label}>
+                        <dt>{label}</dt>
+                        <dd>{value}</dd>
+                      </div>
+                    ),
+                  )}
+                </dl>
+              ) : (
+                <p>
+                  Les caractéristiques détaillées ne sont pas encore
+                  renseignées.
+                </p>
+              )}
+            </div>
+          )}
+
+          {activeTab === "reviews" && (
+            <div className={styles.emptyReviews}>
+              <span aria-hidden="true">
+                {Array.from({ length: 5 }, (_, index) => (
+                  <i key={index} className="far fa-star" />
+                ))}
+              </span>
+              <h2>Aucun avis pour le moment</h2>
+              <p>
+                Soyez le premier à partager votre expérience avec ce produit.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
     </div>
   );
 }

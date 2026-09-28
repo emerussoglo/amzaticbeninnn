@@ -6,7 +6,7 @@
 
 /* --- DECLARATION DES VARIABLES DE COULEURS & CONFIG --- */
 :root {
-  --color-primary: #02bbf2; /* Bleu principal Espanadeal */
+  --color-primary: #06abdd;
   --color-white: #ffffff; /* Blanc */
   --color-black: #1a1a1a; /* Noir doux pour le texte */
   --color-gray-bg: #f0f2f5; /* Gris clair pour fond recherche */
@@ -106,23 +106,23 @@ body {
   border-color: rgba(2, 187, 242, 0.45);
   box-shadow: 0 14px 28px rgba(16, 23, 34, 0.1);
 }
-
 /* --- ZONE IMAGE --- */
 .product-image-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 1.08 / 1;
+  height: 250px; /* Définis une hauteur fixe (ex: 220px ou 250px selon ton besoin) */
   background-color: #f3f6f8;
-  padding: 18px;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* Empêche tout débordement visuel */
 }
 
 .product-img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* L'image s'ajuste parfaitement sans être découpée */
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ajuste l'image dans la zone fixe sans la déformer ni la couper */
   transition: transform 0.3s ease;
 }
 
@@ -195,6 +195,7 @@ body {
   line-height: 1.35;
   margin-bottom: 12px;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -445,7 +446,7 @@ body {
 .product-detail-cat {
   font-size: 12px;
   font-weight: 700;
-  color: #0369a1;
+  color: #087da2;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-bottom: 8px;
@@ -472,7 +473,7 @@ body {
 .product-detail-price {
   font-size: 28px;
   font-weight: 800;
-  color: #003e6b;
+  color: var(--color-primary, #06abdd);
 }
 
 .product-detail-old-price {
@@ -504,7 +505,7 @@ body {
 /* Bouton d'action principal */
 .btn-detail-add-cart {
   width: 100%;
-  background-color: #003e6b;
+  background-color: var(--color-primary, #06abdd);
   color: #ffffff;
   border: none;
   padding: 16px;
@@ -519,11 +520,11 @@ body {
   transition:
     background-color 0.2s ease,
     transform 0.1s ease;
-  box-shadow: 0 4px 12px rgba(0, 62, 107, 0.2);
+  box-shadow: 0 4px 12px rgba(6, 171, 221, 0.2);
 }
 
 .btn-detail-add-cart:hover {
-  background-color: #002b4a;
+  background-color: #0788b0;
 }
 
 .btn-detail-add-cart:active {
@@ -1121,7 +1122,7 @@ body {
 /* --- STYLES DE LA PAGE PRODUITS VEDETTES --- */
 
 /* Bannière d'en-tête de la page vedette */
-.featured-hero {
+.featured-heading-copy .featured-hero {
   text-align: center;
   padding: 40px 20px;
   border-radius: 4px;
@@ -1138,17 +1139,17 @@ body {
   margin-bottom: 8px;
 }
 
-.featured-hero h1 {
-  font-size: 26px;
+.featured-heading-copy .featured-hero h1 {
+  font-size: 40px;
   font-weight: 500;
   color: #1a1a1a;
   margin-bottom: 12px;
 }
 
-.featured-hero p {
+.featured-heading-copy .featured-hero p {
   font-size: 14px;
   color: #636366;
-  max-width: 600px;
+  /* max-width: 600px; */
   margin: 0 auto;
   line-height: 1.5;
 }
@@ -1718,6 +1719,7 @@ body {
 
   .slide-desc {
     display: -webkit-box;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -2125,14 +2127,14 @@ body {
 }
 
 .feature-card h3 {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 5px;
 }
 
 .feature-card p {
-  font-size: 10px;
+  font-size: 12px;
   color: #6c757d;
   line-height: 1.2;
 }

@@ -4,8 +4,9 @@
   --admin-muted: #74817d;
   --admin-line: #e5eae7;
   --admin-paper: #f6f8f6;
-  --admin-green: #176b52;
-  --admin-bright: #c9f36a;
+  --admin-green: #06abdd;
+
+  --admin-bright: #176b52;
   min-height: 100vh;
   color: var(--admin-ink);
   background: var(--admin-paper);
@@ -40,7 +41,7 @@
   width: 18px;
   height: 18px;
   border: 2px solid #d9e4dd;
-  border-top-color: #176b52;
+  border-top-color: #06abdd;
   border-radius: 50%;
   animation: admin-spin 0.8s linear infinite;
 }
@@ -510,95 +511,101 @@
   height: 39px;
   padding: 0 11px;
   font-size: 11px;
-  .admin-file-input {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    clip-path: inset(50%);
-  }
-  .admin-upload-control {
-    min-height: 104px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    border: 1px dashed #b8cbc0;
-    border-radius: 5px;
-    color: #176b52;
-    background: #f8fbf8;
-    cursor: pointer;
-    text-align: center;
-  }
-  .admin-upload-control:hover {
-    border-color: #176b52;
-    background: #f0f7f1;
-  }
-  .admin-upload-control > i {
-    font-size: 18px;
-  }
-  .admin-upload-control strong {
-    font-size: 11px;
-  }
-  .admin-upload-control small {
-    margin: 0;
-    color: #7c8b83;
-    font-size: 9px;
-  }
-  .admin-image-previews {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 9px;
-  }
-  .admin-image-preview {
-    position: relative;
-    width: 62px;
-    height: 62px;
-    border: 1px solid #e2e9e4;
-    border-radius: 4px;
-    background: #f8faf8;
-  }
-  .admin-image-preview img {
-    width: 100%;
-    height: 100%;
-    padding: 4px;
-    border-radius: 4px;
-    object-fit: contain;
-  }
-  .admin-image-preview > span {
-    position: absolute;
-    right: 2px;
-    bottom: 2px;
-    left: 2px;
-    overflow: hidden;
-    padding: 2px 3px;
-    border-radius: 2px;
-    color: #fff;
-    background: rgba(23, 60, 50, 0.88);
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 7px;
-  }
-  .admin-image-preview button {
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    width: 20px;
-    height: 20px;
-    display: grid;
-    place-items: center;
-    border: 1px solid #fff;
-    border-radius: 50%;
-    color: white;
-    background: #aa5143;
-    cursor: pointer;
-    font-size: 9px;
-  }
+}
+
+.admin-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+.admin-upload-control {
+  min-height: 104px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px dashed #b8cbc0;
+  border-radius: 5px;
+  color: #176b52;
+  background: #f8fbf8;
+  cursor: pointer;
+  text-align: center;
+}
+.admin-upload-control:hover {
+  border-color: #176b52;
+  background: #f0f7f1;
+}
+.admin-upload-control > i {
+  font-size: 18px;
+}
+.admin-upload-control strong {
+  font-size: 11px;
+}
+.admin-upload-control small {
+  margin: 0;
+  color: #7c8b83;
+  font-size: 9px;
+}
+.admin-image-previews {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
+  gap: 8px;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 9px;
+}
+.admin-image-preview {
+  position: relative;
+  width: 100%;
+  max-width: 74px;
+  aspect-ratio: 1;
+  min-width: 0;
+  border: 1px solid #e2e9e4;
+  border-radius: 4px;
+  background: #f8faf8;
+}
+.admin-image-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  object-fit: contain;
+}
+.admin-image-preview > span {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  left: 2px;
+  overflow: hidden;
+  padding: 2px 3px;
+  border-radius: 2px;
+  color: #fff;
+  background: rgba(23, 60, 50, 0.88);
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 7px;
+}
+.admin-image-preview button {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  color: white;
+  background: #aa5143;
+  cursor: pointer;
+  font-size: 9px;
 }
 .admin-field textarea {
   min-height: 82px;

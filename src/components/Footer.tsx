@@ -74,62 +74,89 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Colonne 2 : Boutique */}
+        {/* Colonne 2 : Produits */}
         <div className="footer-column">
-          <h3>BOUTIQUE</h3>
+          <h3>Produits</h3>
           <ul className="footer-links-list">
-            <li>
-              <Link href="/produits">Tous les produits</Link>
-            </li>
-            <li>
-              <Link href="/vedette">Meilleures ventes</Link>
-            </li>
             <li>
               <Link href="/?cat=ordinateurs">Ordinateurs</Link>
             </li>
             <li>
-              <Link href="/?cat=imprimantes">Imprimantes</Link>
+              <Link href="/?cat=tablettes">Tablettes</Link>
+            </li>
+            <li>
+              <Link href="/?cat=gaming">Gaming</Link>
+            </li>
+            <li>
+              <Link href="/?cat=casques-audio">Audio</Link>
+            </li>
+            <li>
+              <Link href="/produits">Tous les produits</Link>
             </li>
             <li>
               <Link href="/?cat=accessoires">Accessoires</Link>
             </li>
+          </ul>
+        </div>
+
+        {/* Colonne 3 : Services */}
+        <div className="footer-column">
+          <h3>Services</h3>
+          <ul className="footer-links-list">
             <li>
-              <Link href="/?cat=electromenager">Électroménager</Link>
+              <Link href="/contact">Support technique</Link>
+            </li>
+            <li>
+              <Link href="/contact">Livraison</Link>
+            </li>
+            <li>
+              <Link href="/cgv">Garantie</Link>
+            </li>
+            <li>
+              <Link href="/contact">Installation</Link>
+            </li>
+            <li>
+              <Link href="/contact">Formation</Link>
+            </li>
+            <li>
+              <Link href="/contact">Maintenance</Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Colonne 4 : Entreprise et aide */}
+        <div className="footer-column">
+          <h3>Entreprise</h3>
+          <ul className="footer-links-list">
+            <li>
+              <Link href="/contact">À propos</Link>
+            </li>
+            <li>
+              <Link href="/vedette">Promotions</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact</Link>
+            </li>
+            <li>
+              <Link href="/contact">Partenaires</Link>
+            </li>
+          </ul>
+        </div>
+
+        <div className="footer-column">
+          <h3>Aide</h3>
+          <ul className="footer-links-list">
+            <li>
+              <Link href="/contact">Contact</Link>
             </li>
             <li>
               <Link href="/panier">Mon panier</Link>
             </li>
-          </ul>
-        </div>
-
-        {/* Colonne 3 : Aide & Contact */}
-        <div className="footer-column">
-          <h3>AIDE</h3>
-          <ul className="footer-links-list">
             <li>
-              <Link href="/contact">Nous contacter</Link>
-            </li>
-            <li>
-              <Link href="/faq">FAQ</Link>
-            </li>
-            <li>
-              <Link href="/a-propos">À propos</Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Colonne 4 : Légal */}
-        <div className="footer-column">
-          <h3>LÉGAL</h3>
-          <ul className="footer-links-list">
-            <li>
-              <Link href="/cgv">CGV</Link>
+              <Link href="/cgv">Retours et conditions</Link>
             </li>
             <li>
               <Link href="/confidentialite">Confidentialité</Link>
-            </li>
-            <li>
-              <Link href="/mentions-legales">Mentions légales</Link>
             </li>
           </ul>
         </div>
@@ -142,6 +169,12 @@ export default function Footer() {
             © {currentYear} <strong>AMZATIC</strong>. Tous droits réservés.
           </p>
 
+          <nav className="footer-legal-links" aria-label="Liens légaux">
+            <Link href="/cgv">Conditions d&apos;utilisation</Link>
+            <Link href="/confidentialite">Politique de confidentialité</Link>
+            <Link href="/mentions-legales">Mentions légales</Link>
+          </nav>
+
           <div className="footer-payment-methods">
             <span className="payment-title">Paiement accepté :</span>
             <span className="payment-badge mtn">MTN</span>
@@ -150,9 +183,20 @@ export default function Footer() {
             <span className="payment-badge visa">VISA</span>
           </div>
         </div>
-         <p className="copyright-text" style={{ textAlign: "center", marginTop: "10px" }}>
-            Réalisé par <a style={{ color: "#02bbf2", textDecoration: "none" }} href="https://emerussoglo.vercel.app/" target="_blank" rel="noopener noreferrer">Emérus SOGLO</a>
-          </p>
+        <p
+          className="copyright-text"
+          style={{ textAlign: "center", marginTop: "10px" }}
+        >
+          Réalisé par{" "}
+          <a
+            style={{ color: "#02bbf2", textDecoration: "none" }}
+            href="https://emerussoglo.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Emérus SOGLO
+          </a>
+        </p>
       </div>
     </footer>
   );
