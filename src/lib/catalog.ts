@@ -258,15 +258,7 @@ export const PRODUCTS_DATA: Product[] = [
       "/img/prod/hp-elitebook-x360-830-g10-2-en-1-intel-coretm-i5-1335u-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
-  {
-    id: 10029,
-    name: "HP EliteBook 840 G8 / Écran Tactile / SSD 512Go / Ram 16Go / Intel®️ Core™️ i7-1185G7U",
-    price: 275000,
-    category: "Ordinateurs",
-    image:
-      "/img/prod/hp-elitebook-840-g8-ecran-tactile-ssd-512go-ram-16go-intel-coretm-i7-1185g7u.avif",
-    tag: "Venu Propre",
-  },
+ 
   {
     id: 10030,
     name: "HP EliteBook 840 G8 / SSD 512Go / Ram 16Go / Intel®️ Core™️ i7-1185G7U",
@@ -737,15 +729,7 @@ export const PRODUCTS_DATA: Product[] = [
     tag: "Neuf Scellé",
   },
 
-  {
-    id: 10106,
-    name: "MSI CYBORG A13UC-1291XAE",
-    price: 635000,
-    oldPrice: 730000,
-    category: "Gaming",
-    image: "/img/prod/msi-cyborg-a13uc-1291xae.avif",
-    tag: "Neuf Scellé",
-  },
+
 
   {
     id: 10117,
