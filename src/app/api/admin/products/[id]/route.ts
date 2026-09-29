@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { products } from "@/db/schema";
+import { PRODUCTS_DATA, STATIC_PRODUCT_STORAGE_PREFIX } from "@/lib/catalog";
 import { isAdminAuthenticated } from "@/lib/admin-session";
 import { parseProductInput, toStoreProduct } from "@/lib/product-input";
 import { parseImageList, removeUploadedImages } from "@/lib/product-images";
@@ -18,6 +19,61 @@ export async function PUT(request: Request, { params }: RouteContext) {
   } catch {
     return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
   }
+  const { id } = await params;
+  if (id.startsWith(STATIC_PRODUCT_STORAGE_PREFIX)) {
+    const staticId = Number(id.slice(STATIC_PRODUCT_STORAGE_PREFIX.length));
+    const staticProduct = PRODUCTS_DATA.find((item) => item.id === staticId);
+    const specifications =
+      body && typeof body === "object"
+        ? (body as Record<string, unknown>).specifications
+        : null;
+    if (!staticProduct || !isSpecificationsRecord(specifications)) {
+      return NextResponse.json(
+        { error: "Vérifie les caractéristiques du produit." },
+        { status: 400 },
+      );
+    }
+
+    const now = new Date();
+    try {
+      const [saved] = await db
+        .insert(products)
+        .values({
+          id,
+          name: staticProduct.name,
+          description: "",
+          brand: "",
+          category: staticProduct.category,
+          price: staticProduct.price,
+          oldPrice: staticProduct.oldPrice ?? null,
+          image: staticProduct.image,
+          images: JSON.stringify([staticProduct.image]),
+          specifications: JSON.stringify(specifications),
+          tag: staticProduct.tag ?? "",
+          stock: 0,
+          featured: false,
+          active: false,
+          createdAt: now,
+          updatedAt: now,
+        })
+        .onConflictDoUpdate({
+          target: products.id,
+          set: {
+            specifications: JSON.stringify(specifications),
+            active: false,
+            updatedAt: now,
+          },
+        })
+        .returning();
+      return NextResponse.json(toStoreProduct(saved));
+    } catch {
+      return NextResponse.json(
+        { error: "Enregistrement des caractéristiques impossible." },
+        { status: 503 },
+      );
+    }
+  }
+
   const product = parseProductInput(body);
   if (!product)
     return NextResponse.json(
@@ -25,7 +81,6 @@ export async function PUT(request: Request, { params }: RouteContext) {
       { status: 400 },
     );
 
-  const { id } = await params;
   try {
     const [previous] = await db
       .select({ image: products.image, images: products.images })
@@ -64,6 +119,11 @@ export async function DELETE(_request: Request, { params }: RouteContext) {
   }
   const { id } = await params;
   try {
+    if (id.startsWith(STATIC_PRODUCT_STORAGE_PREFIX)) {
+      await db.delete(products).where(eq(products.id, id));
+      return NextResponse.json({ deleted: true });
+    }
+
     const [previous] = await db
       .select({ image: products.image, images: products.images })
       .from(products)
@@ -90,4 +150,22 @@ export async function DELETE(_request: Request, { params }: RouteContext) {
       { status: 503 },
     );
   }
+}
+
+function isSpecificationsRecord(
+  value: unknown,
+): value is Record<string, string> {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const entries = Object.entries(value as Record<string, unknown>);
+  return (
+    entries.length <= 30 &&
+    entries.every(
+      ([key, item]) =>
+        key.trim().length > 0 &&
+        key.length <= 80 &&
+        typeof item === "string" &&
+        item.trim().length > 0 &&
+        item.length <= 300,
+    )
+  );
 }

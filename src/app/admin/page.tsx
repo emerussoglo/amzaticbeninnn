@@ -2,6 +2,7 @@
 
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { STATIC_PRODUCT_STORAGE_PREFIX } from "@/lib/catalog";
 import "./admin.css";
 
 type ManagedProduct = {
@@ -19,6 +20,7 @@ type ManagedProduct = {
   stock: number;
   featured: boolean;
   active: boolean;
+  staticCatalog?: boolean;
 };
 
 type ProductForm = {
@@ -231,6 +233,26 @@ export default function AdminPage() {
     );
 
     try {
+      if (editingStaticProduct && editingId) {
+        const response = await fetch(
+          `/api/admin/products/${encodeURIComponent(editingId)}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ specifications }),
+          },
+        );
+        const data = await response.json();
+        if (!response.ok)
+          throw new Error(
+            data.error || "Enregistrement des caractéristiques impossible.",
+          );
+        await loadProducts();
+        setNotice("Caractéristiques mises à jour.");
+        resetForm();
+        return;
+      }
+
       const response = await fetch(
         editingId
           ? `/api/admin/products/${encodeURIComponent(editingId)}`
@@ -278,11 +300,17 @@ export default function AdminPage() {
       const data = await response.json();
       if (!response.ok)
         throw new Error(data.error || "Suppression impossible.");
-      setProducts((current) =>
-        current.filter((item) => item.id !== product.id),
-      );
+      if (product.staticCatalog) await loadProducts();
+      else
+        setProducts((current) =>
+          current.filter((item) => item.id !== product.id),
+        );
       if (editingId === product.id) resetForm();
-      setNotice("Produit supprimé.");
+      setNotice(
+        product.staticCatalog
+          ? "Caractéristiques supprimées."
+          : "Produit supprimé.",
+      );
     } catch (deleteError) {
       setError(
         deleteError instanceof Error
@@ -296,6 +324,9 @@ export default function AdminPage() {
     `${product.name} ${product.brand} ${product.category}`
       .toLowerCase()
       .includes(search.toLowerCase()),
+  );
+  const editingStaticProduct = Boolean(
+    editingId?.startsWith(STATIC_PRODUCT_STORAGE_PREFIX),
   );
 
   if (checkingSession) {
@@ -486,222 +517,267 @@ export default function AdminPage() {
             <div className="admin-section-heading">
               <div>
                 <span className="admin-eyebrow">
-                  {editingId ? "MISE À JOUR" : "NOUVELLE FICHE"}
+                  {editingStaticProduct
+                    ? "CARACTÉRISTIQUES"
+                    : editingId
+                      ? "MISE À JOUR"
+                      : "NOUVELLE FICHE"}
                 </span>
                 <h2>
-                  {editingId ? "Modifier le produit" : "Ajouter un produit"}
+                  {editingStaticProduct
+                    ? "Modifier les caractéristiques"
+                    : editingId
+                      ? "Modifier le produit"
+                      : "Ajouter un produit"}
                 </h2>
               </div>
-              <span className="admin-required-note">* Champs obligatoires</span>
+              {!editingStaticProduct && (
+                <span className="admin-required-note">
+                  * Champs obligatoires
+                </span>
+              )}
             </div>
             <form className="admin-product-form" onSubmit={handleSave}>
-              <div className="admin-form-grid">
-                <div className="admin-field wide">
-                  <label htmlFor="product-name">
-                    Nom du produit <b>*</b>
-                  </label>
-                  <input
-                    id="product-name"
-                    value={form.name}
-                    onChange={(event) =>
-                      setForm({ ...form, name: event.target.value })
-                    }
-                    required
-                    maxLength={160}
-                    placeholder="Ex. HP EliteBook 840 G8"
-                  />
-                </div>
-                <div className="admin-field">
-                  <label htmlFor="product-brand">Marque</label>
-                  <input
-                    id="product-brand"
-                    value={form.brand}
-                    onChange={(event) =>
-                      setForm({ ...form, brand: event.target.value })
-                    }
-                    placeholder="HP, Dell, Lenovo…"
-                  />
-                </div>
-                <div className="admin-field">
-                  <label htmlFor="product-category">
-                    Catégorie <b>*</b>
-                  </label>
-                  <select
-                    id="product-category"
-                    value={form.category}
-                    onChange={(event) =>
-                      setForm({ ...form, category: event.target.value })
-                    }
-                  >
-                    <option>Ordinateurs</option>
-                    <option>Accessoires</option>
-                    <option>Imprimantes</option>
-                    <option>Électroménager</option>
-                    <option>Casques & Audio</option>
-                    <option>Téléphones</option>
-                    <option>Autre</option>
-                  </select>
-                </div>
-                <div className="admin-field">
-                  <label htmlFor="product-price">
-                    Prix de vente (F CFA) <b>*</b>
-                  </label>
-                  <input
-                    id="product-price"
-                    type="number"
-                    min="0"
-                    step="1"
-                    value={form.price}
-                    onChange={(event) =>
-                      setForm({ ...form, price: event.target.value })
-                    }
-                    required
-                    placeholder="250000"
-                  />
-                </div>
-                <div className="admin-field">
-                  <label htmlFor="product-old-price">Ancien prix (F CFA)</label>
-                  <input
-                    id="product-old-price"
-                    type="number"
-                    min="0"
-                    step="1"
-                    value={form.oldPrice}
-                    onChange={(event) =>
-                      setForm({ ...form, oldPrice: event.target.value })
-                    }
-                    placeholder="300000"
-                  />
-                </div>
-                <div className="admin-field">
-                  <label htmlFor="product-stock">Quantité en stock</label>
-                  <input
-                    id="product-stock"
-                    type="number"
-                    min="0"
-                    step="1"
-                    value={form.stock}
-                    onChange={(event) =>
-                      setForm({ ...form, stock: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="admin-field">
-                  <label htmlFor="product-tag">Étiquette</label>
-                  <input
-                    id="product-tag"
-                    value={form.tag}
-                    onChange={(event) =>
-                      setForm({ ...form, tag: event.target.value })
-                    }
-                    placeholder="Promotion, Nouveau…"
-                  />
-                </div>
-                <div className="admin-field wide">
-                  <label htmlFor="product-description">Description</label>
-                  <textarea
-                    id="product-description"
-                    rows={3}
-                    value={form.description}
-                    onChange={(event) =>
-                      setForm({ ...form, description: event.target.value })
-                    }
-                    placeholder="Décrivez le produit et ses points forts."
-                  />
-                </div>
-                <div className="admin-field">
-                  <span className="admin-field-label">
-                    Images du produit <b>*</b>
-                  </span>
-                  <label
-                    className="admin-upload-control"
-                    htmlFor="product-images"
-                  >
-                    <i className="fas fa-cloud-arrow-up" />
-                    <strong>
-                      {uploadingImages
-                        ? "Téléversement…"
-                        : "Choisir des images"}
-                    </strong>
-                    <small>JPEG, PNG ou WebP · 5 Mo maximum · 8 images</small>
-                  </label>
-                  <input
-                    ref={imageInputRef}
-                    className="admin-file-input"
-                    id="product-images"
-                    type="file"
-                    accept="image/jpeg,image/png,image/webp"
-                    multiple
-                    disabled={uploadingImages || busy}
-                    onChange={handleImageUpload}
-                  />
-                  <div className="admin-image-previews">
-                    {form.images
-                      .split(/\r?\n/)
-                      .filter(Boolean)
-                      .map((image, index) => (
-                        <div className="admin-image-preview" key={image}>
-                          <img
-                            src={image}
-                            alt={`Image ${index + 1} du produit`}
-                          />
-                          {index === 0 && <span>Principale</span>}
-                          <button
-                            type="button"
-                            onClick={() => removeImage(image)}
-                            aria-label={`Retirer l’image ${index + 1}`}
-                            title="Retirer l’image"
-                          >
-                            <i className="fas fa-xmark" />
-                          </button>
-                        </div>
-                      ))}
+              {editingStaticProduct ? (
+                <div className="admin-form-grid">
+                  <div className="admin-field wide">
+                    <span className="admin-field-label">Produit</span>
+                    <strong>{form.name}</strong>
                   </div>
-                  <small>
-                    La première image est la photo principale. Les fichiers sont
-                    envoyés sur le serveur.
-                  </small>
+                  <div className="admin-field wide">
+                    <label htmlFor="product-specs">Caractéristiques</label>
+                    <textarea
+                      id="product-specs"
+                      rows={5}
+                      value={form.specifications}
+                      onChange={(event) =>
+                        setForm({
+                          ...form,
+                          specifications: event.target.value,
+                        })
+                      }
+                      placeholder={
+                        "Processeur: Intel Core i5\nMémoire: 16 Go RAM"
+                      }
+                    />
+                    <small>
+                      Une caractéristique par ligne, au format « Nom : valeur ».
+                    </small>
+                  </div>
                 </div>
-                <div className="admin-field">
-                  <label htmlFor="product-specs">Caractéristiques</label>
-                  <textarea
-                    id="product-specs"
-                    rows={4}
-                    value={form.specifications}
-                    onChange={(event) =>
-                      setForm({ ...form, specifications: event.target.value })
-                    }
-                    placeholder={
-                      "Processeur: Intel Core i5\nMémoire: 16 Go RAM"
-                    }
-                  />
-                  <small>
-                    Une caractéristique par ligne, au format « Nom : valeur ».
-                  </small>
+              ) : (
+                <div className="admin-form-grid">
+                  <div className="admin-field wide">
+                    <label htmlFor="product-name">
+                      Nom du produit <b>*</b>
+                    </label>
+                    <input
+                      id="product-name"
+                      value={form.name}
+                      onChange={(event) =>
+                        setForm({ ...form, name: event.target.value })
+                      }
+                      required
+                      maxLength={160}
+                      placeholder="Ex. HP EliteBook 840 G8"
+                    />
+                  </div>
+                  <div className="admin-field">
+                    <label htmlFor="product-brand">Marque</label>
+                    <input
+                      id="product-brand"
+                      value={form.brand}
+                      onChange={(event) =>
+                        setForm({ ...form, brand: event.target.value })
+                      }
+                      placeholder="HP, Dell, Lenovo…"
+                    />
+                  </div>
+                  <div className="admin-field">
+                    <label htmlFor="product-category">
+                      Catégorie <b>*</b>
+                    </label>
+                    <select
+                      id="product-category"
+                      value={form.category}
+                      onChange={(event) =>
+                        setForm({ ...form, category: event.target.value })
+                      }
+                    >
+                      <option>Ordinateurs</option>
+                      <option>Accessoires</option>
+                      <option>Imprimantes</option>
+                      <option>Électroménager</option>
+                      <option>Casques & Audio</option>
+                      <option>Téléphones</option>
+                      <option>Autre</option>
+                    </select>
+                  </div>
+                  <div className="admin-field">
+                    <label htmlFor="product-price">
+                      Prix de vente (F CFA) <b>*</b>
+                    </label>
+                    <input
+                      id="product-price"
+                      type="number"
+                      min="0"
+                      step="1"
+                      value={form.price}
+                      onChange={(event) =>
+                        setForm({ ...form, price: event.target.value })
+                      }
+                      required
+                      placeholder="250000"
+                    />
+                  </div>
+                  <div className="admin-field">
+                    <label htmlFor="product-old-price">
+                      Ancien prix (F CFA)
+                    </label>
+                    <input
+                      id="product-old-price"
+                      type="number"
+                      min="0"
+                      step="1"
+                      value={form.oldPrice}
+                      onChange={(event) =>
+                        setForm({ ...form, oldPrice: event.target.value })
+                      }
+                      placeholder="300000"
+                    />
+                  </div>
+                  <div className="admin-field">
+                    <label htmlFor="product-stock">Quantité en stock</label>
+                    <input
+                      id="product-stock"
+                      type="number"
+                      min="0"
+                      step="1"
+                      value={form.stock}
+                      onChange={(event) =>
+                        setForm({ ...form, stock: event.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="admin-field">
+                    <label htmlFor="product-tag">Étiquette</label>
+                    <input
+                      id="product-tag"
+                      value={form.tag}
+                      onChange={(event) =>
+                        setForm({ ...form, tag: event.target.value })
+                      }
+                      placeholder="Promotion, Nouveau…"
+                    />
+                  </div>
+                  <div className="admin-field wide">
+                    <label htmlFor="product-description">Description</label>
+                    <textarea
+                      id="product-description"
+                      rows={3}
+                      value={form.description}
+                      onChange={(event) =>
+                        setForm({ ...form, description: event.target.value })
+                      }
+                      placeholder="Décrivez le produit et ses points forts."
+                    />
+                  </div>
+                  <div className="admin-field">
+                    <span className="admin-field-label">
+                      Images du produit <b>*</b>
+                    </span>
+                    <label
+                      className="admin-upload-control"
+                      htmlFor="product-images"
+                    >
+                      <i className="fas fa-cloud-arrow-up" />
+                      <strong>
+                        {uploadingImages
+                          ? "Téléversement…"
+                          : "Choisir des images"}
+                      </strong>
+                      <small>JPEG, PNG ou WebP · 5 Mo maximum · 8 images</small>
+                    </label>
+                    <input
+                      ref={imageInputRef}
+                      className="admin-file-input"
+                      id="product-images"
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp"
+                      multiple
+                      disabled={uploadingImages || busy}
+                      onChange={handleImageUpload}
+                    />
+                    <div className="admin-image-previews">
+                      {form.images
+                        .split(/\r?\n/)
+                        .filter(Boolean)
+                        .map((image, index) => (
+                          <div className="admin-image-preview" key={image}>
+                            <img
+                              src={image}
+                              alt={`Image ${index + 1} du produit`}
+                            />
+                            {index === 0 && <span>Principale</span>}
+                            <button
+                              type="button"
+                              onClick={() => removeImage(image)}
+                              aria-label={`Retirer l’image ${index + 1}`}
+                              title="Retirer l’image"
+                            >
+                              <i className="fas fa-xmark" />
+                            </button>
+                          </div>
+                        ))}
+                    </div>
+                    <small>
+                      La première image est la photo principale. Les fichiers
+                      sont envoyés sur le serveur.
+                    </small>
+                  </div>
+                  <div className="admin-field">
+                    <label htmlFor="product-specs">Caractéristiques</label>
+                    <textarea
+                      id="product-specs"
+                      rows={4}
+                      value={form.specifications}
+                      onChange={(event) =>
+                        setForm({ ...form, specifications: event.target.value })
+                      }
+                      placeholder={
+                        "Processeur: Intel Core i5\nMémoire: 16 Go RAM"
+                      }
+                    />
+                    <small>
+                      Une caractéristique par ligne, au format « Nom : valeur ».
+                    </small>
+                  </div>
                 </div>
-              </div>
-              <div className="admin-form-options">
-                <label className="admin-check">
-                  <input
-                    type="checkbox"
-                    checked={form.active}
-                    onChange={(event) =>
-                      setForm({ ...form, active: event.target.checked })
-                    }
-                  />
-                  <span>Afficher dans la boutique</span>
-                </label>
-                <label className="admin-check">
-                  <input
-                    type="checkbox"
-                    checked={form.featured}
-                    onChange={(event) =>
-                      setForm({ ...form, featured: event.target.checked })
-                    }
-                  />
-                  <span>Mettre en vedette</span>
-                </label>
-              </div>
+              )}
+              {!editingStaticProduct && (
+                <div className="admin-form-options">
+                  <label className="admin-check">
+                    <input
+                      type="checkbox"
+                      checked={form.active}
+                      onChange={(event) =>
+                        setForm({ ...form, active: event.target.checked })
+                      }
+                    />
+                    <span>Afficher dans la boutique</span>
+                  </label>
+                  <label className="admin-check">
+                    <input
+                      type="checkbox"
+                      checked={form.featured}
+                      onChange={(event) =>
+                        setForm({ ...form, featured: event.target.checked })
+                      }
+                    />
+                    <span>Mettre en vedette</span>
+                  </label>
+                </div>
+              )}
               <div className="admin-form-actions">
                 {editingId && (
                   <button
@@ -796,16 +872,20 @@ export default function AdminPage() {
                             aria-label={`Modifier ${product.name}`}
                             title="Modifier"
                           >
-                            <i className="fas fa-pen" />
+                            <i
+                              className={`fas ${product.staticCatalog ? "fa-list-check" : "fa-pen"}`}
+                            />
                           </button>
-                          <button
-                            type="button"
-                            onClick={() => handleDelete(product)}
-                            aria-label={`Supprimer ${product.name}`}
-                            title="Supprimer"
-                          >
-                            <i className="fas fa-trash" />
-                          </button>
+                          {!product.staticCatalog && (
+                            <button
+                              type="button"
+                              onClick={() => handleDelete(product)}
+                              aria-label={`Supprimer ${product.name}`}
+                              title="Supprimer"
+                            >
+                              <i className="fas fa-trash" />
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>

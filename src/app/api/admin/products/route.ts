@@ -2,6 +2,7 @@ import { desc } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { products } from "@/db/schema";
+import { PRODUCTS_DATA, STATIC_PRODUCT_STORAGE_PREFIX } from "@/lib/catalog";
 import { isAdminAuthenticated } from "@/lib/admin-session";
 import {
   createProductSlug,
@@ -20,7 +21,35 @@ export async function GET() {
       .select()
       .from(products)
       .orderBy(desc(products.createdAt));
-    return NextResponse.json(records.map(toStoreProduct), {
+    const storedStaticProducts = new Map(
+      records
+        .filter((record) => record.id.startsWith(STATIC_PRODUCT_STORAGE_PREFIX))
+        .map((record) => [record.id, toStoreProduct(record).specifications]),
+    );
+    const managedProducts = records
+      .filter((record) => !record.id.startsWith(STATIC_PRODUCT_STORAGE_PREFIX))
+      .map(toStoreProduct);
+    const staticProducts = PRODUCTS_DATA.map((product) => ({
+      id: `${STATIC_PRODUCT_STORAGE_PREFIX}${product.id}`,
+      name: product.name,
+      description: "",
+      brand: "",
+      category: product.category,
+      price: product.price,
+      oldPrice: product.oldPrice ?? null,
+      image: product.image,
+      images: [product.image],
+      specifications:
+        storedStaticProducts.get(
+          `${STATIC_PRODUCT_STORAGE_PREFIX}${product.id}`,
+        ) ?? {},
+      tag: product.tag ?? "",
+      stock: 0,
+      featured: false,
+      active: true,
+      staticCatalog: true,
+    }));
+    return NextResponse.json([...managedProducts, ...staticProducts], {
       headers: { "Cache-Control": "no-store" },
     });
   } catch {

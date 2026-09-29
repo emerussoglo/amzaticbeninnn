@@ -4,8 +4,8 @@ import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import type { StoreProduct } from "@/lib/product-input";
+import { PRODUCTS_DATA } from "@/lib/catalog";
 import styles from "./ProductDetail.module.css";
-import { PRODUCTS_DATA } from "../page";
 
 type DetailTab = "images" | "specifications" | "reviews";
 
@@ -27,7 +27,6 @@ export default function ProductDetailPage({
   const staticProduct = PRODUCTS_DATA.find((p) => p.id === productId);
 
   useEffect(() => {
-    if (staticProduct) return;
     fetch(`/api/products/${encodeURIComponent(resolvedParams.id)}`, {
       cache: "no-store",
     })
@@ -38,7 +37,7 @@ export default function ProductDetailPage({
       .catch(() => setDatabaseProduct(null));
   }, [resolvedParams.id, staticProduct]);
 
-  const product = staticProduct ?? databaseProduct;
+  const product = databaseProduct ?? staticProduct;
 
   if (!product) {
     return (
