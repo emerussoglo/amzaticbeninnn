@@ -23,54 +23,38 @@ export default function ProductsPage() {
   const [searchText, setSearchText] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
 
-  const categories = [
-    "Tous",
-    "Ordinateurs",
-    "Imprimantes",
-    "Accessoires",
-    "Casques & Audio",
-    "Tablettes",
-    "Gaming",
-    "Électroménager",
-    "Moniteurs",
-  ];
+  const categories = useMemo(
+    () => [
+      "Tous",
+      ...new Set(
+        [...PRODUCTS_DATA, ...storeProducts]
+          .map((product) => product.category)
+          .sort((first, second) => first.localeCompare(second, "fr-FR")),
+      ),
+    ],
+    [storeProducts],
+  );
   const filteredAndSortedProducts = useMemo(() => {
     let result = [...PRODUCTS_DATA, ...storeProducts];
 
     if (categoryFilter !== "Tous") {
-      result = result.filter((product) => {
-        const searchableProduct = normalizeCatalogText(
-          `${product.name} ${product.category} ${product.tag || ""}`,
-        );
-        if (categoryFilter === "Gaming") {
-          return searchableProduct.includes("gaming");
-        }
-        if (categoryFilter === "Moniteurs") {
-          return (
-            searchableProduct.includes("moniteur") ||
-            searchableProduct.includes("monitor")
-          );
-        }
-        if (categoryFilter === "Tablettes") {
-          return (
-            searchableProduct.includes("tablette") ||
-            searchableProduct.includes("tablet")
-          );
-        }
-        return (
+      result = result.filter(
+        (product) =>
           normalizeCatalogText(product.category) ===
-          normalizeCatalogText(categoryFilter)
-        );
-      });
+          normalizeCatalogText(categoryFilter),
+      );
     }
 
-    const normalizedSearch = normalizeCatalogText(searchText);
-    if (normalizedSearch) {
-      result = result.filter((product) =>
-        normalizeCatalogText(
-          `${product.name} ${product.category} ${product.tag || ""}`,
-        ).includes(normalizedSearch),
-      );
+    const searchTerms = normalizeCatalogText(searchText)
+      .split(/\s+/)
+      .filter(Boolean);
+    if (searchTerms.length > 0) {
+      result = result.filter((product) => {
+        const searchableProduct = normalizeCatalogText(
+          `${product.name} ${product.category} ${"brand" in product ? product.brand : ""} ${product.tag || ""}`,
+        );
+        return searchTerms.every((term) => searchableProduct.includes(term));
+      });
     }
 
     if (sortBy === "price-asc") {

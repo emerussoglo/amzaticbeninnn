@@ -51,7 +51,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 300000,
     oldPrice: 375000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-latitude-7430-coretm-i7-1265u-vpro-ram-32go-ssd-512go.avif",
+    image:
+      "/img/prod/dell-latitude-7430-coretm-i7-1265u-vpro-ram-32go-ssd-512go.avif",
     tag: "Venu Propre",
   },
   {
@@ -69,7 +70,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 175000,
     oldPrice: 215000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-latitude-5300-2-en-1-coretm-i7-8565u-ram-16go-ssd-256go.avif",
+    image:
+      "/img/prod/dell-latitude-5300-2-en-1-coretm-i7-8565u-ram-16go-ssd-256go.avif",
     tag: "Venu Propre",
   },
   {
@@ -78,7 +80,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 175000,
     oldPrice: 215000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-elitebook-845-g8-64v22ucaba-amd-ryzentm-3-pro-5450u.avif",
+    image:
+      "/img/prod/hp-elitebook-845-g8-64v22ucaba-amd-ryzentm-3-pro-5450u.avif",
     tag: "Venu Propre",
   },
   {
@@ -90,24 +93,24 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/hp-probook-445-g7-3g342utaba.avif",
     tag: "Venu Propre",
   },
-//   {
-//     id: 10010,
-//     name: "HP ProBook 440 G7 (8WE48UT#ABA)",
-//     price: 225000,
-//     oldPrice: 255000,
-//     category: "Ordinateurs",
-//     image: "/img/prod/hp-probook-440-g7-8we48utaba.avif",
-//     tag: "Venu Propre",
-//   },
-//   {
-//     id: 10011,
-//     name: "Lenovo LOQ 15ARP10E (83S0007PUE)",
-//     price: 600000,
-//     oldPrice: 685000,
-//     category: "Gaming",
-//     image: "/img/prod/lenovo-loq-15arp10e-83s0007pue.avif",
-//     tag: "Neuf Scellé",
-//   },
+  //   {
+  //     id: 10010,
+  //     name: "HP ProBook 440 G7 (8WE48UT#ABA)",
+  //     price: 225000,
+  //     oldPrice: 255000,
+  //     category: "Ordinateurs",
+  //     image: "/img/prod/hp-probook-440-g7-8we48utaba.avif",
+  //     tag: "Venu Propre",
+  //   },
+  //   {
+  //     id: 10011,
+  //     name: "Lenovo LOQ 15ARP10E (83S0007PUE)",
+  //     price: 600000,
+  //     oldPrice: 685000,
+  //     category: "Gaming",
+  //     image: "/img/prod/lenovo-loq-15arp10e-83s0007pue.avif",
+  //     tag: "Neuf Scellé",
+  //   },
   {
     id: 10012,
     name: "Lenovo LOQ 15AHP10 (83JG000FUS)",
@@ -117,15 +120,15 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/lenovo-loq-15ahp10-83jg000fus.avif",
     tag: "Neuf Scellé",
   },
-//   {
-//     id: 10013,
-//     name: "LENOVO LEGION 5 15IRX10 (83LY0007US)",
-//     price: 1350000,
-//     oldPrice: 1485000,
-//     category: "Gaming",
-//     image: "/img/prod/lenovo-legion-5-15irx10-83ly0007us.avif",
-//     tag: "Neuf Scellé",
-//   },
+  //   {
+  //     id: 10013,
+  //     name: "LENOVO LEGION 5 15IRX10 (83LY0007US)",
+  //     price: 1350000,
+  //     oldPrice: 1485000,
+  //     category: "Gaming",
+  //     image: "/img/prod/lenovo-legion-5-15irx10-83ly0007us.avif",
+  //     tag: "Neuf Scellé",
+  //   },
   {
     id: 10014,
     name: "Lenovo IdeaCenter A105a 24 - All-In-One",
@@ -141,7 +144,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 275000,
     oldPrice: 335000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-latitude-5430-intel-coretm-i7-1265u-ram-16go-ssd-512go.avif",
+    image:
+      "/img/prod/dell-latitude-5430-intel-coretm-i7-1265u-ram-16go-ssd-512go.avif",
     tag: "Venu Propre",
   },
   {
@@ -150,25 +154,27 @@ export const PRODUCTS_DATA: Product[] = [
     price: 385000,
     oldPrice: 450000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-latitude-7440-intel-coretm-i7-1365u-ram-32go-ssd-512go.avif",
+    image:
+      "/img/prod/dell-latitude-7440-intel-coretm-i7-1365u-ram-32go-ssd-512go.avif",
     tag: "Venu Propre",
   },
-//   {
-//     id: 10017,
-//     name: "Dell Precision 7530 Mobile WorkStation",
-//     price: 300000,
-//     oldPrice: 395000,
-//     category: "Gaming",
-//     image: "/img/prod/dell-precision-7530-mobile-workstation.avif",
-//     tag: "Venu Propre",
-//   },
+  //   {
+  //     id: 10017,
+  //     name: "Dell Precision 7530 Mobile WorkStation",
+  //     price: 300000,
+  //     oldPrice: 395000,
+  //     category: "Gaming",
+  //     image: "/img/prod/dell-precision-7530-mobile-workstation.avif",
+  //     tag: "Venu Propre",
+  //   },
   {
     id: 10018,
     name: "HP Laptop 15-fc0120nia (AE0J7EA) / AMD Ryzen™ 7 7730U / SSD 512Go / RAM 8Go",
     price: 415000,
     oldPrice: 475000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-laptop-15-fc0120nia-ae0j7ea-amd-ryzentm-7-7730u-ssd-512go-ram-8go.avif",
+    image:
+      "/img/prod/hp-laptop-15-fc0120nia-ae0j7ea-amd-ryzentm-7-7730u-ssd-512go-ram-8go.avif",
     tag: "Neuf Scellé",
   },
   {
@@ -177,7 +183,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 400000,
     oldPrice: 485000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-xps-13-9310-intel-coretm-i7-1185g7-ssd-512go-ram-16go.avif",
+    image:
+      "/img/prod/dell-xps-13-9310-intel-coretm-i7-1185g7-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
   {
@@ -186,7 +193,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 170000,
     oldPrice: 210000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-255-g9-6q8c1es-amd-ryzentm-5-5625u-ssd-512go-ram-8go.avif",
+    image:
+      "/img/prod/hp-255-g9-6q8c1es-amd-ryzentm-5-5625u-ssd-512go-ram-8go.avif",
     tag: "Venu Propre",
   },
   {
@@ -195,7 +203,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 435000,
     oldPrice: 485000,
     category: "Gaming",
-    image: "/img/prod/dell-precision-5550-intel-coretm-i7-10850h-nvidia-quadro-t2000.avif",
+    image:
+      "/img/prod/dell-precision-5550-intel-coretm-i7-10850h-nvidia-quadro-t2000.avif",
     tag: "Venu Propre",
   },
   {
@@ -213,7 +222,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 185000,
     oldPrice: 225000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-zbook-14u-g6-1f2l1uc-intel-coretm-i5-8365u-ssd-256go-ram-16go.avif",
+    image:
+      "/img/prod/hp-zbook-14u-g6-1f2l1uc-intel-coretm-i5-8365u-ssd-256go-ram-16go.avif",
     tag: "Venu Propre",
   },
   {
@@ -222,7 +232,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 200000,
     oldPrice: 270000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-probook-650-g8-2y2j9eaabu-intel-coretm-i5-1135g7-ssd-256go-ram-8go.avif",
+    image:
+      "/img/prod/hp-probook-650-g8-2y2j9eaabu-intel-coretm-i5-1135g7-ssd-256go-ram-8go.avif",
     tag: "Venu Propre",
   },
 
@@ -232,7 +243,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 140000,
     oldPrice: 175000,
     category: "Ordinateurs",
-    image: "/img/prod/asus-vivobook-laptop-x409ja-intel-coretm-i5-1035g1-ssd-256go-ram-8go.avif",
+    image:
+      "/img/prod/asus-vivobook-laptop-x409ja-intel-coretm-i5-1035g1-ssd-256go-ram-8go.avif",
     tag: "Venu Propre",
   },
 
@@ -242,7 +254,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 390000,
     oldPrice: 450000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-elitebook-x360-830-g10-2-en-1-intel-coretm-i5-1335u-ssd-512go-ram-16go.avif",
+    image:
+      "/img/prod/hp-elitebook-x360-830-g10-2-en-1-intel-coretm-i5-1335u-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
   {
@@ -250,7 +263,8 @@ export const PRODUCTS_DATA: Product[] = [
     name: "HP EliteBook 840 G8 / Écran Tactile / SSD 512Go / Ram 16Go / Intel®️ Core™️ i7-1185G7U",
     price: 275000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-elitebook-840-g8-ecran-tactile-ssd-512go-ram-16go-intel-coretm-i7-1185g7u.avif",
+    image:
+      "/img/prod/hp-elitebook-840-g8-ecran-tactile-ssd-512go-ram-16go-intel-coretm-i7-1185g7u.avif",
     tag: "Venu Propre",
   },
   {
@@ -258,12 +272,13 @@ export const PRODUCTS_DATA: Product[] = [
     name: "HP EliteBook 840 G8 / SSD 512Go / Ram 16Go / Intel®️ Core™️ i7-1185G7U",
     price: 295000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-elitebook-840-g8-ssd-512go-ram-16go-intel-coretm-i7-1185g7u.avif",
+    image:
+      "/img/prod/hp-elitebook-840-g8-ssd-512go-ram-16go-intel-coretm-i7-1185g7u.avif",
     tag: "Venu Propre",
   },
   {
     id: 10031,
-    name: "LENOVO LEGION R25f-30 24.5\" ~ 240Hz (67B8GACBWW)",
+    name: 'LENOVO LEGION R25f-30 24.5" ~ 240Hz (67B8GACBWW)',
     price: 235000,
     oldPrice: 300000,
     category: "Moniteurs",
@@ -275,7 +290,8 @@ export const PRODUCTS_DATA: Product[] = [
     name: "ASUS ROG Zephyrus G14 (GA403UM) / AMD RYZEN® 9 270 / RTX 5060, 8Go",
     price: 1250000,
     category: "Gaming",
-    image: "/img/prod/asus-rog-zephyrus-g14-ga403um-amd-ryzen-9-270-rtx-5060-8go.avif",
+    image:
+      "/img/prod/asus-rog-zephyrus-g14-ga403um-amd-ryzen-9-270-rtx-5060-8go.avif",
     tag: "Neuf Scellé",
   },
   {
@@ -303,7 +319,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 390000,
     oldPrice: 435000,
     category: "Gaming",
-    image: "/img/prod/lenovo-thinkpad-p14s-gen-3-coretm-i7-12eme-gen-nvidia-geforce-t550-4go-gddr6.avif",
+    image:
+      "/img/prod/lenovo-thinkpad-p14s-gen-3-coretm-i7-12eme-gen-nvidia-geforce-t550-4go-gddr6.avif",
     tag: "Venu Propre",
   },
   {
@@ -354,7 +371,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 285000,
     oldPrice: 355000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-latitude-3450-intel-coretm-i5-13eme-gen-ssd-512go-ram-8go.avif",
+    image:
+      "/img/prod/dell-latitude-3450-intel-coretm-i5-13eme-gen-ssd-512go-ram-8go.avif",
     tag: "Venu Propre",
   },
   {
@@ -363,7 +381,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 190000,
     oldPrice: 205000,
     category: "Ordinateurs",
-    image: "/img/prod/lenovo-thinkbook-15-iil-coretm-i5-1035g4-ssd-256go-hdd-500go-ram-8go.avif",
+    image:
+      "/img/prod/lenovo-thinkbook-15-iil-coretm-i5-1035g4-ssd-256go-hdd-500go-ram-8go.avif",
     tag: "Venu Propre",
   },
   {
@@ -372,7 +391,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 310000,
     oldPrice: 350000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-vostro-16-5635-ryzentm-7-7730u-ssd-512go-ram-16go.avif",
+    image:
+      "/img/prod/dell-vostro-16-5635-ryzentm-7-7730u-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
   {
@@ -381,7 +401,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 275000,
     oldPrice: 315000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-zbook-firefly-14-inch-g8-m-workstation-coretm-i7-1185g7u-ssd-512go-ram-16go.avif",
+    image:
+      "/img/prod/hp-zbook-firefly-14-inch-g8-m-workstation-coretm-i7-1185g7u-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
 
@@ -401,18 +422,19 @@ export const PRODUCTS_DATA: Product[] = [
     price: 650000,
     oldPrice: 730000,
     category: "Gaming",
-    image: "/img/prod/omen-by-hp-gaming-laptop-16-wf10xxx-rtx-4050-6go-coretm-i7-14650hx-ssd-1to-ram-16go.avif",
+    image:
+      "/img/prod/omen-by-hp-gaming-laptop-16-wf10xxx-rtx-4050-6go-coretm-i7-14650hx-ssd-1to-ram-16go.avif",
     tag: "Venu Propre",
   },
- 
- 
+
   {
     id: 10056,
     name: "HP EliteBook x360° 830 G7 2 En 1 / Core™ i7-10 / SSD 512Go / RAM 16Go",
     price: 275000,
     oldPrice: 350000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-elitebook-x360-830-g7-2-en-1-coretm-i7-10-ssd-512go-ram-16go.avif",
+    image:
+      "/img/prod/hp-elitebook-x360-830-g7-2-en-1-coretm-i7-10-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
   {
@@ -421,17 +443,19 @@ export const PRODUCTS_DATA: Product[] = [
     price: 155000,
     oldPrice: 195000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-vostro-15-3515-amd-ryzentm-5-3450u-ssd-256go-ram-8go.avif",
+    image:
+      "/img/prod/dell-vostro-15-3515-amd-ryzentm-5-3450u-ssd-256go-ram-8go.avif",
     tag: "Venu Propre",
   },
-  
+
   {
     id: 10059,
     name: "Dell Inspiron 15 3520 / Core™ i5-12ème GEN / SSD 512Go / RAM 16Go",
     price: 260000,
     oldPrice: 315000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-inspiron-15-3520-coretm-i5-12eme-gen-ssd-512go-ram-16go.avif",
+    image:
+      "/img/prod/dell-inspiron-15-3520-coretm-i5-12eme-gen-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
   {
@@ -440,7 +464,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 285000,
     oldPrice: 355000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-inspiron-15-3530-coretm-i5-13eme-gen-ssd-512go-ram-16go.avif",
+    image:
+      "/img/prod/dell-inspiron-15-3530-coretm-i5-13eme-gen-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
   {
@@ -452,14 +477,15 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/dell-inspiron-7391-2-en-1.avif",
     tag: "Venu Propre",
   },
-  
+
   {
     id: 10063,
     name: "Dell Vostro 15 3520 / Core™ i5-12ème GEN / SSD 512Go / RAM 16Go",
     price: 250000,
     oldPrice: 295000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-vostro-15-3520-coretm-i5-12eme-gen-ssd-512go-ram-16go.avif",
+    image:
+      "/img/prod/dell-vostro-15-3520-coretm-i5-12eme-gen-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
   {
@@ -468,7 +494,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 200000,
     oldPrice: 250000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-elitebook-840-g8-coretm-i5-11eme-gen-ssd-256go-ram-8go.avif",
+    image:
+      "/img/prod/hp-elitebook-840-g8-coretm-i5-11eme-gen-ssd-256go-ram-8go.avif",
     tag: "Venu Propre",
   },
   {
@@ -477,7 +504,8 @@ export const PRODUCTS_DATA: Product[] = [
     price: 250000,
     oldPrice: 300000,
     category: "Ordinateurs",
-    image: "/img/prod/dell-latitude-15-3540-coretm-i5-12eme-gen-ssd-512go-ram-16go.avif",
+    image:
+      "/img/prod/dell-latitude-15-3540-coretm-i5-12eme-gen-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
   {
@@ -489,7 +517,6 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/lenovo-thinkpad-x1-carbon-gen-8.avif",
     tag: "Venu Propre",
   },
-  
 
   {
     id: 10070,
@@ -518,18 +545,18 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/msi-crosshair-18hx-al-a2xwgkg-012us.avif",
     tag: "Neuf Scellé",
   },
-  
+
   {
     id: 10074,
     name: "HP EliteBook 850 G5 / Core i7-8ème GEN / SSD 512Go / RAM 16Go",
     price: 275000,
     oldPrice: 315000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-elitebook-850-g5-core-i7-8eme-gen-ssd-512go-ram-16go.avif",
+    image:
+      "/img/prod/hp-elitebook-850-g5-core-i7-8eme-gen-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
-  
- 
+
   {
     id: 10078,
     name: "HP OmniBook X Flip NGAI Laptop 16-ar0013dx",
@@ -541,7 +568,7 @@ export const PRODUCTS_DATA: Product[] = [
   },
   {
     id: 10079,
-    name: "Moniteur GPlus GDM-245LN 24\" inch",
+    name: 'Moniteur GPlus GDM-245LN 24" inch',
     price: 195000,
     oldPrice: 245000,
     category: "Moniteurs",
@@ -566,16 +593,15 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/cle-usb-sandisk-cruzer-glide-30-64-go.avif",
     tag: "Neuf Scellé",
   },
-  
-  
- 
+
   {
     id: 10085,
     name: "HP EliteBook 845 G8 (4S963EC) / RYZEN 5 Pro 5650 / SSD 256Go / RAM 8Go",
     price: 170000,
     oldPrice: 225000,
     category: "Ordinateurs",
-    image: "/img/prod/hp-elitebook-845-g8-4s963ec-ryzen-5-pro-5650-ssd-256go-ram-8go.avif",
+    image:
+      "/img/prod/hp-elitebook-845-g8-4s963ec-ryzen-5-pro-5650-ssd-256go-ram-8go.avif",
     tag: "Venu Propre",
   },
   {
@@ -593,17 +619,19 @@ export const PRODUCTS_DATA: Product[] = [
     price: 435000,
     oldPrice: 485000,
     category: "Ordinateurs",
-    image: "/img/prod/macbook-pro-16-inch-2019-core-i7-ram-32go-ssd-512go-radeon-pro-5300m-4go.avif",
+    image:
+      "/img/prod/macbook-pro-16-inch-2019-core-i7-ram-32go-ssd-512go-radeon-pro-5300m-4go.avif",
     tag: "Venu Propre",
   },
-  
+
   {
     id: 10089,
     name: "MacBook Pro 16-Inch 2019 / Core i9 / SSD 1TB / RAM 64Go / RADEON Pro 5500M,8Go Dédiée",
     price: 570000,
     oldPrice: 650000,
     category: "Ordinateurs",
-    image: "/img/prod/macbook-pro-16-inch-2019-core-i9-ssd-1tb-ram-64go-radeon-pro-5500m8go-dediee.avif",
+    image:
+      "/img/prod/macbook-pro-16-inch-2019-core-i9-ssd-1tb-ram-64go-radeon-pro-5500m8go-dediee.avif",
     tag: "Venu Propre",
   },
   {
@@ -615,7 +643,7 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/asus-tuf-gaming-t500mv-i5h5060-2025-desktop.avif",
     tag: "Neuf Scellé",
   },
- 
+
   {
     id: 10092,
     name: "RAZER BLACKSHARK V2 X GAMING - BLANC",
@@ -661,7 +689,7 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/msi-modern-am242tp-all-in-one.avif",
     tag: "Neuf Scellé",
   },
-  
+
   {
     id: 10098,
     name: "HP OMEN 35L (GT16-0364)",
@@ -680,8 +708,7 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/lenovo-g27c-30-27-inch.avif",
     tag: "Neuf Scellé",
   },
-  
-  
+
   {
     id: 10102,
     name: "SONY WH-CH520",
@@ -709,7 +736,7 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/asus-tuf-gaming-f15-fx507vi.avif",
     tag: "Neuf Scellé",
   },
- 
+
   {
     id: 10106,
     name: "MSI CYBORG A13UC-1291XAE",
@@ -720,7 +747,6 @@ export const PRODUCTS_DATA: Product[] = [
     tag: "Neuf Scellé",
   },
 
-
   {
     id: 10117,
     name: "DELL G16 7630",
@@ -730,8 +756,7 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/dell-g16-7630.avif",
     tag: "Neuf Scellé",
   },
-  
- 
+
   {
     id: 10120,
     name: "HP EliteBook x360° 830 G10 2-EN-1",
@@ -759,7 +784,16 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/hp-elitebook-x360-1030-g3-2-en-1.avif",
     tag: "Venu Propre",
   },
-
- 
-  
 ];
+
+export const HOME_PRODUCT_IDS = [
+  10005, 10006, 10014, 10015, 10016, 10018, 10019, 10020, 10024, 10026, 10028,
+  10033, 10041, 10045, 10047, 10059, 10087, 10103, 10001, 10003, 10004, 10012,
+  10032, 10050, 10052, 10104, 10031, 10079, 10086, 10099, 10038, 10039, 10040,
+  10070, 10092, 10102,
+] as const;
+
+export const FEATURED_PRODUCT_IDS = [
+  10003, 10032, 10050, 10052, 10104, 10031, 10086, 10079, 10016, 10018, 10045,
+  10070, 10094, 10092, 10099,
+] as const;

@@ -98,7 +98,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/?cat=ordinateurs">Gaming Arena</Link>
+            <Link href="/?cat=gaming">Gaming Arena</Link>
           </li>
           <li>
             <Link href="/ordinateurs">PC d&apos;occasion</Link>
