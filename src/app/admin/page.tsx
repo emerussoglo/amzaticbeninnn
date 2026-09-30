@@ -54,6 +54,7 @@ const emptyForm: ProductForm = {
 };
 
 const formatPrice = (price: number) => `${price.toLocaleString("fr-FR")} F CFA`;
+const plainSpecificationPrefix = "__line_";
 
 export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -137,7 +138,9 @@ export default function AdminPage() {
       oldPrice: product.oldPrice === null ? "" : String(product.oldPrice),
       images: product.images.join("\n"),
       specifications: Object.entries(product.specifications)
-        .map(([key, value]) => `${key}: ${value}`)
+        .map(([key, value]) =>
+          key.startsWith(plainSpecificationPrefix) ? value : `${key}: ${value}`,
+        )
         .join("\n"),
       tag: product.tag,
       stock: String(product.stock),
@@ -159,8 +162,10 @@ export default function AdminPage() {
     if (files.length === 0) return;
 
     const currentImages = form.images.split(/\r?\n/).filter(Boolean);
-    if (currentImages.length + files.length > 8) {
-      setError("La galerie est limitée à 8 images.");
+    if (currentImages.length + files.length > 3) {
+      setError(
+        "La galerie accepte 1 image principale et 2 images supplémentaires maximum.",
+      );
       event.currentTarget.value = "";
       return;
     }
@@ -217,17 +222,23 @@ export default function AdminPage() {
       .split(/\r?\n/)
       .map((image) => image.trim())
       .filter(Boolean);
-    if (images.length === 0) {
-      setError("Ajoute au moins une image au produit.");
+    if (images.length === 0 || images.length > 3) {
+      setError(
+        "Ajoute une image principale et jusqu’à 2 images supplémentaires.",
+      );
       setBusy(false);
       return;
     }
     const specifications = Object.fromEntries(
-      form.specifications.split(/\r?\n/).flatMap((line) => {
-        const separator = line.indexOf(":");
-        if (separator < 0) return [];
-        const key = line.slice(0, separator).trim();
-        const value = line.slice(separator + 1).trim();
+      form.specifications.split(/\r?\n/).flatMap((line, index) => {
+        const content = line.trim();
+        if (!content) return [];
+        const separator = content.indexOf(":");
+        if (separator < 0) {
+          return [[`${plainSpecificationPrefix}${index + 1}`, content]];
+        }
+        const key = content.slice(0, separator).trim();
+        const value = content.slice(separator + 1).trim();
         return key && value ? [[key, value]] : [];
       }),
     );
@@ -239,7 +250,7 @@ export default function AdminPage() {
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ specifications }),
+            body: JSON.stringify({ specifications, images }),
           },
         );
         const data = await response.json();
@@ -564,6 +575,57 @@ export default function AdminPage() {
                       Une caractéristique par ligne, au format « Nom : valeur ».
                     </small>
                   </div>
+                  <div className="admin-field wide">
+                    <span className="admin-field-label">Images du produit</span>
+                    <label
+                      className="admin-upload-control"
+                      htmlFor="product-images"
+                    >
+                      <i className="fas fa-cloud-arrow-up" />
+                      <strong>
+                        {uploadingImages
+                          ? "Téléversement…"
+                          : "Ajouter jusqu’à 2 images"}
+                      </strong>
+                      <small>
+                        JPEG, PNG ou WebP · 5 Mo maximum · 3 images au total
+                      </small>
+                    </label>
+                    <input
+                      ref={imageInputRef}
+                      className="admin-file-input"
+                      id="product-images"
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp"
+                      multiple
+                      disabled={uploadingImages || busy}
+                      onChange={handleImageUpload}
+                    />
+                    <div className="admin-image-previews">
+                      {form.images
+                        .split(/\r?\n/)
+                        .filter(Boolean)
+                        .map((image, index) => (
+                          <div className="admin-image-preview" key={image}>
+                            <img
+                              src={image}
+                              alt={`Image ${index + 1} du produit`}
+                            />
+                            {index === 0 && <span>Principale</span>}
+                            {index > 0 && (
+                              <button
+                                type="button"
+                                onClick={() => removeImage(image)}
+                                aria-label={`Retirer l’image ${index + 1}`}
+                                title="Retirer l’image"
+                              >
+                                <i className="fas fa-xmark" />
+                              </button>
+                            )}
+                          </div>
+                        ))}
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <div className="admin-form-grid">
@@ -696,7 +758,9 @@ export default function AdminPage() {
                           ? "Téléversement…"
                           : "Choisir des images"}
                       </strong>
-                      <small>JPEG, PNG ou WebP · 5 Mo maximum · 8 images</small>
+                      <small>
+                        JPEG, PNG ou WebP · 5 Mo maximum · 3 images au total
+                      </small>
                     </label>
                     <input
                       ref={imageInputRef}
@@ -719,14 +783,16 @@ export default function AdminPage() {
                               alt={`Image ${index + 1} du produit`}
                             />
                             {index === 0 && <span>Principale</span>}
-                            <button
-                              type="button"
-                              onClick={() => removeImage(image)}
-                              aria-label={`Retirer l’image ${index + 1}`}
-                              title="Retirer l’image"
-                            >
-                              <i className="fas fa-xmark" />
-                            </button>
+                            {(!editingStaticProduct || index > 0) && (
+                              <button
+                                type="button"
+                                onClick={() => removeImage(image)}
+                                aria-label={`Retirer l’image ${index + 1}`}
+                                title="Retirer l’image"
+                              >
+                                <i className="fas fa-xmark" />
+                              </button>
+                            )}
                           </div>
                         ))}
                     </div>

@@ -57,8 +57,10 @@ export async function GET(
         category: staticProduct.category,
         price: staticProduct.price,
         oldPrice: staticProduct.oldPrice ?? null,
-        image: staticProduct.image,
-        images: [staticProduct.image],
+        image: storedProduct.image || staticProduct.image,
+        images: storedProduct.images.length
+          ? storedProduct.images
+          : [storedProduct.image || staticProduct.image],
         tag: staticProduct.tag ?? "",
       },
       {

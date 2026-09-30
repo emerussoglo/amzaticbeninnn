@@ -4,7 +4,11 @@ import { db } from "@/db";
 import { products } from "@/db/schema";
 import { PRODUCTS_DATA, STATIC_PRODUCT_STORAGE_PREFIX } from "@/lib/catalog";
 import { isAdminAuthenticated } from "@/lib/admin-session";
-import { parseProductInput, toStoreProduct } from "@/lib/product-input";
+import {
+  isSafeImageSource,
+  parseProductInput,
+  toStoreProduct,
+} from "@/lib/product-input";
 import { parseImageList, removeUploadedImages } from "@/lib/product-images";
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -25,11 +29,23 @@ export async function PUT(request: Request, { params }: RouteContext) {
     const staticProduct = PRODUCTS_DATA.find(
       (item) => item.id === staticId || String(item.legacyId) === staticId,
     );
-    const specifications =
+    const input =
       body && typeof body === "object"
-        ? (body as Record<string, unknown>).specifications
+        ? (body as Record<string, unknown>)
         : null;
-    if (!staticProduct || !isSpecificationsRecord(specifications)) {
+    const specifications = input?.specifications;
+    const requestedImages = input?.images;
+    const hasRequestedImages = requestedImages !== undefined;
+    const imageList = Array.isArray(requestedImages) ? requestedImages : null;
+    if (
+      !staticProduct ||
+      !isSpecificationsRecord(specifications) ||
+      (hasRequestedImages &&
+        (!imageList ||
+          imageList.length < 1 ||
+          imageList.length > 3 ||
+          !imageList.every(isSafeImageSource)))
+    ) {
       return NextResponse.json(
         { error: "Vérifie les caractéristiques du produit." },
         { status: 400 },
@@ -39,6 +55,17 @@ export async function PUT(request: Request, { params }: RouteContext) {
     const storageId = `${STATIC_PRODUCT_STORAGE_PREFIX}${staticProduct.legacyId ?? staticProduct.id}`;
     const now = new Date();
     try {
+      const [previous] = await db
+        .select({ image: products.image, images: products.images })
+        .from(products)
+        .where(eq(products.id, storageId))
+        .limit(1);
+      const previousImages = previous
+        ? parseImageList(previous.images, previous.image)
+        : [staticProduct.image];
+      const nextImages = hasRequestedImages
+        ? (imageList as string[])
+        : previousImages;
       const [saved] = await db
         .insert(products)
         .values({
@@ -49,8 +76,8 @@ export async function PUT(request: Request, { params }: RouteContext) {
           category: staticProduct.category,
           price: staticProduct.price,
           oldPrice: staticProduct.oldPrice ?? null,
-          image: staticProduct.image,
-          images: JSON.stringify([staticProduct.image]),
+          image: nextImages[0],
+          images: JSON.stringify(nextImages),
           specifications: JSON.stringify(specifications),
           tag: staticProduct.tag ?? "",
           stock: 0,
@@ -62,12 +89,17 @@ export async function PUT(request: Request, { params }: RouteContext) {
         .onConflictDoUpdate({
           target: products.id,
           set: {
+            image: nextImages[0],
+            images: JSON.stringify(nextImages),
             specifications: JSON.stringify(specifications),
             active: false,
             updatedAt: now,
           },
         })
         .returning();
+      await removeUploadedImages(
+        previousImages.filter((image) => !nextImages.includes(image)),
+      );
       return NextResponse.json(toStoreProduct(saved));
     } catch {
       return NextResponse.json(

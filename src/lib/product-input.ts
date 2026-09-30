@@ -41,7 +41,7 @@ export function createProductSlug(name: string): string {
   return slug || "produit";
 }
 
-function isSafeImageSource(value: unknown): value is string {
+export function isSafeImageSource(value: unknown): value is string {
   if (typeof value !== "string" || value.length > 2048) return false;
   if (
     value.startsWith("/img/") ||
@@ -99,7 +99,7 @@ export function parseProductInput(value: unknown): ProductInput | null {
     Number(stock) < 0 ||
     !Array.isArray(images) ||
     images.length < 1 ||
-    images.length > 8 ||
+    images.length > 3 ||
     !images.every(isSafeImageSource) ||
     !specifications ||
     typeof specifications !== "object" ||

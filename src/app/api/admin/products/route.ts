@@ -24,13 +24,17 @@ export async function GET() {
     const storedStaticProducts = new Map(
       records
         .filter((record) => record.id.startsWith(STATIC_PRODUCT_STORAGE_PREFIX))
-        .map((record) => [record.id, toStoreProduct(record).specifications]),
+        .map((record) => [record.id, toStoreProduct(record)]),
     );
     const managedProducts = records
       .filter((record) => !record.id.startsWith(STATIC_PRODUCT_STORAGE_PREFIX))
       .map(toStoreProduct);
     const staticProducts = PRODUCTS_DATA.map((product) => {
       const staticId = `${STATIC_PRODUCT_STORAGE_PREFIX}${product.legacyId ?? product.id}`;
+      const storedProduct = storedStaticProducts.get(staticId);
+      const images = storedProduct?.images.length
+        ? storedProduct.images
+        : [storedProduct?.image ?? product.image];
       return {
         id: staticId,
         name: product.name,
@@ -39,9 +43,9 @@ export async function GET() {
         category: product.category,
         price: product.price,
         oldPrice: product.oldPrice ?? null,
-        image: product.image,
-        images: [product.image],
-        specifications: storedStaticProducts.get(staticId) ?? {},
+        image: images[0],
+        images,
+        specifications: storedProduct?.specifications ?? {},
         tag: product.tag ?? "",
         stock: 0,
         featured: false,

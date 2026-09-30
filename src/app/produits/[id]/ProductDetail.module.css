@@ -65,6 +65,32 @@
   font-weight: 600;
 }
 
+.plainSpecificationRow {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.plainSpecification {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  overflow-wrap: anywhere;
+}
+
+.plainSpecification i {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: #087f84;
+}
+
 .detailSections {
   margin-top: 40px;
   overflow: hidden;

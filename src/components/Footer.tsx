@@ -1,4 +1,49 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+
+function FooterAccordion({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const sectionId = `footer-${title.toLocaleLowerCase("fr-FR")}`;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const updateViewport = () => setIsMobile(mediaQuery.matches);
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
+
+  return (
+    <section
+      className="footer-column footer-accordion"
+      data-expanded={!isMobile || isOpen}
+    >
+      <button
+        type="button"
+        className="footer-accordion-trigger"
+        aria-expanded={!isMobile || isOpen}
+        aria-controls={sectionId}
+        onClick={() => {
+          if (isMobile) setIsOpen((open) => !open);
+        }}
+      >
+        {title}
+      </button>
+      <ul className="footer-links-list" id={sectionId}>
+        {children}
+      </ul>
+    </section>
+  );
+}
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -75,91 +120,79 @@ export default function Footer() {
         </div>
 
         {/* Colonne 2 : Produits */}
-        <details className="footer-column footer-accordion">
-          <summary>Produits</summary>
-          <ul className="footer-links-list">
-            <li>
-              <Link href="/?cat=ordinateurs">Ordinateurs</Link>
-            </li>
-            <li>
-              <Link href="/?cat=tablettes">Tablettes</Link>
-            </li>
-            <li>
-              <Link href="/?cat=gaming">Gaming</Link>
-            </li>
-            <li>
-              <Link href="/?cat=casques-audio">Audio</Link>
-            </li>
-            <li>
-              <Link href="/produits">Tous les produits</Link>
-            </li>
-            <li>
-              <Link href="/?cat=accessoires">Accessoires</Link>
-            </li>
-          </ul>
-        </details>
+        <FooterAccordion title="Produits">
+          <li>
+            <Link href="/?cat=ordinateurs">Ordinateurs</Link>
+          </li>
+          <li>
+            <Link href="/?cat=tablettes">Tablettes</Link>
+          </li>
+          <li>
+            <Link href="/?cat=gaming">Gaming</Link>
+          </li>
+          <li>
+            <Link href="/?cat=casques-audio">Audio</Link>
+          </li>
+          <li>
+            <Link href="/produits">Tous les produits</Link>
+          </li>
+          <li>
+            <Link href="/?cat=accessoires">Accessoires</Link>
+          </li>
+        </FooterAccordion>
 
         {/* Colonne 3 : Services */}
-        <details className="footer-column footer-accordion">
-          <summary>Services</summary>
-          <ul className="footer-links-list">
-            <li>
-              <Link href="/contact">Support technique</Link>
-            </li>
-            <li>
-              <Link href="/contact">Livraison</Link>
-            </li>
-            <li>
-              <Link href="/cgv">Garantie</Link>
-            </li>
-            <li>
-              <Link href="/contact">Installation</Link>
-            </li>
-            <li>
-              <Link href="/contact">Formation</Link>
-            </li>
-            <li>
-              <Link href="/contact">Maintenance</Link>
-            </li>
-          </ul>
-        </details>
+        <FooterAccordion title="Services">
+          <li>
+            <Link href="/contact">Support technique</Link>
+          </li>
+          <li>
+            <Link href="/contact">Livraison</Link>
+          </li>
+          <li>
+            <Link href="/cgv">Garantie</Link>
+          </li>
+          <li>
+            <Link href="/contact">Installation</Link>
+          </li>
+          <li>
+            <Link href="/contact">Formation</Link>
+          </li>
+          <li>
+            <Link href="/contact">Maintenance</Link>
+          </li>
+        </FooterAccordion>
 
         {/* Colonne 4 : Entreprise et aide */}
-        <details className="footer-column footer-accordion">
-          <summary>Entreprise</summary>
-          <ul className="footer-links-list">
-            <li>
-              <Link href="/contact">À propos</Link>
-            </li>
-            <li>
-              <Link href="/vedette">Promotions</Link>
-            </li>
-            <li>
-              <Link href="/contact">Contact</Link>
-            </li>
-            <li>
-              <Link href="/contact">Partenaires</Link>
-            </li>
-          </ul>
-        </details>
+        <FooterAccordion title="Entreprise">
+          <li>
+            <Link href="/contact">À propos</Link>
+          </li>
+          <li>
+            <Link href="/vedette">Promotions</Link>
+          </li>
+          <li>
+            <Link href="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link href="/contact">Partenaires</Link>
+          </li>
+        </FooterAccordion>
 
-        <details className="footer-column footer-accordion">
-          <summary>Aide</summary>
-          <ul className="footer-links-list">
-            <li>
-              <Link href="/contact">Contact</Link>
-            </li>
-            <li>
-              <Link href="/panier">Mon panier</Link>
-            </li>
-            <li>
-              <Link href="/cgv">Retours et conditions</Link>
-            </li>
-            <li>
-              <Link href="/confidentialite">Confidentialité</Link>
-            </li>
-          </ul>
-        </details>
+        <FooterAccordion title="Aide">
+          <li>
+            <Link href="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link href="/panier">Mon panier</Link>
+          </li>
+          <li>
+            <Link href="/cgv">Retours et conditions</Link>
+          </li>
+          <li>
+            <Link href="/confidentialite">Confidentialité</Link>
+          </li>
+        </FooterAccordion>
       </div>
 
       {/* Barre de Copyright & Moyens de paiement tout en bas */}

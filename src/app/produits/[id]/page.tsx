@@ -207,12 +207,42 @@ export default function ProductDetailPage({
               Object.keys(product.specifications).length > 0 ? (
                 <dl className={styles.specifications}>
                   {Object.entries(product.specifications).map(
-                    ([label, value]) => (
-                      <div key={label}>
-                        <dt>{label}</dt>
-                        <dd>{value}</dd>
-                      </div>
-                    ),
+                    ([label, value]) => {
+                      const isPlainLine = label.startsWith("__line_");
+                      return (
+                        <div
+                          key={label}
+                          className={
+                            isPlainLine
+                              ? styles.plainSpecificationRow
+                              : undefined
+                          }
+                        >
+                          {isPlainLine ? (
+                            <>
+                              <dt className={styles.visuallyHidden}>
+                                Caractéristique
+                              </dt>
+                              <dd className={styles.plainSpecification}>
+                                {!value.startsWith("✅") &&
+                                  !value.startsWith("(✅") && (
+                                    <i
+                                      className="fas fa-check"
+                                      aria-hidden="true"
+                                    />
+                                  )}
+                                {value}
+                              </dd>
+                            </>
+                          ) : (
+                            <>
+                              <dt>{label}</dt>
+                              <dd>{value}</dd>
+                            </>
+                          )}
+                        </div>
+                      );
+                    },
                   )}
                 </dl>
               ) : (

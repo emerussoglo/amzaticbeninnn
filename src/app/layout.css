@@ -1938,17 +1938,18 @@ body {
   min-width: 0;
 }
 
-.footer-accordion > summary {
+.footer-accordion-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
   margin: 0 0 14px;
   color: #fff;
   font-size: 13px;
   font-weight: 700;
-  cursor: pointer;
-  list-style: none;
-}
-
-.footer-accordion > summary::-webkit-details-marker {
-  display: none;
+  font-family: inherit;
 }
 
 .footer-accordion > .footer-links-list {
@@ -1956,8 +1957,9 @@ body {
 }
 
 @media (min-width: 769px) {
-  .footer-accordion > summary {
+  .footer-accordion-trigger {
     cursor: default;
+    pointer-events: none;
   }
 
   .footer-accordion > .footer-links-list {
@@ -2328,16 +2330,17 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .footer-accordion > summary {
+  .footer-accordion-trigger {
     display: flex;
     align-items: center;
     justify-content: space-between;
     min-height: 48px;
     margin: 0;
     font-size: 12px;
+    cursor: pointer;
   }
 
-  .footer-accordion > summary::after {
+  .footer-accordion-trigger::after {
     width: 7px;
     height: 7px;
     border-right: 1px solid #aab5c5;
@@ -2347,15 +2350,15 @@ body {
     transition: transform 0.2s ease;
   }
 
-  .footer-accordion[open] > summary::after {
+  .footer-accordion[data-expanded="true"] > .footer-accordion-trigger::after {
     transform: rotate(225deg) translate(-2px, -1px);
   }
 
-  .footer-accordion:not([open]) > .footer-links-list {
+  .footer-accordion[data-expanded="false"] > .footer-links-list {
     display: none;
   }
 
-  .footer-accordion[open] > .footer-links-list {
+  .footer-accordion[data-expanded="true"] > .footer-links-list {
     display: flex;
     gap: 8px;
     padding: 0 0 12px;
@@ -2634,5 +2637,44 @@ body {
   .home-posters-arrow,
   .home-posters-dot {
     transition: none;
+  }
+}
+
+.back-to-top-button {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1200;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  border-radius: 50%;
+  background: #087f84;
+  box-shadow: 0 5px 16px rgba(16, 39, 43, 0.22);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    background 160ms ease;
+}
+
+.back-to-top-button:hover {
+  transform: translateY(-3px);
+  background: #075f64;
+}
+
+.back-to-top-button:focus-visible {
+  outline: 3px solid #ffb547;
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .back-to-top-button {
+    right: 14px;
+    bottom: 14px;
+    width: 42px;
+    height: 42px;
   }
 }
