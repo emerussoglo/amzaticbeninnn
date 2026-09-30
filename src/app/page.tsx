@@ -1,6 +1,7 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCart } from "@/context/CartContext";
@@ -14,6 +15,11 @@ const homeCatalogProducts = HOME_PRODUCT_IDS.flatMap((id) => {
   return product ? [product] : [];
 });
 
+const homePosters = [
+  { src: "/img/affiches/aff1.jpeg", alt: "Affiche AMZATIC Bénin" },
+  { src: "/img/affiches/aff2.jpeg", alt: "Affiche AMZATIC Bénin" },
+];
+
 function normalizeSearchText(value: string) {
   return value
     .normalize("NFD")
@@ -23,6 +29,7 @@ function normalizeSearchText(value: string) {
 }
 
 function HomePageContent() {
+  const [activePoster, setActivePoster] = useState(0);
   const { addToCart } = useCart();
   const storeProducts = useStoreProducts();
   const router = useRouter();
@@ -304,6 +311,78 @@ function HomePageContent() {
                 <i className="fas fa-laptop" aria-hidden="true"></i>
               </span>
             </Link>
+          </div>
+        </section>
+      )}
+
+      {!searchQuery && !categoryQuery && (
+        <section className="home-posters" aria-label="Affiches AMZATIC">
+          <div className="home-posters-heading">
+            <div>
+              <span className="home-posters-eyebrow">À LA UNE</span>
+              {/* <h2>Nos affiches</h2> */}
+            </div>
+            <div className="home-posters-controls">
+              <span className="home-posters-count">
+                0{activePoster + 1} <span>/</span> 0{homePosters.length}
+              </span>
+              <button
+                type="button"
+                className="home-posters-arrow"
+                aria-label="Afficher l’affiche précédente"
+                onClick={() =>
+                  setActivePoster(
+                    (current) =>
+                      (current - 1 + homePosters.length) % homePosters.length,
+                  )
+                }
+              >
+                <i className="fas fa-arrow-left" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                className="home-posters-arrow"
+                aria-label="Afficher l’affiche suivante"
+                onClick={() =>
+                  setActivePoster(
+                    (current) => (current + 1) % homePosters.length,
+                  )
+                }
+              >
+                <i className="fas fa-arrow-right" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+          <div className="home-posters-frame">
+            <div
+              className="home-posters-track"
+              style={{ transform: `translateX(-${activePoster * 100}%)` }}
+            >
+              {homePosters.map((poster, index) => (
+                <div className="home-poster-slide" key={poster.src}>
+                  <Image
+                    src={poster.src}
+                    alt={poster.alt}
+                    width={1080}
+                    height={720}
+                    sizes="(max-width: 768px) calc(100vw - 32px), 1160px"
+                  />
+                  <span className="home-poster-index">0{index + 1}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="home-posters-dots" aria-label="Choisir une affiche">
+            {homePosters.map((poster, index) => (
+              <button
+                key={poster.src}
+                type="button"
+                className={`home-posters-dot${activePoster === index ? " is-active" : ""}`}
+                aria-label={`Afficher l’affiche ${index + 1}`}
+                aria-current={activePoster === index ? "true" : undefined}
+                onClick={() => setActivePoster(index)}
+              />
+            ))}
           </div>
         </section>
       )}

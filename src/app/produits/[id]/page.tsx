@@ -15,7 +15,7 @@ export default function ProductDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const resolvedParams = use(params);
-  const productId = Number(resolvedParams.id);
+  const productId = resolvedParams.id;
   const router = useRouter();
   const { addToCart } = useCart();
   const [databaseProduct, setDatabaseProduct] = useState<StoreProduct | null>(
@@ -24,7 +24,10 @@ export default function ProductDetailPage({
   const [selectedImage, setSelectedImage] = useState("");
   const [activeTab, setActiveTab] = useState<DetailTab>("images");
 
-  const staticProduct = PRODUCTS_DATA.find((p) => p.id === productId);
+  const staticProduct = PRODUCTS_DATA.find(
+    (product) =>
+      product.id === productId || String(product.legacyId) === productId,
+  );
 
   useEffect(() => {
     fetch(`/api/products/${encodeURIComponent(resolvedParams.id)}`, {

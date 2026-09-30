@@ -1,5 +1,6 @@
 export type Product = {
-  id: number;
+  id: string;
+  legacyId?: number;
   name: string;
   price: number;
   oldPrice?: number;
@@ -9,9 +10,11 @@ export type Product = {
   discount?: string;
 };
 
+type CatalogRecord = Omit<Product, "id" | "legacyId"> & { id: number };
+
 export const STATIC_PRODUCT_STORAGE_PREFIX = "_static_catalog_";
 
-export const PRODUCTS_DATA: Product[] = [
+const catalogRecords: CatalogRecord[] = [
   {
     id: 10001,
     name: "Lenovo LOQ 15AHP9 (83DX00F2PB)",
@@ -93,24 +96,7 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/hp-probook-445-g7-3g342utaba.avif",
     tag: "Venu Propre",
   },
-  //   {
-  //     id: 10010,
-  //     name: "HP ProBook 440 G7 (8WE48UT#ABA)",
-  //     price: 225000,
-  //     oldPrice: 255000,
-  //     category: "Ordinateurs",
-  //     image: "/img/prod/hp-probook-440-g7-8we48utaba.avif",
-  //     tag: "Venu Propre",
-  //   },
-  //   {
-  //     id: 10011,
-  //     name: "Lenovo LOQ 15ARP10E (83S0007PUE)",
-  //     price: 600000,
-  //     oldPrice: 685000,
-  //     category: "Gaming",
-  //     image: "/img/prod/lenovo-loq-15arp10e-83s0007pue.avif",
-  //     tag: "Neuf Scellé",
-  //   },
+
   {
     id: 10012,
     name: "Lenovo LOQ 15AHP10 (83JG000FUS)",
@@ -120,15 +106,7 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/lenovo-loq-15ahp10-83jg000fus.avif",
     tag: "Neuf Scellé",
   },
-  //   {
-  //     id: 10013,
-  //     name: "LENOVO LEGION 5 15IRX10 (83LY0007US)",
-  //     price: 1350000,
-  //     oldPrice: 1485000,
-  //     category: "Gaming",
-  //     image: "/img/prod/lenovo-legion-5-15irx10-83ly0007us.avif",
-  //     tag: "Neuf Scellé",
-  //   },
+
   {
     id: 10014,
     name: "Lenovo IdeaCenter A105a 24 - All-In-One",
@@ -158,15 +136,7 @@ export const PRODUCTS_DATA: Product[] = [
       "/img/prod/dell-latitude-7440-intel-coretm-i7-1365u-ram-32go-ssd-512go.avif",
     tag: "Venu Propre",
   },
-  //   {
-  //     id: 10017,
-  //     name: "Dell Precision 7530 Mobile WorkStation",
-  //     price: 300000,
-  //     oldPrice: 395000,
-  //     category: "Gaming",
-  //     image: "/img/prod/dell-precision-7530-mobile-workstation.avif",
-  //     tag: "Venu Propre",
-  //   },
+
   {
     id: 10018,
     name: "HP Laptop 15-fc0120nia (AE0J7EA) / AMD Ryzen™ 7 7730U / SSD 512Go / RAM 8Go",
@@ -258,7 +228,7 @@ export const PRODUCTS_DATA: Product[] = [
       "/img/prod/hp-elitebook-x360-830-g10-2-en-1-intel-coretm-i5-1335u-ssd-512go-ram-16go.avif",
     tag: "Venu Propre",
   },
- 
+
   {
     id: 10030,
     name: "HP EliteBook 840 G8 / SSD 512Go / Ram 16Go / Intel®️ Core™️ i7-1185G7U",
@@ -729,8 +699,6 @@ export const PRODUCTS_DATA: Product[] = [
     tag: "Neuf Scellé",
   },
 
-
-
   {
     id: 10117,
     name: "DELL G16 7630",
@@ -768,16 +736,99 @@ export const PRODUCTS_DATA: Product[] = [
     image: "/img/prod/hp-elitebook-x360-1030-g3-2-en-1.avif",
     tag: "Venu Propre",
   },
+
+  {
+    id: 10123,
+    name: "HP Elitebook 830 G9 Neuf en carton",
+    price: 380000,
+    oldPrice: 400000,
+    category: "Ordinateurs",
+    image: "/img/prod/HP-Elitebook-830-G9-Neuf-en-carton.jpeg",
+    tag: "Nouvel arrivage",
+  },
+  {
+    id: 10124,
+    name: "Asus TUF Gaming A18",
+    price: 1300000,
+    oldPrice: 1350000,
+    category: "Gaming",
+    image: "/img/prod/Asus-TUF-Gaming-A18.jpg",
+    tag: "Venu Propre",
+  },
+  {
+    id: 10125,
+    name: "HP Note book 15 Neuf en carton",
+    price: 380000,
+    oldPrice: 400000,
+    category: "Ordinateurs",
+    image: "/img/prod/HP-Note-book-15-Neuf-en-carton.jpg",
+    tag: "Venu Propre",
+  },
 ];
 
+export const PRODUCTS_DATA: Product[] = catalogRecords.map(
+  (product, index) => ({
+    ...product,
+    legacyId: product.id,
+    id: String(index + 1).padStart(3, "0"),
+  }),
+);
+
 export const HOME_PRODUCT_IDS = [
-  10005, 10006, 10014, 10015, 10016, 10018, 10019, 10020, 10024, 10026, 10028,
-  10033, 10041, 10045, 10047, 10059, 10087, 10103, 10001, 10003, 10004, 10012,
-  10032, 10050, 10052, 10104, 10031, 10079, 10086, 10099, 10038, 10039, 10040,
-  10070, 10092, 10102,
+  "078",
+  "077",
+  "005",
+  "006",
+  "011",
+  "012",
+  "013",
+  "014",
+  "015",
+  "016",
+  "020",
+  "021",
+  "022",
+  "026",
+  "032",
+  "034",
+  "036",
+  "042",
+  "059",
+  "070",
+  "001",
+  "003",
+  "004",
+  "010",
+  "025",
+  "038",
+  "039",
+  "071",
+  "024",
+  "054",
+  "058",
+  "068",
+  "029",
+  "030",
+  "031",
+  "049",
+  "062",
+  "069",
 ] as const;
 
 export const FEATURED_PRODUCT_IDS = [
-  10003, 10032, 10050, 10052, 10104, 10031, 10086, 10079, 10016, 10018, 10045,
-  10070, 10094, 10092, 10099,
+  "003",
+  "025",
+  "038",
+  "039",
+  "071",
+  "024",
+  "058",
+  "054",
+  "013",
+  "014",
+  "034",
+  "049",
+  "064",
+  "062",
+  "068",
 ] as const;

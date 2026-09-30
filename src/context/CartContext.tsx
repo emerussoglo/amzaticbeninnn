@@ -7,6 +7,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
+import { PRODUCTS_DATA } from "@/lib/catalog";
 
 export interface CartItem {
   id: string | number;
@@ -45,8 +46,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const savedCart = localStorage.getItem("espanadeal_cart");
     if (savedCart) {
       try {
-        const parsed = JSON.parse(savedCart);
-        setCart(parsed);
+        const parsed = JSON.parse(savedCart) as CartItem[];
+        const currentIdByLegacyId = new Map<number, string>();
+        PRODUCTS_DATA.forEach((product) => {
+          if (product.legacyId !== undefined) {
+            currentIdByLegacyId.set(product.legacyId, product.id);
+          }
+        });
+        setCart(
+          parsed.map((item) => ({
+            ...item,
+            id:
+              typeof item.id === "number"
+                ? (currentIdByLegacyId.get(item.id) ?? item.id)
+                : item.id,
+          })),
+        );
       } catch (e) {
         console.error(e);
       }

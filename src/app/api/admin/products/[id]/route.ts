@@ -21,8 +21,10 @@ export async function PUT(request: Request, { params }: RouteContext) {
   }
   const { id } = await params;
   if (id.startsWith(STATIC_PRODUCT_STORAGE_PREFIX)) {
-    const staticId = Number(id.slice(STATIC_PRODUCT_STORAGE_PREFIX.length));
-    const staticProduct = PRODUCTS_DATA.find((item) => item.id === staticId);
+    const staticId = id.slice(STATIC_PRODUCT_STORAGE_PREFIX.length);
+    const staticProduct = PRODUCTS_DATA.find(
+      (item) => item.id === staticId || String(item.legacyId) === staticId,
+    );
     const specifications =
       body && typeof body === "object"
         ? (body as Record<string, unknown>).specifications
@@ -34,12 +36,13 @@ export async function PUT(request: Request, { params }: RouteContext) {
       );
     }
 
+    const storageId = `${STATIC_PRODUCT_STORAGE_PREFIX}${staticProduct.legacyId ?? staticProduct.id}`;
     const now = new Date();
     try {
       const [saved] = await db
         .insert(products)
         .values({
-          id,
+          id: storageId,
           name: staticProduct.name,
           description: "",
           brand: "",

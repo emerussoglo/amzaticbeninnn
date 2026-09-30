@@ -26,8 +26,7 @@ export default function FeaturedPage() {
         <span className="featured-subtitle">Exclusivités Amzatic</span>
         <h1>Les Meilleurs Produits du Moment</h1>
         <p>
-          Découvrez notre sélection exclusive de matériel plébiscité par nos
-          clients au Bénin pour sa puissance, sa qualité et sa fiabilité.
+          Découvrez notre sélection exclusive 
         </p>
         <div className="catalog-header-action">
           <button

@@ -23,7 +23,9 @@ export async function GET(
         headers: { "Cache-Control": "no-store" },
       });
 
-    const staticProduct = PRODUCTS_DATA.find((item) => String(item.id) === id);
+    const staticProduct = PRODUCTS_DATA.find(
+      (item) => item.id === id || String(item.legacyId) === id,
+    );
     const [storedSpecifications] = staticProduct
       ? await db
           .select()
@@ -32,7 +34,7 @@ export async function GET(
             and(
               eq(
                 products.id,
-                `${STATIC_PRODUCT_STORAGE_PREFIX}${staticProduct.id}`,
+                `${STATIC_PRODUCT_STORAGE_PREFIX}${staticProduct.legacyId ?? staticProduct.id}`,
               ),
               eq(products.active, false),
             ),
@@ -50,7 +52,7 @@ export async function GET(
     return NextResponse.json(
       {
         ...storedProduct,
-        id,
+        id: staticProduct.id,
         name: staticProduct.name,
         category: staticProduct.category,
         price: staticProduct.price,

@@ -29,26 +29,26 @@ export async function GET() {
     const managedProducts = records
       .filter((record) => !record.id.startsWith(STATIC_PRODUCT_STORAGE_PREFIX))
       .map(toStoreProduct);
-    const staticProducts = PRODUCTS_DATA.map((product) => ({
-      id: `${STATIC_PRODUCT_STORAGE_PREFIX}${product.id}`,
-      name: product.name,
-      description: "",
-      brand: "",
-      category: product.category,
-      price: product.price,
-      oldPrice: product.oldPrice ?? null,
-      image: product.image,
-      images: [product.image],
-      specifications:
-        storedStaticProducts.get(
-          `${STATIC_PRODUCT_STORAGE_PREFIX}${product.id}`,
-        ) ?? {},
-      tag: product.tag ?? "",
-      stock: 0,
-      featured: false,
-      active: true,
-      staticCatalog: true,
-    }));
+    const staticProducts = PRODUCTS_DATA.map((product) => {
+      const staticId = `${STATIC_PRODUCT_STORAGE_PREFIX}${product.legacyId ?? product.id}`;
+      return {
+        id: staticId,
+        name: product.name,
+        description: "",
+        brand: "",
+        category: product.category,
+        price: product.price,
+        oldPrice: product.oldPrice ?? null,
+        image: product.image,
+        images: [product.image],
+        specifications: storedStaticProducts.get(staticId) ?? {},
+        tag: product.tag ?? "",
+        stock: 0,
+        featured: false,
+        active: true,
+        staticCatalog: true,
+      };
+    });
     return NextResponse.json([...managedProducts, ...staticProducts], {
       headers: { "Cache-Control": "no-store" },
     });
