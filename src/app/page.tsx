@@ -75,38 +75,7 @@ function HomePageContent() {
         <div>
           <Hero />
           <BrandMarquee />
-          <div className="features-section">
-            <div className="features-container">
-              <div className="feature-card">
-                <div className="feature-icon-wrapper icon-shipping">
-                  <i className="fas fa-truck"></i>
-                </div>
-                <h3>Livraison Gratuite</h3>
-                <p>Pour toutes commandes supérieures à 700.000 CFA</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon-wrapper icon-security">
-                  <i className="fas fa-shield-alt"></i>
-                </div>
-                <h3>Paiement Sécurisé</h3>
-                <p>Transactions 100% sécurisées et cryptées</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon-wrapper icon-support">
-                  <i className="fas fa-headset"></i>
-                </div>
-                <h3>Support 24/7</h3>
-                <p>Assistance disponible à tout moment</p>
-              </div>
-              <div className="feature-card">
-                <div className="feature-icon-wrapper icon-guarantee">
-                  <i className="fas fa-sync-alt"></i>
-                </div>
-                <h3>Garantie Satisfait</h3>
-                <p>Retour gratuit sous 30 jours</p>
-              </div>
-            </div>
-          </div>
+          
         </div>
       )}
 
@@ -248,7 +217,38 @@ function HomePageContent() {
           </div>
         )}
       </div>
-
+<div className="features-section">
+            <div className="features-container">
+              <div className="feature-card">
+                <div className="feature-icon-wrapper icon-shipping">
+                  <i className="fas fa-truck"></i>
+                </div>
+                <h3>Livraison Gratuite</h3>
+                <p>Pour toutes commandes supérieures à 700.000 CFA</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon-wrapper icon-security">
+                  <i className="fas fa-shield-alt"></i>
+                </div>
+                <h3>Paiement Sécurisé</h3>
+                <p>Transactions 100% sécurisées et cryptées</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon-wrapper icon-support">
+                  <i className="fas fa-headset"></i>
+                </div>
+                <h3>Support 24/7</h3>
+                <p>Assistance disponible à tout moment</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon-wrapper icon-guarantee">
+                  <i className="fas fa-sync-alt"></i>
+                </div>
+                <h3>Garantie Satisfait</h3>
+                <p>Retour gratuit sous 30 jours</p>
+              </div>
+            </div>
+          </div>
       {!searchQuery && !categoryQuery && (
         <section className="home-promotions">
           <div className="black-friday-section">
