@@ -31,12 +31,7 @@ export default function ContactPage() {
       <div className="featured-hero">
         <span className="featured-subtitle">CONTACTEZ-NOUS</span>
         <h1>Une question ? Nous sommes là pour vous</h1>
-        <br/>
-        <p>
-          Notre équipe technique et commerciale vous répond dans les plus brefs
-          délais pour toute demande d&apos;information, conseil ou SAV
-          informatique.
-        </p>
+       
       </div>
 
       {/* Grille des 4 Cartes d'information */}
