@@ -31,11 +31,6 @@ export default function ContactPage() {
       <div className="featured-hero">
         <span className="featured-subtitle">CONTACTEZ-NOUS</span>
         <h1>Une question ? Nous sommes là pour vous</h1>
-        <p>
-          Notre équipe technique et commerciale vous répond dans les plus brefs
-          délais pour toute demande d&apos;information, conseil ou SAV
-          informatique.
-        </p>
       </div>
 
       {/* Grille des 4 Cartes d'information (Style Maquette) */}
@@ -96,13 +91,49 @@ export default function ContactPage() {
           <p className="card-subtitle">Début échangeur Godomey à droite</p>
           <p className="card-value">Abomey-Calavi, Bénin</p>
           <a
-            href="https://maps.google.com"
+            href="https://maps.app.goo.gl/CFwWkJr2m3TYJsni6"
             target="_blank"
             rel="noopener noreferrer"
             className="card-action-link"
           >
             Voir sur la carte <i className="fas fa-chevron-right"></i>
           </a>
+        </div>
+      </div>
+
+      {/* Section de Localisation / Carte Interactive */}
+      <div className="contact-map-section">
+        <div className="map-card-wrapper">
+          <div className="map-header">
+            <div className="map-title-info">
+              <i className="fas fa-map-marked-alt"></i>
+              <div>
+                <h3>Notre Localisation au Bénin</h3>
+                <p>Début échangeur Godomey à droite, Abomey-Calavi</p>
+              </div>
+            </div>
+            <a
+              href="https://maps.app.goo.gl/CFwWkJr2m3TYJsni6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-map-directions"
+            >
+              <i className="fas fa-directions"></i> Itinéraire
+            </a>
+          </div>
+
+          <div className="map-responsive-container">
+            <iframe
+              title="Localisation AMZATIC"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.268153073998!2d2.3168!3d6.3654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjEnNTUuNCJOIDInMTknMDAuOCJF!5e0!3m2!1sfr!2sbj!4v1650000000000!5m2!1sfr!2sbj"
+              width="100%"
+              height="350"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
       </div>
 

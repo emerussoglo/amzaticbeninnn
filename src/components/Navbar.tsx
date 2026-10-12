@@ -331,6 +331,11 @@ export default function Navbar() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link href="https://maps.app.goo.gl/kZAxBosWDTjao7od7" onClick={() => setIsMenuOpen(false)}>
+                  Localisation
+                </Link>
+              </li>
             </ul>
 
             <div className="sidebar-divider"></div>

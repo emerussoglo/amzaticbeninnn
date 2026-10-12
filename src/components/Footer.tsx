@@ -94,7 +94,14 @@ export default function Footer() {
           <ul className="footer-direct-contact">
             <li>
               <i className="fas fa-map-marker-alt icon-geo"></i>
-              <span>Début échangeur Godomey à droite, Cotonou</span>
+              <a 
+                href="https://maps.app.goo.gl/CFwWkJr2m3TYJsni6" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ color: "inherit", textDecoration: "none" }}
+              >
+                Début échangeur Godomey à droite, Cotonou
+              </a>
             </li>
             <li>
               <i className="fas fa-phone-alt"></i>
@@ -147,7 +154,7 @@ export default function Footer() {
             <Link href="/contact">Support technique</Link>
           </li>
           <li>
-            <Link href="/contact">Livraison</Link>
+            {/* <Link href="/contact">Livraison</Link> */}
           </li>
           <li>
             <Link href="/cgv">Garantie</Link>
@@ -174,9 +181,6 @@ export default function Footer() {
           <li>
             <Link href="/contact">Contact</Link>
           </li>
-          <li>
-            <Link href="/contact">Partenaires</Link>
-          </li>
         </FooterAccordion>
 
         <FooterAccordion title="Aide">
@@ -190,7 +194,7 @@ export default function Footer() {
             <Link href="/cgv">Retours et conditions</Link>
           </li>
           <li>
-            <Link href="/confidentialite">Confidentialité</Link>
+            {/* <Link href="/confidentialite">Confidentialité</Link> */}
           </li>
         </FooterAccordion>
       </div>
