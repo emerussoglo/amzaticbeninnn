@@ -31,9 +31,14 @@ export default function ContactPage() {
       <div className="featured-hero">
         <span className="featured-subtitle">CONTACTEZ-NOUS</span>
         <h1>Une question ? Nous sommes là pour vous</h1>
+        <p>
+          Notre équipe technique et commerciale vous répond dans les plus brefs
+          délais pour toute demande d&apos;information, conseil ou SAV
+          informatique.
+        </p>
       </div>
 
-      {/* Grille des 4 Cartes d'information (Style Maquette) */}
+      {/* Grille des 4 Cartes d'information */}
       <div className="contact-cards-grid">
         {/* Carte 1 : Appelez-nous */}
         <div className="contact-card">
@@ -101,38 +106,53 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* Section de Localisation / Carte Interactive */}
-      <div className="contact-map-section">
-        <div className="map-card-wrapper">
-          <div className="map-header">
-            <div className="map-title-info">
-              <i className="fas fa-map-marked-alt"></i>
-              <div>
-                <h3>Notre Localisation au Bénin</h3>
-                <p>Début échangeur Godomey à droite, Abomey-Calavi</p>
-              </div>
+      {/* SECTION LOCALE / CARTE DE LOCALISATION INTERACTIVE */}
+      <div className="location-section-wrapper">
+        <div className="location-card-container">
+          <div className="location-info-side">
+            <span className="featured-subtitle">NOTRE LOCALISATION</span>
+            <h2>Venez nous rendre visite</h2>
+            <p>
+              Notre boutique est idéalement située pour vous accueillir. Retrouvez
+              tout notre matériel informatique et bénéficiez de conseils
+              personnalisés sur place.
+            </p>
+            <div className="location-details">
+              <p>
+                <i className="fas fa-map-marker-alt"></i> Début échangeur Godomey
+                à droite, Abomey-Calavi, Bénin
+              </p>
+              <p>
+                <i className="far fa-clock"></i> Lundi - Samedi : 8h00 - 19h00
+              </p>
             </div>
             <a
               href="https://maps.app.goo.gl/CFwWkJr2m3TYJsni6"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-map-directions"
+              className="btn-map-action"
             >
-              <i className="fas fa-directions"></i> Itinéraire
+              <i className="fas fa-location-arrow"></i> Ouvrir l'itinéraire Google Maps
             </a>
           </div>
 
-          <div className="map-responsive-container">
-            <iframe
-              title="Localisation AMZATIC"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.268153073998!2d2.3168!3d6.3654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjEnNTUuNCJOIDInMTknMDAuOCJF!5e0!3m2!1sfr!2sbj!4v1650000000000!5m2!1sfr!2sbj"
-              width="100%"
-              height="350"
-              style={{ border: 0 }}
-              allowFullScreen={true}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <div className="location-image-side">
+            <a
+              href="https://maps.app.goo.gl/CFwWkJr2m3TYJsni6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="map-image-link"
+              title="Cliquer pour ouvrir la carte"
+            >
+              <img
+                src="/img/loca.jpg"
+                alt="Localisation AMZATIC Godomey"
+                className="location-map-img"
+              />
+              <div className="map-overlay-badge">
+                <i className="fas fa-external-link-alt"></i> Cliquer pour voir la carte
+              </div>
+            </a>
           </div>
         </div>
       </div>
